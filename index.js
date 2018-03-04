@@ -46,6 +46,12 @@ return commandfile.run(bot, message, args);
 var pgClient = new pg.Client(botconfig.db);
 pgClient.connect();
 
+query.on("row", function(row,result){
+
+result.addRow(row);
+
+});
+
 
 })
 
