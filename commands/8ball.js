@@ -7,5 +7,5 @@ module.exports.run = async (bot, message, args) => {
   message.reply("The 8ball says..."+responses[randomchoice]);
 }
 module.exports.help = {
-  name: "8ball";
+  name: "8ball"
 }
