@@ -6,10 +6,10 @@ module.exports.run = async (bot, message, args) => {
     if(!name) return message.reply("You must provide a user ID!")
       try {
     message.guild.unban(name)
-      message.react("\u2705")
          } catch (e) {
         return message.channel.send("Couldn't find this user! -- Make sure you provide a user ID!")            
          }
+      message.react("\u2705")
 
 }
 }
