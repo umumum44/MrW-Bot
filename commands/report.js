@@ -15,7 +15,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
   message.react("\u2705")
   message.channel.send(`${message.author}, Prompt will continue in DMs! \uD83D\uDCEC`)
-  const game = await awaitReply(message, "What is the name of the game you are reporting? **IN DETAIL** \nSay **cancel** to cancel prompt.", 300000);
+  const game = await awaitReply(message, "What is the name of the game you are reporting? **BE AS DETAILED AS POSSIBLE!** \nSay **cancel** to cancel prompt.", 300000);
   if(game.toLowerCase() === "cancel") return message.author.send("**Prompt Cancelled**")
   if(game === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return bot.log("ok")
   const proof = await awaitReply(message, `Do you have any proof of this bug/glitch? Send **only links** to prove this bug/glitch exists. If you have no proof, say **skip**.\nSay **cancel** to cancel prompt.`, 300000);
