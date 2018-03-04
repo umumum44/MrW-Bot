@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     message.guild.unban(name)
       message.react("\u2705")
          } catch (e) {
-        return message.channel.send("Couldn't find this user!")            
+        return message.channel.send("Couldn't find this user! -- Make sure you provide a user ID!")            
          }
 
 }
