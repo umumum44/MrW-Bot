@@ -26,7 +26,7 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-  if(message.author.bot) return;
+  //if(message.author.bot) return;
   if(message.channel.type === "dm") return;
 
 if(message.content.endsWith("messages that were not over two weeks old!")) {
