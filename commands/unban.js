@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     let tounban = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!tounban) {
       let aarray = message.guild.fetchBans()
-      let marray = marray.filter(m => RegExp(name, "gi").test(m.displayName))
+      let marray = aarray.filter(m => RegExp(name, "gi").test(m.displayName))
       tounban = marray.first()
     }
     if(!tounban) return message.reply("Couldn't find this user.")
