@@ -30,7 +30,7 @@ bot.on("message", async message => {
   //if(message.author.bot) return;
   if(message.channel.type === "dm") return;
 
-if(message.content.endsWith("messages that were not over two weeks old!")) {
+if((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
    message.delete(5000)
 }
   let prefix = botconfig.prefix;
