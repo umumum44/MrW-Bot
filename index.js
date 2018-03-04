@@ -28,7 +28,7 @@ bot.on("ready", async () => {
 bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
-if((message.content.includes("messages that were not over two weeks old!")) && (message.author.id === "419881218784493588")) {
+if((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.id === "419881218784493588")) {
    message.delete(5000)
 }
 
