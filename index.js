@@ -46,11 +46,11 @@ return commandfile.run(bot, message, args);
 var pgClient = new pg.Client(botconfig.db);
 pgClient.connect();
   const query = {
-  text: 'INSERT INTO users(ID, reason) VALUES($1, $2)',
+  text: 'INSERT INTO users(id, warnings) VALUES($1, $2)',
   values: ['123456', 'ethanlaj'],
 }
 pgClient.connect(query)
-pgClient.query("SELECT warnings FROM users WHERE ID = $1 ORDER BY ID", id);
+pgClient.query("SELECT warnings FROM users WHERE id = $1 ORDER BY ID", id);
   
   
   
