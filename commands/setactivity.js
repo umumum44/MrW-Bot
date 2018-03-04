@@ -5,10 +5,7 @@ let tbh = args.join(" ").toUpperCase()
 if(message.author.id === "399975738008141824") {
 bot.user.setActivity(`${bot.user.presence.game.name}`, {type: `${tbh}`});
       message.react("\u2705")
-} else if(message.author.id === "245877990938902529") {
-bot.user.setActivity(`${bot.user.presence.game.name}`, {type: `${tbh}`});
-      message.react("\u2705")
-    }
+}
 
 }
 
