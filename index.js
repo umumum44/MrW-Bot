@@ -38,7 +38,6 @@ if(message.content.endsWith("messages that were not over two weeks old!")) {
   let args = messageArray.slice(1);
 
   
-}
 if(!message.content.startsWith(botconfig.prefix)) return;
 let commandfile = bot.commands.get(cmd.slice(prefix.length));
 return commandfile.run(bot, message, args);
