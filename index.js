@@ -49,7 +49,7 @@ pgClient.connect();
   text: 'INSERT INTO users(id, warnings) VALUES($1, $2)',
   values: ['123456', 'ethanlaj'],
 }
-pgClient.query("SELECT warnings FROM users WHERE id = $1 ORDER BY ID", id);
+await pgClient.query("SELECT warnings FROM users WHERE id = $1 ORDER BY ID", id);
   
   
   
