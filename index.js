@@ -50,6 +50,8 @@ pgClient.connect();
   values: ['123456', 'ethanlaj'],
 }
 await pgClient.query("SELECT warnings FROM users WHERE id = $1 ORDER BY ID", id);
+console.log(require("util").inspect(your awaited result...))
+
   
   
   
