@@ -43,6 +43,9 @@ if(!message.content.startsWith(botconfig.prefix)) return;
 let commandfile = bot.commands.get(cmd.slice(prefix.length));
 return commandfile.run(bot, message, args);
 
+var pgClient = new pg.Client(botconfig.db);
+pgClient.connect();
+
 
 })
 
