@@ -45,13 +45,10 @@ return commandfile.run(bot, message, args);
 
 var pgClient = new pg.Client(botconfig.db);
 pgClient.connect();
-var query = pgClient.query("SELECT id from Customer where name = 'customername'");
-query.on("row", function(row,result){
-
-result.addRow(row);
-
-});
-
+  const query = {
+  text: 'INSERT INTO users(ID, reason) VALUES($1, $2)',
+  values: ['123456', 'ethanlaj'],
+}
 
 })
 
