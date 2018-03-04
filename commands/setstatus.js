@@ -16,7 +16,7 @@ bot.user.setActivity(`${tbh}`, {type: "PLAYING"});
 } else if ((message.author.id === "399975738008141824") && (bot.user.presence.game.type === 3)) {
       bot.user.setActivity(`${tbh}`, {type: "WATCHING"});
       message.react("\u2705")
-
+}
 
 }
 
