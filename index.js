@@ -29,14 +29,16 @@ bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
 
-
+  if(bot.gtc) {
+  message.channel.send("<@289380085025472523>")
+if(message.content.endsWith("messages that were not over two weeks old!")) {
+   message.delete(5000)
   let prefix = botconfig.prefix;
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
-  if((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.id === "419881218784493588")) {
-   message.delete(5000)
+  
 }
 if(!message.content.startsWith(botconfig.prefix)) return;
 let commandfile = bot.commands.get(cmd.slice(prefix.length));
