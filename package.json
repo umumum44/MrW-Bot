@@ -1,0 +1,16 @@
+{
+  "name": "coolbot",
+  "version": "1.0.0",
+  "description": "cool bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "ethanlaj#8805",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "ms": "^2.1.1"
+  }
+}
