@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
   if(message.member.hasPermission("BAN_MEMBERS")) {
     let tounban = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!tounban) {
-      let aarray = message.guild.fetchBans()
+      let aarray = await message.guild.fetchBans()
       let marray = aarray.filter(m => RegExp(name, "gi").test(m.displayName))
       tounban = marray.first()
     }
