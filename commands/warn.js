@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
       } else {
         var reason = message.content.substr(7+args[0].length);
       }
-      target.DMChannel.send(`You were warned in ${message.guild} for `+`\`${reason}\``+` by ${message.author.username}`);
+      target.send(`You were warned in ${message.guild} for `+`\`${reason}\``+` by ${message.author.username}`);
       // oWo where's the database code ETHAN
       message.delete();
     } else {
