@@ -45,7 +45,7 @@ return commandfile.run(bot, message, args);
 
 var pgClient = new pg.Client(botconfig.db);
 pgClient.connect();
-
+var query = pgClient.query("SELECT id from Customer where name = 'customername'");
 query.on("row", function(row,result){
 
 result.addRow(row);
