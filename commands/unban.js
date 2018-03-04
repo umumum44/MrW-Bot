@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
-  let name = `${args[1]}`
+  let name = `${args[0]}`
   if(message.member.hasPermission("BAN_MEMBERS")) {
       if (!name) return message.channel.send("You must supply a username!")
     let tounban = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
