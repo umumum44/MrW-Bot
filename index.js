@@ -49,7 +49,7 @@ pgClient.connect();
   text: 'INSERT INTO users(ID, reason) VALUES($1, $2)',
   values: ['123456', 'ethanlaj'],
 }
-
+pgClient.connect(query)
 })
 
 
