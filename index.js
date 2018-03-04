@@ -50,7 +50,7 @@ pgClient.connect();
   values: ['123456', 'ethanlaj'],
 }
 pgClient.connect(query)
-bot.query("SELECT warnings FROM users WHERE ID = $1 ORDER BY ID", id);
+pgClient.query("SELECT warnings FROM users WHERE ID = $1 ORDER BY ID", id);
   
   
   
