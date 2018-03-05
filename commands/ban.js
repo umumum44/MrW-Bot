@@ -3,7 +3,7 @@ module.exports.run = async (bot, message, args) => {
 	let name = `${args[0]}`;
 	let reason = args.join(" ").slice(22);
 	if(!reason) reason = "No reason specified";
-	if(message.member.hasPermission("BAN_MEMBERS")) {
+	//if(message.member.hasPermission("BAN_MEMBERS")) {
 		let buser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		if(!buser) {
 			marray = message.guild.members.filter(m => RegExp(name, "gi").test(m.displayName));
@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
 		message.author.send(`You were banned in ${message.guild.name} for ${reason} by ${message.channel.author}`);
 
 		message.react("\u2705");
-	} else return message.channel.send(`${message.author}, you do not have permission to kick members!`);
+	//} else return message.channel.send(`${message.author}, you do not have permission to kick members!`);
 	return;
 }
 
