@@ -21,7 +21,6 @@ let usericon = user.user.avatarURL
 
     return message.channel.send(ab);
   }
-}
 
 module.exports.help = {
 	name: "about"
