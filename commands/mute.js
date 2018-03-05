@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
 			let mutetime = args[1];
 			if(!mutetime) return message.reply("You must specify a time!");
 			await(tomute.addRole(muterole.id));
-			let reason = message.content.substr(2+args[0].length+args[1].length);
+			let reason = message.content.substr(7+args[0].length+args[1].length);
 			if(!reason) reason = "No reason specified";
 			tomute.send(`You were muted in ${message.guild.name} for \`${reason}\` for \`${mutetime}\` by ${message.author.username}`);
 			message.react("\u2705");
