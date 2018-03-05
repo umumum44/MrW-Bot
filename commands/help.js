@@ -10,9 +10,9 @@ module.exports.run = async (bot, message, args) => {
 	.addField("Ping", "Responds with pong!")
 	.addField("Purge", "Deletes a specified amount of messages")
 	.addField("Report", "Starts a prompt for reporting bugs/glitches in games")
-	.addField("Setactivity", "Sets the bot's activity \(Owner-Only\)")
-	.addField("Setstatus", "Sets the bot's status \(Owner-Only\)")
-	.addField("Unmute", "Unmutes a server member");
+	.addField("Unmute", "Unmutes a server member")
+	.addField("SetActivity", "Sets the bot's activity \(Owner-Only\)")
+	.addField("SetStatus", "Sets the bot's status \(Owner-Only\)");
 
 	message.react("\u2705")
 	message.author.send(helper)
