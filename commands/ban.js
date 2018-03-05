@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
 	let name = `${args[0]}`;
-        let reason = message.content.substr(6+args[0].length);
+        let reason = message.content.substr(7+args[0].length);
 	if(!reason) reason = "No reason specified";
 	if(message.member.hasPermission("BAN_MEMBERS")) {
 		let buser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
