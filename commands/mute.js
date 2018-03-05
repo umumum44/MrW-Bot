@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
 				muterole = await message.guild.createRole({
 					name: "Muted",
 					color: "#6699cc",
-					permissions: [];
+					permissions: []
 				})
 				message.guild.channels.forEach(async (channel, id) => {
 					await channel.overwritePermissions(muterole, {
