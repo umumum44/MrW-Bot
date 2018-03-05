@@ -10,8 +10,8 @@ module.exports.run = async (bot, message, args) => {
 			buser = marray.first();
 		}
 		if(!buser) return message.reply("Couldn't find this user!")
-		//if(buser.hasPermission("BAN_MEMBERS")) return message.channel.send(`${message.author}, this member cannot be banned!`);
-		//message.guild.member(buser).ban();
+		if(buser.hasPermission("BAN_MEMBERS")) return message.channel.send(`${message.author}, this member cannot be banned!`);
+		message.guild.member(buser).ban();
 		buser.send(`You were banned in ${message.guild.name} for \`${reason}\` by ${message.author.username}`);
 
 		message.react("\u2705");
