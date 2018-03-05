@@ -15,7 +15,7 @@ let usericon = user.user.avatarURL
     .addField("Username", user.user.username)
     .addField("Discriminator", user.user.discriminator)
     .addField("User ID", user.user.id)
-    .addField("Joined At", user.joinedAt);
+    .addField("Joined At", user.joinedAt)
     .addField("Created At", user.user.createdAt);
     
 
