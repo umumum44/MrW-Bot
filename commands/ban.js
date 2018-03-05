@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
 	let name = `${args[0]}`;
+	let reason = args.join(" ").slice(22);
+	if(!reason) reason = "No reason specified";
 	if(message.member.hasPermission("BAN_MEMBERS")) {
 		let buser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		if(!buser) {
@@ -9,7 +11,9 @@ module.exports.run = async (bot, message, args) => {
 		}
 		if(!buser) return message.reply("Couldn't find this user!")
 		if(buser.hasPermission("BAN_MEMBERS")) return message.channel.send(`${message.author}, this member cannot be banned!`);
-		message.guild.member(buser).ban();
+		//message.guild.member(buser).ban();
+		message.author.send(`You were banned in ${message.guild.name} for ${reason} by ${message.channel.author}`);
+
 		message.react("\u2705");
 	} else return message.channel.send(`${message.author}, you do not have permission to kick members!`);
 	return;
