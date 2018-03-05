@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
 			tomute = marray.first();
 		}
 		if(!tomute) return message.reply("Couldn't find this user!");
-		if(tomute.hasPermission("KICK_MEMBERS")) return message.reply("This person cannot be muted!");
+		//if(tomute.hasPermission("KICK_MEMBERS")) return message.reply("This person cannot be muted!");
 		let muterole = message.guild.roles.find(`name`, "Muted");
 		if(!muterole) {
 			try {
@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
 			let mutetime = args[1];
 			if(!mutetime) return message.reply("You must specify a time!");
 			await(tomute.addRole(muterole.id));
-			let reason = message.content.substr(6+args[0].length);
+			let reason = message.content.substr(7+args[0].length);
 			if(!reason) reason = "No reason specified";
 			tomute.send(`You were muted in ${message.guild.name} for \`${reason}\` for \`${mutetime}\` by ${message.author.username}`);
 			message.react("\u2705");
