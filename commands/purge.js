@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     if(!num) return message.reply("You must provide the number of messages to delete!");
     if(num > 99) return message.reply("You can only purge 99 messages at a time!");
     message.channel.bulkDelete(num + 1)
-      .then(messages => message.reply(`Deleted ${messages.size - 1} messages that were not over two weeks old!`));
+      .then(messages => message.reply(`Deleted ${messages.size - 1} messages that were not over two weeks old!`))
       .catch(console.error);
   } else return message.reply(`${message.author}, you do not have permission to purge messages!`);
 }
