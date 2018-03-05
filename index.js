@@ -21,7 +21,7 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async () => {
 	console.log(`${bot.user.username} is online!`);
-	bot.user.setActivity(".ping", {type: "PLAYING"});
+	bot.user.setActivity(".help", {type: "PLAYING"});
 });
 bot.on("message", async message => {
 	if(message.channel.type === "dm") return;
