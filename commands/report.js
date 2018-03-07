@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
         if(confirm === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return bot.log("ok");
     
         let reportEmbed = new Discord.RichEmbed()
-        .setTitle("New Scam Report")
+        .setTitle("New Bug/Glitch Report")
         .setColor("#FF0000")
         .addField("Time Reported", message.createdAt)
         .addField("Reported Game", game)
