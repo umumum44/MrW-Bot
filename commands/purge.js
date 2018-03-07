@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
 		message.channel.bulkDelete(num + 1)
 			.then(messages => message.reply(`Deleted ${messages.size - 1} messages that were not over two weeks old!`))
 			.catch(console.error);
-	} else return message.reply(`${message.author}, you do not have permission to purge messages!`);
+	} else return message.reply(`You do not have permission to purge messages!`);
 }
 
 module.exports.help = {
