@@ -27,7 +27,17 @@ bot.on("message", async message => {
 	if(message.channel.type === "dm") return;
 	if((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
 		message.delete(5000)
-	}
+		}
+	if(message.author.bot === false) {
+		let channel = bot.channels.find(`id`, "422201325623836682")
+		let messages = await channel.fetchMessages({limit: 100})
+		let array = messages.filter(m => RegExp(message.author.id, "gi").test(m.content));
+		let first = array.first()
+		if(first) {
+		first.delete()
+		message.reply("Welcome back! Your AFK status was removed.")
+		} else return;
+		
 	let prefix = botconfig.prefix;
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0];
