@@ -19,7 +19,7 @@ if(!choice) return message.reply("You did not provide your choice!")
   } else if(responses[randomchoice].toLowerCase() === choice.toLowerCase()) {
   let l = choice.toLowerCase()
 	message.reply(`I chose **${responses[randomchoice]}.** You chose **${l}**. It's a tie!`);
-  } else return message.reply("You did not provide a valid choice!\nValid Choices: Rock, Paper, Scissors")
+  } else return message.reply("You did not provide a valid choice!\n**Valid Choices:** Rock, Paper, Scissors")
   
 }
 module.exports.help = {
