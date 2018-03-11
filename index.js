@@ -38,6 +38,23 @@ bot.on("message", async message => {
 		message.reply("Welcome back! Your AFK status was removed.")
 		}
 	}
+	if(message.author.bot === false) {
+		let mentions = message.mentions.members.first()
+		if(mentions) {
+		let channel = bot.channels.find(`id`, `422201325623836682`)
+		let messages = await channel.fetchMessages({limit: 100})
+		let array = messages.filter(m => RegExp(mentions.id, "gi").test(m.content));
+		let first = array.first()
+		if(first) {
+		let afkmsg = message.content.substr(7+args[0].length+args[1].length);
+		message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``)
+		}
+		}
+	}
+	
+	
+	
+	
 	let prefix = botconfig.prefix;
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0];
