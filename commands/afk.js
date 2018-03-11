@@ -5,6 +5,7 @@ module.exports.run = async (bot, message, args) => {
   channel.send(`${message.author.id} ${afkmsg}`)
 
 message.reply(`You are now AFK!: \`${afkmsg}\`\nTo become un-AFK, just talk again!`)
+  message.delete()
 
 }
 module.exports.help = {
