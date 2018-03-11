@@ -28,6 +28,15 @@ bot.on("message", async message => {
 	if((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
 		message.delete(5000)
 		}
+	if((message.content.endsWith("just talk again!")) && (message.author.bot)) {
+		message.delete(5000)
+	}
+	if((message.content.endsWith("Your AFK status was removed.")) && (message.author.bot)) {
+		message.delete(5000)
+	}
+	if((message.content.includes("This user is currently AFK!")) && (message.author.bot)) {
+		message.delete(5000)
+	}
 	if(message.author.bot === false) {
 		let channel = bot.channels.find(`id`, "422201325623836682")
 		let messages = await channel.fetchMessages({limit: 100})
