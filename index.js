@@ -49,7 +49,7 @@ bot.on("message", async message => {
 		let array = messages.filter(m => RegExp(mentions.id, "gi").test(m.content));
 		let first = array.first()
 		if(first) {
-		let afkmsg = first.content.substr(7+args[0].length);
+		let afkmsg = first.content.substr(6+args[0].length);
 		message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``)
 		}
 		}
