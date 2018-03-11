@@ -38,6 +38,9 @@ bot.on("message", async message => {
 		message.reply("Welcome back! Your AFK status was removed.")
 		}
 	}
+	let messageArray = message.content.split(" ");
+	let cmd = messageArray[0];
+	let args = messageArray.slice(1);
 	if(message.author.bot === false) {
 		let mentions = message.mentions.members.first()
 		if(mentions) {
@@ -56,9 +59,7 @@ bot.on("message", async message => {
 	
 	
 	let prefix = botconfig.prefix;
-	let messageArray = message.content.split(" ");
-	let cmd = messageArray[0];
-	let args = messageArray.slice(1);
+	
 	if(!message.content.startsWith(botconfig.prefix)) return;
 	let commandfile = bot.commands.get(cmd.slice(prefix.length));
 	return commandfile.run(bot, message, args);
