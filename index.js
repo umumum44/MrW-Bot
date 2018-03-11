@@ -37,7 +37,7 @@ bot.on("message", async message => {
 		first.delete()
 		message.reply("Welcome back! Your AFK status was removed.")
 		} else return;
-		
+	}
 	let prefix = botconfig.prefix;
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0];
