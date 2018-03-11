@@ -1,5 +1,6 @@
 module.exports.run = async (bot, message, args) => {
   let afkmsg = args.join(" ")
+  if(!afkmsg) afkmsg = "No reason provided."
   let channel = bot.channels.find(`id`, "422201325623836682")
   channel.send(`${message.author.id} ${afkmsg}`)
 
