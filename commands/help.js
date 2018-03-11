@@ -4,6 +4,7 @@ module.exports.run = async (bot, message, args) => {
 	.setTitle("Commands")
 	.addField("8Ball", "An 8-Ball simulator")
 	.addField("About", "Gets information about a server member")
+	.addField("AFK", "Sets a message to be sent whenever you are pinged")
 	.addField("Ban", "Bans a server member")
 	.addField("Kick", "Kicks a server member")
 	.addField("Mute", "Mutes a server member")
