@@ -12,8 +12,10 @@ module.exports.run = async (bot, message, args) => {
 	.addField("Purge", "Deletes a specified amount of messages")
 	.addField("Report", "Starts a prompt for reporting bugs/glitches in games")
 	.addField("Unmute", "Unmutes a server member")
-	.addField("SetActivity", "Sets the bot's activity \(Owner-Only\)")
-	.addField("SetStatus", "Sets the bot's status \(Owner-Only\)");
+	.addField("Warn", "Warns a user")
+	.addField("Warnings", "Shows the warnings for a user")
+
+
 
 	message.react("\u2705")
 	message.author.send(helper)
