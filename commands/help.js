@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
 	.addField("Report", "Starts a prompt for reporting bugs/glitches in games")
 	.addField("Unmute", "Unmutes a server member")
 	.addField("Warn", "Warns a user")
-	.addField("Warnings", "Shows the warnings for a user")
+	.addField("Warnings", "Shows the warnings for a user");
 
 
 
