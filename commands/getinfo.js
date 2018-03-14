@@ -1,5 +1,24 @@
-/*const Discord = require("discord.js");
+const Discord = require("discord.js");
 const rbx = require("roblox-js");
+const request = require('request-promise');
+
+async function getMembership(username) {
+  let response = await request({
+    uri: `https://www.roblox.com/Thumbs/BCOverlay.ashx?username=${username}`,
+    simple: false,
+    resolveWithFullResponse: true
+  });
+  let url = response.request.uri.href
+  if (url.includes('overlay_obcOnly')) {
+    return 'OBC'
+  } else if (url.includes('overlay_tbcOnly')) {
+    return 'TBC';
+  } else if (url.includes('overlay_bcOnly')) {
+    return 'BC';
+  } else {
+    return 'NBC';
+  }
+}
 
 async function everything(message, bot ) {
   let target = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -18,17 +37,30 @@ async function everything(message, bot ) {
             var joindate = await playerinfo.joinDate.toString().slice(0, -39);
             var friends = await rbx.getFriends(userid, "AllFriends");
             var username = await playerinfo.username;
-            m.edit(`**${target.user.tag}'s Roblox Info**\nUsername: \`${username}\`\nUser ID: \`${userid}\`\nFriends: \`${friends.total}/200\`\nJoin Date: \`${joindate}\``)
+            let response = await request({
+              uri: `https://www.roblox.com/Thumbs/BCOverlay.ashx?username=${username}`,
+              simple: false,
+              resolveWithFullResponse: true
+            })
+            let url = response.request.uri.href
+            membership = 'NBC'
+            if (url.includes('overlay_obcOnly')) {
+              membership = 'OBC'
+            } else if (url.includes('overlay_tbcOnly')) {
+              membership = 'TBC'
+            } else if (url.includes('overlay_bcOnly')) {
+              membership = 'BC'
+            }
+            m.edit(`**${target.user.tag}'s Roblox Info**\nUsername: \`${username}\`\nUser ID: \`${userid}\`\nFriends: \`${friends.total}/200\`\nMembership: \`${membership}\`\nJoin Date: \`${joindate}\``)
           }
         });
       });
     });
   });
 }
-*/
+
 module.exports.run = async (bot, message, args) => {
- // everything(message, bot)
-  message.reply("soon:tm:")
+  everything(message, bot)
 }
 module.exports.help = {
   name: "getinfo"
