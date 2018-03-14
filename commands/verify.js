@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-/*const rbx = require('roblox-js');
+const rbx = require('roblox-js');
+const moment = require('moment-timezone');
 
 async function awaitReply(message, question, limit = 60000){
 	const filter = m => m.author.id === message.author.id;
@@ -11,6 +12,7 @@ async function awaitReply(message, question, limit = 60000){
 		return false;
 	}
 }
+
 async function everything(bot, message) {
   const username = await awaitReply(message, "What is your Roblox username or ID?\n\nSay `cancel` to cancel this prompt.", 60000);
   if (username == "cancel") return message.channel.send("Cancelled prompt.");
@@ -102,10 +104,9 @@ async function everything(bot, message) {
     message.reply("Invalid option. Options are `done` or `cancel`. Command has been cancelled, please retry.")
   }
 }
-*/
+
 module.exports.run = async (bot, message, args) => {
- // everything(bot, message);
-	message.reply("soon:tm:")
+  everything(bot, message);
 }
 module.exports.help = {
   name: "verify"
