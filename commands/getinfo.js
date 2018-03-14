@@ -25,9 +25,10 @@ async function everything(message, bot ) {
     });
   });
 }
-
+*/
 module.exports.run = async (bot, message, args) => {
-  everything(message, bot)
+ // everything(message, bot)
+  message.reply("soon:tm:")
 }
 module.exports.help = {
   name: "getinfo"
