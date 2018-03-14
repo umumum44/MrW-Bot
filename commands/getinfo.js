@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+/*const Discord = require("discord.js");
 const rbx = require("roblox-js");
 
 async function everything(message, bot ) {
