@@ -106,6 +106,9 @@ async function everything(bot, message) {
 
 module.exports.run = async (bot, message, args) => {
   everything(bot, message);
+=======
+everything(bot, message);
+	//message.reply("soon:tm:")
 }
 module.exports.help = {
   name: "verify"
