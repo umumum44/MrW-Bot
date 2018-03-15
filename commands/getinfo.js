@@ -20,8 +20,14 @@ async function getMembership(username) {
   }
 }
 
-async function everything(message, bot ) {
-  let target = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+async function everything(args, message, bot ) {
+  var target;
+  if (args[0] != null) {
+    target = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    console.log(args[0])
+  } else {
+    target = message.guild.members.get(message.author.id);
+  }
   if (!target) return message.channel.send("Please **mention** a valid user.");
   var dbguild = bot.guilds.get("417149156193337344");
   var dbchannels = dbguild.channels.filter(m => RegExp("roblox-database", "gi").test(m.name));
@@ -60,7 +66,7 @@ async function everything(message, bot ) {
 }
 
 module.exports.run = async (bot, message, args) => {
-  everything(message, bot)
+  everything(args, message, bot)
 }
 module.exports.help = {
   name: "getinfo"
