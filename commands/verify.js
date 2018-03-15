@@ -11,6 +11,7 @@ async function awaitReply(message, question, limit = 60000){
 		return false;
 	}
 }
+
 async function everything(bot, message) {
   const username = await awaitReply(message, "What is your Roblox username or ID?\n\nSay `cancel` to cancel this prompt.", 60000);
   if (username == "cancel") return message.channel.send("Cancelled prompt.");
@@ -33,7 +34,7 @@ async function everything(bot, message) {
 		var playerinfo = await rbx.getPlayerInfo(userid);
 		var blurb = playerinfo.blurb
 		var status = playerinfo.status
-    if (blurb == randomstring || status == randomstring) {
+    if (blurb.includes(randomstring) || status.includes(randomstring)) {
       // db code here putting username and discord id in the db
       message.reply(`Successfully linked your Discord account to ${username}. This may take some time to update into the database`)
 			var dbguild = bot.guilds.get("417149156193337344");
@@ -104,6 +105,8 @@ async function everything(bot, message) {
 }
 
 module.exports.run = async (bot, message, args) => {
+  everything(bot, message);
+=======
 everything(bot, message);
 	//message.reply("soon:tm:")
 }
