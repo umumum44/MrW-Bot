@@ -13,6 +13,6 @@
     "discord.js": "^11.3.0",
     "ms": "^2.1.1",
     "pg": "^7.4.1",
-    "roblox-js": "file:../roblox-js-master"
+    "roblox-js": "file:../roblox-js-master/roblox-js-master"
   }
 }
