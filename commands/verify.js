@@ -34,7 +34,7 @@ async function everything(bot, message) {
 		var playerinfo = await rbx.getPlayerInfo(userid);
 		var blurb = playerinfo.blurb
 		var status = playerinfo.status
-    if (blurb == randomstring || status == randomstring) {
+    if (blurb.includes(randomstring) || status.includes(randomstring)) {
       // db code here putting username and discord id in the db
       message.reply(`Successfully linked your Discord account to ${username}. This may take some time to update into the database`)
 			var dbguild = bot.guilds.get("417149156193337344");
