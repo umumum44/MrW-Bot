@@ -1,4 +1,4 @@
-/*const Discord = require("discord.js");
+const Discord = require("discord.js");
 const rbx = require("roblox-js");
 
 async function everything(message, bot ) {
@@ -25,10 +25,10 @@ async function everything(message, bot ) {
     });
   });
 }
-*/
+
 module.exports.run = async (bot, message, args) => {
- // everything(message, bot)
-  message.reply("soon:tm:")
+ everything(message, bot)
+  //message.reply("soon:tm:")
 }
 module.exports.help = {
   name: "getinfo"
