@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const rbx = require('roblox-js');
-const moment = require('moment-timezone');
 
 async function awaitReply(message, question, limit = 60000){
 	const filter = m => m.author.id === message.author.id;
