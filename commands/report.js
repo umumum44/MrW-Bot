@@ -64,10 +64,13 @@ let darray = ttmessages.filter(m => RegExp(message.author.id, "gi").test(m.conte
                 return message.author.send("**Prompt Cancelled**");
 	}
         if(confirm === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return duser.delete()
-    
+    let invite = await message.channel.createInvite({maxAge:0})
         let reportEmbed = new Discord.RichEmbed()
         .setTitle("New Bug/Glitch Report")
         .setColor("#FF0000")
+	.addField("Guild Reported From", message.guild.name)
+    	.addField("Reported User's ID", message.author.id)
+    	.addField("Invite To Guild", invite) 
         .addField("Time Reported", message.createdAt)
         .addField("Reported Game", game)
         .addField("Reporter's Discord Username", message.author)
