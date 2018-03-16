@@ -12,6 +12,8 @@
   "dependencies": {
     "discord.js": "^11.3.0",
     "ms": "^2.1.1",
-    "pg": "^7.4.1"
+    "pg": "^7.4.1",
+    "request-promise": "^4.2.2",
+    "roblox-js": "^4.0.2"
   }
 }
