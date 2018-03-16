@@ -10,7 +10,6 @@ module.exports.run = async (bot, message, args) => {
 			buser = marray.first();
 		}
 		if(!buser) return message.reply("Couldn't find this user!");
-		if(buser.hasPermission("BAN_MEMBERS")) return message.reply("This member cannot be banned!");
 		if(message.member.highestRole.position <= buser.member.highestRole.position) return message.reply("This user is too high up in this guilds' hierarchy to be banned by you!");
 		buser.send(`You were banned in ${message.guild.name} for \`${reason}\` by ${message.author.username}`).then(() => {
 			message.guild.member(buser).ban().then(() => {
