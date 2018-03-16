@@ -39,7 +39,7 @@ async function everything(args, message, bot ) {
           if (msg.content.startsWith(`${target.id}`)) {
             msgargs = msg.content.split(" ").slice(1);
             var userid = msgargs[0];
-            var playerinfo = await rbx.getPlayerInfo(userid);
+            //var playerinfo = await rbx.getPlayerInfo(userid);
             //var joindate = await playerinfo.joinDate.toString().slice(0, -39);
             var friends = await rbx.getFriends(userid, "AllFriends");
             var username = await rbx.getUsernameFromId(userid);
