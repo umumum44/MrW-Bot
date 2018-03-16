@@ -85,7 +85,6 @@ async function everything(bot, message) {
 								messageloop = messageloop+1;
 							}
 							if (messageloop == messages.size) {
-								console.log("ok?")
 								messageloop = 0;
 								channelloop = channelloop+1;
 								if (channelloop == dbchannels.size) {
@@ -106,9 +105,6 @@ async function everything(bot, message) {
 
 module.exports.run = async (bot, message, args) => {
   everything(bot, message);
-=======
-everything(bot, message);
-	//message.reply("soon:tm:")
 }
 module.exports.help = {
   name: "verify"
