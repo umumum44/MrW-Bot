@@ -31,16 +31,15 @@ async function everything(args, message, bot ) {
   if (!target) return message.channel.send("Please **mention** a valid user.");
   var dbguild = bot.guilds.get("417149156193337344");
   var dbchannels = dbguild.channels.filter(m => RegExp("roblox-database", "gi").test(m.name));
-  console.log(`Channel Goal: ${dbchannels.size}`);
   var count = 0;
   var count2 = 0;
   message.channel.send("Loading...").then(m => {
     dbchannels.forEach(dbchannel => {
       count2 = count2 + 1;
       dbchannel.fetchMessages({ limit: 100 }).then(messages => {
-        console.log(`Message Goal: ${messages.size}`);
         messages.forEach(async msg => {
           if (msg.content.startsWith(`${target.id}`)) {
+            count = count - 1;
             msgargs = msg.content.split(" ").slice(1);
             var userid = msgargs[0];
             //var playerinfo = await rbx.getPlayerInfo(userid);
@@ -63,7 +62,7 @@ async function everything(args, message, bot ) {
             }
             m.edit(`**${target.user.tag}'s Roblox Info**\nUsername: \`${username}\`\nUser ID: \`${userid}\`\nFriends: \`${friends.total}/200\`\nMembership: \`${membership}\``)
           }
-          count = count+1;
+          count = count + 1;
           if (count == messages.size && count2 == dbchannels.size) return m.edit(`${target.user.tag} is not verified, please tell them to run \`!verify\``);
         });
       });
