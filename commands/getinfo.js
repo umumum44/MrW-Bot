@@ -24,7 +24,7 @@ async function everything(args, message, bot ) {
   var target;
   if (args[0] != null) {
     target = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    console.log(args[0])
+    //console.log(args[0])
   } else {
     target = message.guild.members.get(message.author.id);
   }
