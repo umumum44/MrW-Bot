@@ -62,6 +62,7 @@ let darray = ttmessages.filter(m => RegExp(message.author.id, "gi").test(m.conte
                                 duser.delete()
 
                 return message.author.send("**Prompt Cancelled**");
+	}
         if(confirm === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return duser.delete()
     
         let reportEmbed = new Discord.RichEmbed()
