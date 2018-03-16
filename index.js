@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const pg = require("pg");
 const bot = new Discord.Client({disableEveryone: true});
+bot.counter = false;
 bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
@@ -22,6 +23,13 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
 	console.log(`${bot.user.username} is online!`);
 	bot.user.setActivity("Games", {type: "PLAYING"});
+});
+bot.on("guildCreate", guild => {
+    if(bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
+});
+
+bot.on("guildDelete", guild => {
+    if(bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
 });
 bot.on("message", async message => {
 	if(message.channel.type === "dm") return;
