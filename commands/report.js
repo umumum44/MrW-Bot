@@ -10,24 +10,59 @@ async function awaitReply(message,question, limit = 300000){
 }
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
+        let timeoutchannel = bot.channels.find(`id`, "424010321750130689")
+    let reportchannel = bot.channels.find(`id`, "420180153931530240")
+    let blacklistchannel = bot.channels.find(`id`, "424006591411519499")
+    let messages = await timeoutchannel.fetchMessages({ limit: 100 })
+    let tmessages = await reportchannel.fetchMessages({ limit: 100 })
+    let bmessages = await blacklistchannel.fetchMessages({ limit: 100 })
+
+let barray = bmessages.filter(m => RegExp(message.author.id, "gi").test(m.content));
+	      let auser = barray.first();
+	      if(auser) return message.reply("You cannot use this command because you are blacklisted!")
+
+        let carray = tmessages.filter(m => RegExp(message.author.id, "gi").test(m.content));
+	      let cuser = carray.first();
+	      if(cuser) return message.reply("You cannot use this command because you just used it! To avoid spam, you must wait five minutes from the last time you used this command! If you are already in the process of using this command, you must cancel this prompt!")
+timeoutchannel.send(`${message.author.id}, ${message.author.username}#${message.author.discriminator}\n**MUST WAIT TO USE REPORT COMMAND (IP)**`)
+let ttchannel = bot.channels.find(`id`, "424010321750130689")
+let ttmessages = await ttchannel.fetchMessages({ limit: 100 })
+let darray = ttmessages.filter(m => RegExp(message.author.id, "gi").test(m.content));
+	      let duser = darray.first();
+        
         message.react("\u2705")
         message.channel.send(`${message.author}, Prompt will continue in DMs! \uD83D\uDCEC`)
    
         const game = await awaitReply(message, "What is the name of the game you are reporting? **BE AS DETAILED AS POSSIBLE!** \nSay **cancel** to cancel prompt.", 300000);
-        if(game.toLowerCase() === "cancel") return message.author.send("**Prompt Cancelled**");
-        if(game === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return bot.log("ok");
+        if(game.toLowerCase() === "cancel") {
+                duser.delete()
+	  return message.author.send("**Prompt Cancelled**")
+        }
+ 
+        if(game === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return duser.delete()
     
         const proof = await awaitReply(message, `Do you have any proof of this bug/glitch? Send **only links** to prove this bug/glitch exists. If you have no proof, say **skip**.\nSay **cancel** to cancel prompt.`, 300000);
-        if(proof.toLowerCase() === "cancel") return message.author.send("**Prompt Cancelled**");
-        if(proof === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return bot.log("ok");
+        if(proof.toLowerCase() === "cancel") {
+                duser.delete()
+	  return message.author.send("**Prompt Cancelled**")
+                
+        }
+        if(proof === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return duser.delete()
     
         const describe = await awaitReply(message, "How can you reproduce this bug/glitch? Describe **IN DETAIL**.\nSay **cancel** to cancel prompt.", 300000);
-        if(describe.toLowerCase() === "cancel") return message.author.send("**Prompt Cancelled**");
-        if(describe === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return bot.log("ok");
+        if(describe.toLowerCase() === "cancel") {
+                                duser.delete()
+
+                return message.author.send("**Prompt Cancelled**");
+        }
+        if(describe === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return duser.delete()
     
         const confirm = await awaitReply(message, `**The following information will be sent:**\nGame Name: ${game}\nProof Of Bug/Glitch: ${proof}\nHow To Reproduce This Bug/Glitch: ${describe}\n---------------------------------------\nSay **confirm** to send the report.\nSay **cancel** to cancel the prompt.`, 300000);
-        if(confirm.toLowerCase() === "cancel") return message.author.send("**Prompt Cancelled**");
-        if(confirm === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return bot.log("ok");
+        if(confirm.toLowerCase() === "cancel") {
+                                duser.delete()
+
+                return message.author.send("**Prompt Cancelled**");
+        if(confirm === "**Prompt Cancelled -- There Was No Response After Five Minutes**") return duser.delete()
     
         let reportEmbed = new Discord.RichEmbed()
         .setTitle("New Bug/Glitch Report")
@@ -38,8 +73,10 @@ module.exports.run = async (bot, message, args) => {
         .addField("Proof Of Bug/Glitch", proof)
         .addField("How To Reproduce Bug/Glitch", describe);
     
-        let reportchannel = message.guild.channels.find(`name`, "reports");
         reportchannel.send(reportEmbed);
+                duser.delete()
+timeoutchannel.send(`${message.author.id}, ${message.author.username}#${message.author.discriminator}\n**MUST WAIT TO USE REPORT COMMAND**`)
+
         message.author.send("\u2705 **Successfully Submitted! -- Your Response Was Submitted And Will Be Reviewed By Our Staff Shortly!** \u2705");
         return;
 }
