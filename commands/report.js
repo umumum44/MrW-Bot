@@ -13,8 +13,7 @@ module.exports.run = async (bot, message, args) => {
         let timeoutchannel = bot.channels.find(`id`, "424010321750130689")
     let reportchannel = bot.channels.find(`id`, "420180153931530240")
     let blacklistchannel = bot.channels.find(`id`, "424006591411519499")
-    let messages = await timeoutchannel.fetchMessages({ limit: 100 })
-    let tmessages = await reportchannel.fetchMessages({ limit: 100 })
+    let tmessages = await timeoutchannel.fetchMessages({ limit: 100 })
     let bmessages = await blacklistchannel.fetchMessages({ limit: 100 })
 
 let barray = bmessages.filter(m => RegExp(message.author.id, "gi").test(m.content));
