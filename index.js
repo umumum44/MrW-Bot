@@ -26,6 +26,7 @@ bot.on("ready", async () => {
 	tchannel.bulkDelete(100)
 	bot.user.setActivity("Games", {type: "PLAYING"});
 });
+
 bot.on("guildCreate", guild => {
     if(bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
 });
@@ -33,58 +34,54 @@ bot.on("guildCreate", guild => {
 bot.on("guildDelete", guild => {
     if(bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
 });
+
 bot.on("message", async message => {
 	if(message.channel.type === "dm") return;
 	if((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
-		message.delete(5000)
-		}
+		message.delete(5000);
+	}
 	if((message.content.endsWith("just talk again!")) && (message.author.bot)) {
-		message.delete(5000)
+		message.delete(5000);
 	}
 	if((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "420748985410650123")) {
-  message.delete(300000)
-}
+		message.delete(300000);
+	}
 	if((message.content.endsWith("Your AFK status was removed.")) && (message.author.bot)) {
-		message.delete(5000)
+		message.delete(5000);
 	}
 	if((message.content.includes("This user is currently AFK!")) && (message.author.bot)) {
-		message.delete(5000)
+		message.delete(5000);
 	}
 	if(message.author.bot === false) {
-		let channel = bot.channels.find(`id`, "422201325623836682")
-		let messages = await channel.fetchMessages({limit: 100})
+		let channel = bot.channels.find(`id`, "422201325623836682");
+		let messages = await channel.fetchMessages({limit: 100});
 		let array = messages.filter(m => RegExp(message.author.id, "gi").test(m.content));
-		let first = array.first()
-		if(first) {
-		first.delete()
-		message.reply("Welcome back! Your AFK status was removed.")
+		let first = array.first();
+		if (first) {
+			first.delete();
+			message.reply("Welcome back! Your AFK status was removed.");
 		}
 	}
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0].toLowerCase();
-	if(!cmd) return;
+	if (!cmd) return;
 	let args = messageArray.slice(1);
 	if(message.author.bot === false) {
-		let mentions = message.mentions.members.first()
+		let mentions = message.mentions.members.first();
 		if(mentions) {
-		let channel = bot.channels.find(`id`, `422201325623836682`)
-		let messages = await channel.fetchMessages({limit: 100})
-		let array = messages.filter(m => RegExp(mentions.id, "gi").test(m.content));
-		let first = array.first()
-		if(first) {
-		let afkmsg = first.content.substr(mentions.id.length)
-		message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``)
-		}
+			let channel = bot.channels.find("id", "422201325623836682");
+			let messages = await channel.fetchMessages({limit: 100});
+			let array = messages.filter(m => RegExp(mentions.id, "gi").test(m.content));
+			let first = array.first();
+			if(first) {
+				let afkmsg = first.content.substr(mentions.id.length);
+				message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``)
+			}
 		}
 	}
-	
-	
-	
-	
 	let prefix = botconfig.prefix;
-	
 	if(!message.content.startsWith(botconfig.prefix)) return;
 	let commandfile = bot.commands.get(cmd.slice(prefix.length));
 	return commandfile.run(bot, message, args);
-})
+});
 bot.login(botconfig.token);
