@@ -42,7 +42,7 @@ async function everything(args, message, bot ) {
             var playerinfo = await rbx.getPlayerInfo(userid);
             var joindate = await playerinfo.joinDate.toString().slice(0, -39);
             var friends = await rbx.getFriends(userid, "AllFriends");
-            var username = await playerinfo.username;
+            var username = await rbx.getUsernameFromId(userid);
             let response = await request({
               uri: `https://www.roblox.com/Thumbs/BCOverlay.ashx?username=${username}`,
               simple: false,
