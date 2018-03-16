@@ -67,9 +67,6 @@ async function everything(args, message, bot ) {
 
 module.exports.run = async (bot, message, args) => {
   everything(args, message, bot)
-=======
- everything(message, bot)
-  //message.reply("soon:tm:")
 }
 module.exports.help = {
   name: "getinfo"
