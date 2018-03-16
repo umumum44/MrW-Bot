@@ -22,6 +22,8 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async () => {
 	console.log(`${bot.user.username} is online!`);
+	let tchannel = bot.channels.find(`id`, "424010321750130689")
+	tchannel.bulkDelete(100)
 	bot.user.setActivity("Games", {type: "PLAYING"});
 });
 bot.on("guildCreate", guild => {
