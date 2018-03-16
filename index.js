@@ -57,6 +57,7 @@ bot.on("message", async message => {
 	}
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0].toLowerCase();
+	if(!cmd) return;
 	let args = messageArray.slice(1);
 	if(message.author.bot === false) {
 		let mentions = message.mentions.members.first()
