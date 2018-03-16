@@ -40,7 +40,7 @@ async function everything(args, message, bot ) {
             msgargs = msg.content.split(" ").slice(1);
             var userid = msgargs[0];
             var playerinfo = await rbx.getPlayerInfo(userid);
-            var joindate = await playerinfo.joinDate.toString().slice(0, -39);
+            //var joindate = await playerinfo.joinDate.toString().slice(0, -39);
             var friends = await rbx.getFriends(userid, "AllFriends");
             var username = await rbx.getUsernameFromId(userid);
             let response = await request({
@@ -57,7 +57,7 @@ async function everything(args, message, bot ) {
             } else if (url.includes('overlay_bcOnly')) {
               membership = 'BC'
             }
-            m.edit(`**${target.user.tag}'s Roblox Info**\nUsername: \`${username}\`\nUser ID: \`${userid}\`\nFriends: \`${friends.total}/200\`\nMembership: \`${membership}\`\nJoin Date: \`${joindate}\``)
+            m.edit(`**${target.user.tag}'s Roblox Info**\nUsername: \`${username}\`\nUser ID: \`${userid}\`\nFriends: \`${friends.total}/200\`\nMembership: \`${membership}\``)
           }
         });
       });
