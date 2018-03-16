@@ -39,6 +39,9 @@ bot.on("message", async message => {
 	if((message.content.endsWith("just talk again!")) && (message.author.bot)) {
 		message.delete(5000)
 	}
+	if((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "420748985410650123")) {
+  message.delete(300000)
+}
 	if((message.content.endsWith("Your AFK status was removed.")) && (message.author.bot)) {
 		message.delete(5000)
 	}
