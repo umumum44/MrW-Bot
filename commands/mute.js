@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
 			tomute = marray.first();
 		}
 		if(!tomute) return message.reply("Couldn't find this user!");
-		if(tomute.hasPermission("KICK_MEMBERS")) return message.reply("This person cannot be muted!");
+		if(message.member.highestRole.position <= tomute.member.highestRole.position) return message.reply("This user is too high up in this guilds' hierarchy to be muted by you!");
 		let muterole = message.guild.roles.find(`name`, "Muted");
 		if(!muterole) {
 			try {
