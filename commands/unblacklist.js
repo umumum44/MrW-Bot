@@ -1,7 +1,12 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
-	if(message.author.id === "399975738008141824" || message.author.id === "303683211790254080" || message.author.id === "245877990938902529" || message.author.id === "289380085025472523") {
-
+let guild = bot.guilds.find(`id`, "410400562232819723")
+let member = await guild.fetchMember(message.author.id)
+if(!member) return;
+if (member.roles.get("410546480307503124") //mod
+ || member.roles.get("410611296401358848") //admin
+ || member.roles.get("410608939139334184") //coowner
+ || member.roles.get("410481036162760722")) { //owner 
       let channel = bot.channels.find(`id`, "424006591411519499")
       let pingeduser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 	let userid = args[0]
