@@ -16,7 +16,7 @@ bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
       bot.counter = false
 }
 }
-
+}
 
 module.exports.help = {
     name: "countstatus"
