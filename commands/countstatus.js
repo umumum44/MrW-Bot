@@ -10,7 +10,7 @@ bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
       message.react("\u2705")
       bot.counter = true
     } else if (bot.counter === true) {
-            bot.user.setActivity("for !help", {type: "WATCHING"});
+            bot.user.setActivity("Games", {type: "PLAYING"});
                 message.react("\u2705")
 
       bot.counter = false
