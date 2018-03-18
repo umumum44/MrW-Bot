@@ -3,23 +3,10 @@ module.exports.run = async (bot, message, args) => {
 	let helper = new Discord.RichEmbed()
 	.setTitle("Commands")
 	.setDescription("**Bot Prefix: !!**")
-	.addField("Fun Commands", "!!8ball - An 8-Ball Simulation\n!!rps - Plays a game of rock-paper-scissors")
-	.addField("About", "Gets information about a server member")
-	.addField("AFK", "Sets a message to be sent whenever you are pinged")
-	.addField("Ban", "Bans a server member")
-	.addField("Kick", "Kicks a server member")
-	.addField("Mute", "Mutes a server member")
-	.addField("Ping", "Responds with pong!")
-	.addField("Purge", "Deletes a specified amount of messages")
-	.addField("Report", "Starts a prompt for reporting bugs/glitches in games")
-	.addField("Unmute", "Unmutes a server member")
-	.addField("Warn", "Warns a user")
-	.addField("Warnings", "Shows the warnings for a user")
-	.addField("Server", "Sends the link to the support server")
-	.addField("Invite", "Sends the link to invite me")
-
-
-
+	.addField("Fun", "!!8ball - An 8-Ball Simulation\n!!rps - Plays a game of rock-paper-scissors")
+	.addField("Information", "!!about - Gets information about a server member\n!!server - Sends the link to the support server\n!!invite - Sends the link to invite me")
+	.addField("Moderation", "!!ban - Bans a server member\n!!kick - Kicks a server member\n!!mute - Mutes a server member\n!!unmute - Unmutes a server member\n!!purge - Deletes a specified amount of messages\n!!warn - Warns a user\n!!warnings - Shows the warnings for a user")
+	.addField("Miscellaneous", "!!afk - Sets a message to be sent whenever you are pinged\n!!report - Starts a prompt for reporting bugs/glitches in games\n!!ping - Responds with the speed of the bot")
 
 	message.react("\u2705")
 	message.author.send(helper)
