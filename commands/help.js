@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
 	let helper = new Discord.RichEmbed()
 	.setTitle("Commands")
-	.addField("8Ball", "An 8-Ball simulator")
-	.addField("RPS", "Plays a game of rock-paper-scissors")
+	.setDescription("**Bot Prefix: !!**")
+	.addField("Fun Commands", "!!8ball - An 8-Ball Simulation\n!!rps - Plays a game of rock-paper-scissors")
 	.addField("About", "Gets information about a server member")
 	.addField("AFK", "Sets a message to be sent whenever you are pinged")
 	.addField("Ban", "Bans a server member")
