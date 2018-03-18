@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
   let target = message.guild.member(message.mentions.users.first());
   if (target) {
-    if (target.id == "289380085025472523") return message.reply("You cannot warn this user!")
+    //if (target.id == "289380085025472523") return message.reply("You cannot warn this user!") //no gtc
     if(message.member.hasPermission("KICK_MEMBERS") || message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("BAN_MEMBERS")) {
       if (message.member.highestRole.position < target.highestRole.position && message.author.id !="289380085025472523") return message.reply("You are not high enough in this guild's hierarchy to warn this user.");
       if (args[1] == null) {
