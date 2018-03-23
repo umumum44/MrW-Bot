@@ -23,20 +23,25 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
 	console.log(`${bot.user.username} is online!`);
 	let tchannel = bot.channels.find(`id`, "424010321750130689")
-	tchannel.bulkDelete(100)
-	bot.user.setActivity("Games", {type: "PLAYING"});
+	await tchannel.bulkDelete(100)
+	await bot.user.setActivity("Games", {type: "PLAYING"});
 });
 
-bot.on("guildCreate", guild => {
+bot.on("guildCreate", async guild => {
 	let hello = new Discord.RichEmbed()
     .setTitle("Thanks For Adding Me To Your Server!")
     .setColor("#0000ff")
     .setDescription("Thanks for adding Mr.W Bot to your server he is a very helpful bot! This bot is owned by Windows 10 > MacOS#0001 and was made by @ethanlaj For all the cmds run !!help however if u need any help join our support server https://discord.gg/UC37qGN");
 
-  let hichannel = guild.channels.find(`type`, "text")
-  //let hichannel = ahichannel.first()
+  let hichannels = guild.channels.filter(c => c.type === "text")
+   let ahichannels = hichannels.filter(c => c.permissionsFor(bot.user).has("READ_MESSAGES"));
+  let fhichannel = ahichannels.filter(c => c.permissionsFor(bot.user).has("SEND_MESSAGES"));
+  let hichannel = fhichannel.first()
+  if(hichannel) {
+    await hichannel.send(hello)
+  }
 
-    if(bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
+    if(bot.counter) await bot.user.setActivity(`${bot.guilds.size} servers`, {type: "WATCHING"});
 });
 
 bot.on("guildDelete", guild => {
