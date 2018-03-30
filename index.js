@@ -92,9 +92,28 @@ bot.on("message", async message => {
 			}
 		}
 	}
-	let prefix = botconfig.prefix;
-	if(!message.content.startsWith(botconfig.prefix)) return;
-	let commandfile = bot.commands.get(cmd.slice(prefix.length));
-	return commandfile.run(bot, message, args);
+	    let guildid = message.guild.id
+	let dbguild = bot.guilds.find(`id`, "417149156193337344");
+    let channels = dbguild.channels.filter(m => RegExp("wprefix-database", "gi").test(m.name));
+   async function getPrefix(bot, message, args) {
+  const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({ limit: 100 })))
+  const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
+  const msg = flatMessages.find(msg => msg.content.startsWith(message.guild.id))
+  return msg && msg.content.substr(1 + message.guild.id.length)
+}
+  const aprefix = await getPrefix(bot, message, args)
+  if(aprefix) var prefix = aprefix
+ //console.log(`${prefix} second`)
+  if(!aprefix) var prefix = botconfig.prefix
+                 // console.log(`${prefix} third`)
+  if((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix"))) {
+    return message.reply(`My prefix is \`${prefix}\``)
+  }
+    if (!message.content.startsWith(prefix)) return;
+                    let commandfile = bot.commands.get(cmd.slice(prefix.length));
+                    if (!commandfile) return;
+                    return commandfile.run(bot, message, args);
 });
+
+
 bot.login(botconfig.token);
