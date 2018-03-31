@@ -7,9 +7,9 @@ if(!args[0]) return message.reply("Please provide the new prefix!")
 let prefix = args[0]
 if(prefix.length > 5) return message.reply("The prefix cannot be more than 5 characters!")
 let dbguild = bot.guilds.find(`id`, "417149156193337344");
-let channel = dbguild.channels.find(`name`, "wprefix-database")
+let channel = dbguild.channels.find(`name`, "wbotprefixes-database")
 let messages = await channel.fetchMessages({ limit: 100 })
-let channels = dbguild.channels.filter(m => RegExp("wprefix-database", "gi").test(m.name));
+let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 channels.forEach(chl => {
   chl.fetchMessages({ limit: 100 }).then(msgs => {
       msgs.forEach(msg => {
@@ -20,9 +20,9 @@ channels.forEach(chl => {
     })
   })
 if(messages.size === 100) {
-await channel.setName("ow-wprefix-database")
-await dbguild.createChannel('wprefix-database')
-  let newc = dbguild.channels.find(`name`, "wprefix-database")
+await channel.setName("o-wbotprefixes-database")
+await dbguild.createChannel('wbotprefixes-database')
+  let newc = dbguild.channels.find(`name`, "wbotprefixes-database")
   await newc.overwritePermissions(channel.guild.id, {
   READ_MESSAGES: false
 })
