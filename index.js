@@ -94,7 +94,7 @@ bot.on("message", async message => {
 	}
 	    let guildid = message.guild.id
 	let dbguild = bot.guilds.find(`id`, "417149156193337344");
-    let channels = dbguild.channels.filter(m => RegExp("wprefix-database", "gi").test(m.name));
+    let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
    async function getPrefix(bot, message, args) {
   const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({ limit: 100 })))
   const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
