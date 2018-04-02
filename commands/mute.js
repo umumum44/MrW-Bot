@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args, prefix) => {
 						SEND_MESSAGES: false,
 						ADD_REACTIONS: false
 					});
-				});
+				}); 
 			} catch(e) {
 				console.log(e.stack);
 			}}
@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args, prefix) => {
 			let mutetime = args[1];
 			if(!mutetime) return message.reply("You must specify a time!");
 			await(tomute.addRole(muterole.id));
-			let reason = message.content.substr(5+prefix.length+args[0].length+args[1].length);
+			let reason = message.content.substr(6+prefix.length+args[0].length+args[1].length);
 			if(!reason) reason = "No reason specified";
 			tomute.send(`You were muted in ${message.guild.name} for \`${reason}\` for \`${mutetime}\` by ${message.author.username}`);
 			message.react("\u2705");
