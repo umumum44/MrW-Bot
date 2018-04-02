@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const ms = require("ms");
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args, prefix) => {
 	if(message.member.hasPermission("KICK_MEMBERS")) {
 		let name = `${args[0]}`;
 		let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
 			let mutetime = args[1];
 			if(!mutetime) return message.reply("You must specify a time!");
 			await(tomute.addRole(muterole.id));
-			let reason = message.content.substr(8+args[0].length+args[1].length);
+			let reason = message.content.substr(5+prefix.length+args[0].length+args[1].length);
 			if(!reason) reason = "No reason specified";
 			tomute.send(`You were muted in ${message.guild.name} for \`${reason}\` for \`${mutetime}\` by ${message.author.username}`);
 			message.react("\u2705");
