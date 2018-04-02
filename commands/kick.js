@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args, prefix) => {
 			kickeduser = marray.first();
 		}
 		if(!kickeduser) return message.reply("Couldn't find this user!")
-		if(message.member.highestRole.position <= kickeduser.member.highestRole.position) return message.reply("This user is too high up in this guilds' hierarchy to be kicked by you!");
+		if(message.member.highestRole.position <= kickeduser.highestRole.position) return message.reply("This user is too high up in this guilds' hierarchy to be kicked by you!");
 		kickeduser.send(`You were kicked in ${message.guild.name} for \`${reason}\` by ${message.author.username}`).then(() => {
 			message.guild.member(kickeduser).kick().then(() => {
         			message.react("✅");
