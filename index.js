@@ -131,7 +131,7 @@ aaa.forEach(chl => {
     if (!message.content.startsWith(prefix)) return;
                     let commandfile = bot.commands.get(cmd.slice(prefix.length));
                     if (!commandfile) return;
-                    return commandfile.run(bot, message, args);
+                    return commandfile.run(bot, message, args, prefix);
 });
 
 
