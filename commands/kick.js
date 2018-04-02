@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args, prefix) => {
 	let name = `${args[0]}`
 	var reason;
 	if(!reason) {
 		reason = "No reason specified";
 	} else {
-		reason = message.content.substr(7+args[0].length);
+		reason = message.content.substr(5+prefix.length+args[0].length);
 	}
 	if(message.member.hasPermission("KICK_MEMBERS")) {
 		let kickeduser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
