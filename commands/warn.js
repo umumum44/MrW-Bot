@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args, prefix) => {
   let target = message.guild.member(message.mentions.users.first());
   if (target) {
     //if (target.id == "289380085025472523") return message.reply("You cannot warn this user!") //no gtc
@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
         // checks if there is a reason
         var reason = "No reason specified";
       } else {
-        var reason = message.content.substr(7+args[0].length);
+        var reason = message.content.substr(5+prefix.length+args[0].length);
         // takes out the user mention/id/name and command to result in everything else
       }
       target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``).then(() => {
