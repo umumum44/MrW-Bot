@@ -15,9 +15,9 @@ module.exports.run = async (bot, message, args, prefix) => {
       }
       
       target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``).then(() => {
-        message.react("✅");
+        await message.react("✅");
       }).catch(() => {
-        message.react("❎");
+        await message.react("❎");
       });
       }
      
