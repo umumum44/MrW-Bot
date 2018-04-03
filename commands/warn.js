@@ -37,15 +37,12 @@ module.exports.run = async (bot, message, args, prefix) => {
            dbchannel.setParent("422122104499208214");
            dbchannel.send(`${message.guild.id} ${target.id} ${message.author.id} ${reason}`);
         });
-      } else {
-        dbchannel.send(`${message.guild.id} ${target.id} ${message.author.id} ${reason}`)
-      }
-    } else {
-      message.reply("Insufficent permissions.");
-    }
-else {
-    message.reply("Please **mention** a valid user.");
-  }
+      } else dbchannel.send(`${message.guild.id} ${target.id} ${message.author.id} ${reason}`)
+      
+    } else message.reply("Insufficent permissions.");
+    
+//} else message.reply("Please **mention** a valid user.");
+  
 }
 module.exports.help = {
   name: "warn"
