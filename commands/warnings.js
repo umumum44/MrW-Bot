@@ -15,10 +15,11 @@ module.exports.run = async (bot, message, args) => {
       messages.forEach(msg => {
         if (msg.content.startsWith(`${message.guild.id} ${target.id}`)) {
           warningnum = warningnum+1;
+          var time = msg.createdAt
           var reason = msg.content.substr(message.guild.id.length+target.id.length+20);
           var user = bot.users.get(msg.content.substr(38).slice(0, -reason.length));
           var msgargs = msg.content.split(" ").slice(1);
-          finalmessage = finalmessage+`Warning ${warningnum}: \`${reason}\` by \`${user.tag}\` at \`(time)\`\n`;
+          finalmessage = finalmessage+`Warning ${warningnum}: \`${reason}\` by \`${user.tag}\` at \`${time}\`\n`;
         }
         messageloop = messageloop+1;
         if (messageloop == messages.size) {
