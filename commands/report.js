@@ -29,7 +29,12 @@ module.exports.run = async (bot, message, args) => {
 	let ttmessages = await ttchannel.fetchMessages({ limit: 100 })
 	let darray = ttmessages.filter(m => RegExp(message.author.id, "gi").test(m.content));
 	let duser = darray.first();
-        
+        try {
+		message.author.send("Welcome to the bug/glitch reporting prompt! Please provide as much information as possible. If you abuse this system, you will be blacklisted!\n-----------------------------------------")
+	}
+	catch (e) {
+		message.reply("Couldn't DM you the prompt, please check your privacy settings and try again!")
+}
         message.react("\u2705");
         message.channel.send(`${message.author}, Prompt will continue in DMs! \uD83D\uDCEC`);
    
