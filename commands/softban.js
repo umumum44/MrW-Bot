@@ -16,10 +16,10 @@ module.exports.run = async (bot, message, args, prefix) => {
 		if (!buser) return message.reply("Couldn't find this user!");
 		if (message.member.highestRole.position <= buser.highestRole.position) return message.reply("This user is too high up in this guilds' hierarchy to be banned by you!");
 		try {
-		buser.send(`You were soft-banned in ${message.guild.name} for \`${reason}\` by ${message.author.username}`)
+		await buser.send(`You were soft-banned in ${message.guild.name} for \`${reason}\` by ${message.author.username}`)
 		}
 		catch (e) {
-			message.reply("Couldn't DM this user to tell them they were softbanned.")
+			await message.reply("Couldn't DM this user to tell them they were softbanned.")
 		}
 			message.guild.member(buser).ban(7)
         message.guild.unban(buser.id);
