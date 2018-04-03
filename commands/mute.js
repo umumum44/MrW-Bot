@@ -36,10 +36,10 @@ module.exports.run = async (bot, message, args, prefix) => {
 			let reason = message.content.substr(6+prefix.length+args[0].length+args[1].length);
 			if(!reason) reason = "No reason specified";
 			try {
-			tomute.send(`You were muted in ${message.guild.name} for \`${reason}\` for \`${mutetime}\` by ${message.author.username}`);
+			await tomute.send(`You were muted in ${message.guild.name} for \`${reason}\` for \`${mutetime}\` by ${message.author.username}`);
 			}
 			catch (e) {
-				message.reply("Couldn't DM this user to tell them they were muted.")
+				await message.reply("Couldn't DM this user to tell them they were muted.")
 			}
 				message.react("\u2705");
 			setTimeout(function(){
