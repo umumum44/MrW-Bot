@@ -13,14 +13,13 @@ module.exports.run = async (bot, message, args, prefix) => {
         var reason = message.content.substr(5+prefix.length+args[0].length);
         // takes out the user mention/id/name and command to result in everything else
       }
-      
-      await target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``).then(async () => {
+      try {
+      await target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``)
          await message.react("✅");
-      }).catch(async () => {
-         await message.react("❎");
-      });
       }
-     
+      catch (e) {
+         await message.react("❎");
+      }
       var dbguild = bot.guilds.get("417149156193337344");
       var dbchannel = dbguild.channels.find("name", "warn-database")
       var olo = await dbchannel.fetchMessages({ limit: 100 });
@@ -41,7 +40,7 @@ module.exports.run = async (bot, message, args, prefix) => {
       
     } else message.reply("Insufficent permissions.");
     
-//} else message.reply("Please **mention** a valid user.");
+} else message.reply("Please **mention** a valid user.");
   
 }
 module.exports.help = {
