@@ -13,11 +13,16 @@ module.exports.run = async (bot, message, args, prefix) => {
         var reason = message.content.substr(5+prefix.length+args[0].length);
         // takes out the user mention/id/name and command to result in everything else
       }
+      try {
       target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``).then(() => {
         message.react("✅");
       }).catch(() => {
         message.react("❎");
       });
+      }
+      catch(e) {
+        message.reply("Couldn't DM this user to tell them they were warned.")
+      }
       var dbguild = bot.guilds.get("417149156193337344");
       var dbchannel = dbguild.channels.find("name", "warn-database")
       var olo = await dbchannel.fetchMessages({ limit: 100 });
