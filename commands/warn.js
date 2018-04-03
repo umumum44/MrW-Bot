@@ -13,7 +13,8 @@ module.exports.run = async (bot, message, args, prefix) => {
         var reason = message.content.substr(5+prefix.length+args[0].length);
         // takes out the user mention/id/name and command to result in everything else
       }
-      try {
+      try 
+      {
       target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``).then(() => {
         message.react("✅");
       }).catch(() => {
