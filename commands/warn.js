@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args, prefix) => {
          await message.react("✅");
       }
       catch (e) {
-         await message.react("❌");
+         await message.reply("Couldn't DM this user about their warning!")
       }
       var dbguild = bot.guilds.get("417149156193337344");
       var dbchannel = dbguild.channels.find("name", "warn-database")
