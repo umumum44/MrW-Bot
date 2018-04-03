@@ -14,10 +14,10 @@ module.exports.run = async (bot, message, args, prefix) => {
         // takes out the user mention/id/name and command to result in everything else
       }
       
-      target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``).then(() async => {
-        await message.react("✅");
-      }).catch(() async => {
-        await message.react("❎");
+      target.send(`You were warned in \`${message.guild.name}\` for \`${reason}\` by \`${message.author.username}#${message.author.discriminator}\``).then(async () => {
+         await message.react("✅");
+      }).catch(async () => {
+         await message.react("❎");
       });
       }
      
