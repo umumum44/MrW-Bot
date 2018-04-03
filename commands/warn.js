@@ -43,7 +43,7 @@ module.exports.run = async (bot, message, args, prefix) => {
     } else {
       message.reply("Insufficent permissions.");
     }
-  } else {
+else {
     message.reply("Please **mention** a valid user.");
   }
 }
