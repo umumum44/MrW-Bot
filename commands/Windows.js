@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
 
 
-message.reply(`@Windows 10 > MacOS#0001`)
+message.reply(`Windows ROCKS`)
 
 
 
