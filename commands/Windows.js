@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
 
 
-message.reply(`Windows ROCKS`)
+message.reply(`@ethanlaj#8805 Do u make sense`)
 
 
 
@@ -16,6 +16,6 @@ message.reply(`Windows ROCKS`)
 
 module.exports.help = {
 
-    name: "windows"
+    name: "ethan"
 
 }
