@@ -16,6 +16,6 @@ message.reply(`@Windows 10 > MacOS#0001`)
 
 module.exports.help = {
 
-    name: "Windows"
+    name: "windows"
 
 }
