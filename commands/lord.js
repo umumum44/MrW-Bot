@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
 
 
-message.reply(`LORD IS A SPAMMER`)
+message.reply(`Lord is the best`)
 
 
 
