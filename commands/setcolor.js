@@ -8,6 +8,8 @@ if  (member.roles.get("410608939139334184") //coowner
                 await bot.user.setStatus(`${tbh}`)
 	if(bot.user.presence.status === tbh) {
                 await message.react("\u2705");
+	} else {
+		message.reply("Not a valid option!\nOptions: \n**online\noffline\nidle\ndnd**")
 	}
 }
 
