@@ -6,7 +6,9 @@ if  (member.roles.get("410608939139334184") //coowner
  || member.roles.get("410481036162760722")) { //owner 
         let tbh = args.join(" ");
                 await bot.user.setStatus(`${tbh}`)
+	if(bot.user.presence.status === tbh) {
                 await message.react("\u2705");
+	}
 }
 
 
