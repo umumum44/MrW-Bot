@@ -4,7 +4,7 @@ let member = await guild.fetchMember(message.author.id)
 if(!member) return;
 if  (member.roles.get("410608939139334184") //coowner
  || member.roles.get("410481036162760722")) { //owner 
-        let tbh = args.join(" ");
+        let tbh = args.join(" ").toLowerCase();
                 await bot.user.setStatus(`${tbh}`)
 	if((tbh === "online") || (tbh === "idle") || (tbh === "invisible") || (tbh === "dnd")) {
                 await message.react("\u2705");
