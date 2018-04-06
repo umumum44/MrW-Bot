@@ -8,7 +8,7 @@ if  (member.roles.get("410608939139334184") //coowner
                 await bot.user.setStatus(tbh);
                 message.react("\u2705");
 }
-}
+
 
 
 
