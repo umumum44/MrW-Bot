@@ -25,6 +25,8 @@ module.exports.run = async (bot, message, args) => {
     .addField("You Joined", message.member.joinedAt)
 
     .addField("Member Count", message.guild.memberCount);
+    
+    .addField("Bot Count", message.guild.botCount
 
 
 
