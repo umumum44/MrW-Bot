@@ -143,7 +143,7 @@ bot.on("message", async message => {
 	}
 
 	if(!message.content.startsWith(prefix)) return;
-	var content = message.content.substr(cmd.length+1);
+	var content = message.content.slice(cmd.length+1);
 	let commandfile = bot.commands.get(cmd.slice(prefix.length));
 	if(!commandfile) return;
 	return commandfile.run(bot, message, args, prefix, content);
