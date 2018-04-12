@@ -90,6 +90,7 @@ bot.on("message", async message => {
 	let cmd = messageArray[0].toLowerCase();
 	if(!cmd) return;
 	let args = messageArray.slice(1);
+	console.log(args);
 	if(message.author.bot === false) {
 		let mentions = message.mentions.members.first();
 		if(mentions) {
@@ -146,6 +147,7 @@ bot.on("message", async message => {
 	var content;
 	if (args != undefined) {
 		content = args.join(" ");
+		console.log(content);
 	} else {
 		content = "";
 	}
