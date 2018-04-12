@@ -90,7 +90,9 @@ bot.on("message", async message => {
 	let cmd = messageArray[0].toLowerCase();
 	if(!cmd) return;
 	let args = messageArray.slice(1);
-	console.log(args);
+	console.log("args: "+args);
+	let content = args.join(" ");
+	console.log(content);
 	if(message.author.bot === false) {
 		let mentions = message.mentions.members.first();
 		if(mentions) {
@@ -144,13 +146,6 @@ bot.on("message", async message => {
 	}
 
 	if(!message.content.startsWith(prefix)) return;
-	var content;
-	if (args != undefined) {
-		content = args.join(" ");
-		console.log(content);
-	} else {
-		content = "";
-	}
 	let commandfile = bot.commands.get(cmd.slice(prefix.length));
 	if(!commandfile) return;
 	return commandfile.run(bot, message, args, prefix, content);
