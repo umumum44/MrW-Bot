@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args, content) => {
 	if(args[1] === undefined) return message.reply("Please specify a role. Example: `!giverole @user role`.").catch(function() {});
 	var choice = message.guild.roles.find(role => role.name.toLowerCase().startsWith(args[1].toLowerCase()) || args[1].includes(`${role.id}`));
 	if(choice === null) return message.reply("Please specify a valid role.").catch(function() {});
-	if(message.member.highestRole.position =< choice.position) return message.reply(`You are not high enough in this guilds hierarchy to give/remove the \`${choice.name}\` role.`);
+	if(message.member.highestRole.position <= choice.position) return message.reply(`You are not high enough in this guilds hierarchy to give/remove the \`${choice.name}\` role.`);
 	if(target.roles.has(choice.id)) {
 		target.removeRole(choice).then(() => {
 			message.reply(`Successfully removed \`${target.user.tag}\` from the \`${choice.name}\` role.`).catch(function() {});
