@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		if(hoist === "true") hoist = [true, "set"];
 		if(hoist === "false") hoist = [false, "set"];
 	}
-	var ammountToSubstr = 8;
+	var ammountToSubstr = prefix.length+8;
 	if(ishextag !== null) {
 		ammountToSubstr = ammountToSubstr + args[0].length + 1;
 	}
