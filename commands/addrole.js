@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args, prefix, content) => {
 	if(args[0] === undefined) return message.reply("Please specify the following params [optional] (required). `!addrole [hexcolor: #XXXXXX] [hoist: true/false] (role name)`.").catch(function() {});
 	var ishextag = null;
 	if(args[0].startsWith("#")) ishextag = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(args[0]);
