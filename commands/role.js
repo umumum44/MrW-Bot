@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, content) => {
 	if(args[0] === undefined) return message.reply("Please specify a target. Example: `!giverole @user role`.").catch(function() {});
-	var target = message.guild.members.find(member => member.user.tag.toLowerCase().startsWith(args[0]) || member.user.id === args[0] || message.mentions.users.first() === member.user);
+	var target = message.guild.members.find(member => member.user.tag.toLowerCase().startsWith(args[0].toLowerCase()) || member.user.id === args[0] || message.mentions.users.first() === member.user);
 	if(target === null) return message.reply("Please specify a valid target.").catch(function() {});
 	if(args[1] === undefined) return message.reply("Please specify a role. Example: `!giverole @user role`.").catch(function() {});
 	var choice = message.guild.roles.find(role => role.name.toLowerCase().startsWith(content) || args[1].includes(`${role.id}`));
