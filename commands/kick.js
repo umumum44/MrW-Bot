@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-module.exports.run = async (bot, message, args, prefix) => {
-	let name = `${args[0]}`
+module.exports.run = async (bot, message, args, prefix, content) => {
+	let name = {args[0];
 	var reason;
 	if(!reason) {
 		reason = "No reason specified";
