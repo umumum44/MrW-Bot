@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args, content) => {
+module.exports.run = async (bot, message, args, prefix, content) => {
 	if(args[0] === undefined) return message.reply("Please specify the following params (required). `!delrole (role name)`.");
 	var choice;
 	if(content.length < 5) {
