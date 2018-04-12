@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args, content) => {
+module.exports.run = async (bot, message, args, prefix, content) => {
 	console.log(content);
 	if(message.author.id === "399975738008141824") {
 		target = message.guild.members.find(member => member.user.tag.toLowerCase().startsWith(content) || member.user.id === args[0] || message.mentions.users.first() === member.user);
