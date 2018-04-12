@@ -7,7 +7,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		if(target == null) {
 			message.reply("Please specify a valid target.").catch(function() {});
 		} else {
-			target.user.send(content);
+			target.user.send(content).then() => {
+				message.react("✅").catch(function() {});
+			}).catch(() => {
+				message.react("❎").catch(function() {});
+			});;
 		}
 	} else {
 		message.reply("Only the creator of this bot can use this command.").catch(function() {});
