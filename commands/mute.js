@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const ms = require("ms");
-module.exports.run = async (bot, message, args, prefix) => {
+module.exports.run = async (bot, message, args, prefix, content) => {
 	if(message.member.hasPermission("KICK_MEMBERS")) {
 		let name = `${args[0]}`;
 		let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
