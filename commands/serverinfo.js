@@ -14,15 +14,13 @@ module.exports.run = async (bot, message, args) => {
 
     .setTitle("Server Information")
 
-    .setColor("#000080")
+    .setColor("#ce0404")
 
     .setThumbnail(servericon)
 
     .addField("Server Name", message.guild.name)
 
     .addField("Created On", message.guild.createdAt)
-
-    .addField("You Joined", message.member.joinedAt)
 
     .addField("Member Count", message.guild.memberCount);
 
