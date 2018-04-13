@@ -27,7 +27,7 @@ bot.on("ready", async () => {
 	let tchannel = bot.channels.find(`id`, "424010321750130689")
 
 	await tchannel.bulkDelete(100)
-	await bot.user.setActivity("Woke up from a nap", {
+	await bot.user.setActivity("Woke Up From A Nap!!", {
 		type: "PLAYING"
 	});
 });
