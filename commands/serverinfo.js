@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
 
     .setTitle("Server Information")
 
-    .setColor("#ce0404")
+    .setColor("#CE0404")
 
     .setThumbnail(servericon)
 
