@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
 
     .addField("Created On", bot.user.createdAt)
 
-    .addField("Created By", "ethanlaj#8805");
+    .addField("Created By", "Windows 10 MacOS#2842 The Wonderful people who coded the bot ethanlaj#8805 and gt_c#0495");
 
 
 
