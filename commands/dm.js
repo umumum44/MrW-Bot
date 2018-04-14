@@ -8,9 +8,9 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			message.reply("Please specify a valid target.").catch(function() {});
 		} else {
 			target.user.send(content).then(() => {
-				message.react("white_check_mark").catch(function() {});
+				message.react("✅").catch(function() {});
 			}).catch(() => {
-				message.react("negative_squared_cross_mark").catch(function() {});
+				message.react("❎").catch(function() {});
 			});;
 		}
 	} else {
