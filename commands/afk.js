@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	message.reply(`You are now AFK!!!: \`${afkmsg}\`\nTo become un-AFK, just talk again!`);
 	message.delete()
 
--} 
+}
 module.exports.help = {
 	name: "afk"
 
