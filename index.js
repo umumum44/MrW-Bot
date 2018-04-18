@@ -39,7 +39,7 @@ bot.on("guildMemberAdd", (member) => {
 	if (dbChannels != null ) {
 		dbChannels.forEach(autoroleDB => {
 			autoroleDB.fetchMessages({ limit: 100 }).then(messagesFetched => {
-				var autoroles = messagesFetched.find(msg => msg.content.startsWith(`${member.guild.id}`);
+				var autoroles = messagesFetched.find(msg => msg.content.startsWith(`${member.guild.id}`));
 				autoroles.content.split(" ").slice(1).forEach(autorole => {
 					member.addRole(member.guild.roles.get(autorole)).catch(function() {});
 				});
