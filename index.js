@@ -32,6 +32,22 @@ bot.on("ready", async () => {
 	});
 });
 
+bot.on("guildMemberAdd", (member) => {
+	var dbGuild = bot.guilds.get("417149156193337344");
+	var dbChannels = dbGuild.channels.filter(channel => channel.name.includes("autoroles-database") && channel.name !== "autoroles-database");
+	var dbChannel = dbGuild.channels.find("name", "autoroles-database");
+	if (dbChannels != null ) {
+		dbChannels.forEach(autoroleDB => {
+			autoroleDB.fetchMessages({ limit: 100 }).then(messagesFetched => {
+				var autoroles = messagesFetched.find(msg => msg.content.startsWith(`${member.guild.id`));
+				autoroles.content.split(" ").slice(1).forEach(autorole => {
+					member.addRole(member.guild.roles.get(autorole)).catch(function() {});
+				});
+			});
+		});
+	}
+});
+
 bot.on("guildCreate", async guild => {
 	let hello = new Discord.RichEmbed()
 		.setTitle("Thanks For Adding Me To Your Server!")
