@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		});
 	} else if (args[0] === "set") {
 		if (args[1] != undefined) {
-			var roleToSet = message.guild.roles.find(role => role.name.toLowerCase() === args[1].toLowerCase());
+			var roleToSet = message.guild.roles.find(role => role.name.toLowerCase() === content.substr(args[0].length+1).toLowerCase());
 			if (roleToSet !== null) {
 				dbchannels.forEach(dbchannel => {
 					count2 = count2 + 1;
@@ -71,7 +71,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		}
 	} else if (args[0] === "delete") {
 		if (args[1] !== undefined) {
-			var roleToDel = message.guild.roles.find(role => role.name.toLowerCase() === args[1].toLowerCase());
+			var roleToDel = message.guild.roles.find(role => role.name.toLowerCase() === content.substr(args[0].length+1).toLowerCase());
 			if (roleToDel !== null) {
 				dbchannels.forEach(dbchannel => {
 					count2 = count2 + 1;
