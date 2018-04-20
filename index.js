@@ -32,7 +32,7 @@ bot.on("ready", async () => {
 	});
 
 	if (bot.user.id === "419881218784493588") {
-		bot.channels.get("436714650835484707").fetchMessages({
+		bot.channels.get("436947091483262996").fetchMessages({
 			limit: 100
 		}).then(messagesFetched => {
 			var muteGuild;
