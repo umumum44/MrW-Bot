@@ -9,7 +9,7 @@ let ps = 25
 console.log(ps)
 
 
-getMemeUrls(sq, [{apiKey:"f5a83654-2cdb-4881-a7a9-b965e8a8b2d0"}, {pageSize: ps}, {pageIndex: ind}]).then(result => {
+getMemeUrls(sq, [{pageSize: ps}, {pageIndex: ind}]).then(result => {
   console.log(result)
   if(!result[0]) return message.reply("Couldn't find memes with this name!")
     var meme = result[Math.floor(Math.random() * result.length)];
