@@ -38,7 +38,7 @@ bot.on("ready", async () => {
 		var muteUser;
 		var timeUntilUnmute;
 		messagesFetched.forEach(msg => {
-			if (msg.author.id === "393532251398209536") {
+			if (msg.author.id === "419881218784493588") {
 				muteGuild = bot.guilds.get(msg.content.split(" ")[0]);
 				console.log(`GUILD: ${muteGuild.name}`);
 				muteUser = msg.content.split(" ")[1];
