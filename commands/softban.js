@@ -21,16 +21,13 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 							}).then(() => {
 								message.guild.unban(target.user, `Softbanned by ${message.author.tag} for ${reason}`).then(() => {
 									message.channel.send(`***Successfully softbanned \`${target.user.tag}\`.***`)
-										.then(msg => msg.delete(5000)
-											.catch(function() {})).catch(function() {});
+											.catch(function() {});
 								}).catch(() => {
 									message.reply(`Failed to unban \`${target.user.tag}\`.`)
-										.then(msg => msg.delete(5000).catch(function() {}))
 										.catch(function() {});
 								});
 							}).catch(() => {
 								message.channel.send(`Failed to ban \`${target.user.tag}\`.`)
-									.then(msg => msg.delete(5000).catch(function() {}))
 									.catch(function() {});
 							});
 						}).catch(() => {
@@ -43,16 +40,13 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									reason: `Softbanned by ${message.author.tag} for ${reason}`
 								}).then(() => {
 									message.channel.send(`***Successfully softbanned \`${target.user.tag}\`.***`)
-										.then(msg => msg.delete(5000)
-											.catch(function() {}));
+											.catch(function() {});
 								}).catch(() => {
 									message.reply(`Failed to unban \`${target.user.tag}\`.`)
-										.then(msg => msg.delete(5000).catch(function() {}))
 										.catch(function() {});
 								});
 							}).catch(() => {
 								message.channel.send(`Failed to ban \`${target.user.tag}\`.`)
-									.then(msg => msg.delete(5000).catch(function() {}))
 									.catch(function() {});
 							});
 						});
