@@ -17,15 +17,15 @@ module.exports.run = async (bot, message, args) => {
 				if (target.kickable) {
 					target.send(`You have been kicked from the \`${message.guild.name}\` server by \`${message.author.tag}\` for ${reason}`).then(() => {
 						target.kick(`Kicked by ${message.author.tag} for ${reason}`).then(() => {
-							message.channel.send(`***Successfully kicked \`${target.user.tag}\`.***`).then(msg => msg.delete(5000).catch(function() {}));
+							message.channel.send(`***Successfully kicked \`${target.user.tag}\`.***`).catch(function() {});
 						}).catch(() => {
-							message.channel.send(`Failed to kick \`${target.user.tag}\`.`).then(msg => msg.delete(5000).catch(function() {}));
+							message.channel.send(`Failed to kick \`${target.user.tag}\`.`).catch(function() {});
 						});
 					}).catch(() => {
 						target.kick(`Kicked by ${message.author.tag} for ${reason}`).then(() => {
-							message.channel.send(`***Successfully kicked \`${target.user.tag}\`.***`).then(msg => msg.delete(5000).catch(function() {}));
+							message.channel.send(`***Successfully kicked \`${target.user.tag}\`.***`).catch(function() {});
 						}).catch(() => {
-							message.channel.send(`Failed to kick \`${target.user.tag}\`.`).then(msg => msg.delete(5000).catch(function() {}));
+							message.channel.send(`Failed to kick \`${target.user.tag}\`.`).catch(function() {});
 						});
 					});
 				} else {
