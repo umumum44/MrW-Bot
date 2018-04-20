@@ -9,9 +9,9 @@ bot.counter = false;
 bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
-	if(err) console.log(err);
+	if (err) console.log(err);
 	let jsfile = files.filter(f => f.split(".").pop() === "js")
-	if(jsfile.length <= 0) {
+	if (jsfile.length <= 0) {
 		console.log("Couldn't find commands.");
 		return;
 	}
@@ -30,30 +30,32 @@ bot.on("ready", async () => {
 	await bot.user.setActivity("Woke Up From A Nap!!", {
 		type: "PLAYING"
 	});
-	
-	if (bot.user.id === "393532251398209536") {
-				bot.channels.get("436714650835484707").fetchMessages( {limit: 100} ).then(messagesFetched => {
-					var muteGuild;
-					var muteUser;
-					var timeUntilUnmute;
-					messagesFetched.forEach(msg => {
-						if (msg.author.id === "393532251398209536") {
-							muteGuild = msg.content.split(" ")[0];
-							muteUser = msg.content.split(" ")[1];
-							timeUntilUnmute = parseInt(msg.content.split(" ")[2]);
-							if (timeUntilUnmute <= Date.now()) {
-								msg.delete().catch(function() {});
-								muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
-							} else {
-								setTimeout(() => {
-									muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
-									msg.delete().catch(function() {});
-								}, timeUntilUnmute - Date.now());
-							}
-						}
-					});
-				});
-			}
+
+	if (bot.user.id === "419881218784493588") {
+		bot.channels.get("436714650835484707").fetchMessages({
+			limit: 100
+		}).then(messagesFetched => {
+			var muteGuild;
+			var muteUser;
+			var timeUntilUnmute;
+			messagesFetched.forEach(msg => {
+				if (msg.author.id === "393532251398209536") {
+					muteGuild = msg.content.split(" ")[0];
+					muteUser = msg.content.split(" ")[1];
+					timeUntilUnmute = parseInt(msg.content.split(" ")[2]);
+					if (timeUntilUnmute <= Date.now()) {
+						msg.delete().catch(function() {});
+						muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
+					} else {
+						setTimeout(() => {
+							muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
+							msg.delete().catch(function() {});
+						}, timeUntilUnmute - Date.now());
+					}
+				}
+			});
+		});
+	}
 });
 
 bot.on("guildMemberAdd", (member) => {
@@ -85,65 +87,65 @@ bot.on("guildCreate", async guild => {
 	let ahichannels = hichannels.filter(c => c.permissionsFor(bot.user).has("READ_MESSAGES"));
 	let fhichannel = ahichannels.filter(c => c.permissionsFor(bot.user).has("SEND_MESSAGES"));
 	let hichannel = fhichannel.first()
-	if(hichannel) {
+	if (hichannel) {
 		await hichannel.send(hello)
 	}
 
-	if(bot.counter) await bot.user.setActivity(`${bot.guilds.size} servers`, {
+	if (bot.counter) await bot.user.setActivity(`${bot.guilds.size} servers`, {
 		type: "WATCHING"
 	});
 });
 
 bot.on("guildDelete", guild => {
-	if(bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, {
+	if (bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, {
 		type: "WATCHING"
 	});
 });
 
 bot.on("message", async message => {
-	if(message.channel.type === "dm") return;
-	if((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
+	if (message.channel.type === "dm") return;
+	if ((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
 		message.delete(5000);
 	}
-	if((message.content.endsWith("just talk again!")) && (message.author.bot)) {
+	if ((message.content.endsWith("just talk again!")) && (message.author.bot)) {
 		message.delete(5000);
 	}
-	if((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "420748985410650123")) {
+	if ((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "420748985410650123")) {
 		message.delete(300000);
 	}
-	if((message.content.endsWith("Your AFK status was removed.")) && (message.author.bot)) {
+	if ((message.content.endsWith("Your AFK status was removed.")) && (message.author.bot)) {
 		message.delete(5000);
 	}
-	if((message.content.includes("This user is currently AFK!")) && (message.author.bot)) {
+	if ((message.content.includes("This user is currently AFK!")) && (message.author.bot)) {
 		message.delete(5000);
 	}
-	if(message.author.bot === false) {
+	if (message.author.bot === false) {
 		let channel = bot.channels.find(`id`, "422201325623836682");
 		let messages = await channel.fetchMessages({
 			limit: 100
 		});
 		let array = messages.filter(m => RegExp(message.author.id, "gi").test(m.content));
 		let first = array.first();
-		if(first) {
+		if (first) {
 			first.delete();
 			message.reply("Welcome back! Your AFK status was removed.");
 		}
 	}
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0].toLowerCase();
-	if(!cmd) return;
+	if (!cmd) return;
 	let args = messageArray.slice(1);
 	let content = args.join(" ");
-	if(message.author.bot === false) {
+	if (message.author.bot === false) {
 		let mentions = message.mentions.members.first();
-		if(mentions) {
+		if (mentions) {
 			let channel = bot.channels.find("id", "422201325623836682");
 			let messages = await channel.fetchMessages({
 				limit: 100
 			});
 			let array = messages.filter(m => RegExp(mentions.id, "gi").test(m.content));
 			let first = array.first();
-			if(first) {
+			if (first) {
 				let afkmsg = first.content.substr(mentions.id.length);
 				message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``)
 			}
@@ -161,14 +163,14 @@ bot.on("message", async message => {
 		return msg && msg.content.substr(1 + message.guild.id.length)
 	}
 	const aprefix = await getPrefix(bot, message, args)
-	if(aprefix) var prefix = aprefix
+	if (aprefix) var prefix = aprefix
 	//console.log(`${prefix} second`)
-	if(!aprefix) var prefix = botconfig.prefix
+	if (!aprefix) var prefix = botconfig.prefix
 	// console.log(`${prefix} third`)
-	if((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix"))) {
+	if ((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix"))) {
 		return message.reply(`My prefix is \`${prefix}\``)
 	}
-	if((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix reset")) && (message.member.hasPermission("MANAGE_GUILD"))) {
+	if ((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix reset")) && (message.member.hasPermission("MANAGE_GUILD"))) {
 
 		let aaa = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 		aaa.forEach(chl => {
@@ -176,7 +178,7 @@ bot.on("message", async message => {
 				limit: 100
 			}).then(msgs => {
 				msgs.forEach(msg => {
-					if(msg.content.startsWith(`${message.guild.id}`)) {
+					if (msg.content.startsWith(`${message.guild.id}`)) {
 						msg.delete()
 					}
 				})
@@ -186,9 +188,9 @@ bot.on("message", async message => {
 
 	}
 
-	if(!message.content.startsWith(prefix)) return;
+	if (!message.content.startsWith(prefix)) return;
 	let commandfile = bot.commands.get(cmd.slice(prefix.length));
-	if(!commandfile) return;
+	if (!commandfile) return;
 	return commandfile.run(bot, message, args, prefix, content);
 });
 
