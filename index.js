@@ -40,15 +40,15 @@ bot.on("ready", async () => {
 			var timeUntilUnmute;
 			messagesFetched.forEach(msg => {
 				if (msg.author.id === "393532251398209536") {
-					muteGuild = msg.content.split(" ")[0];
+					muteGuild = bot.guilds.get(msg.content.split(" ")[0]);
 					muteUser = msg.content.split(" ")[1];
 					timeUntilUnmute = parseInt(msg.content.split(" ")[2]);
 					if (timeUntilUnmute <= Date.now()) {
 						msg.delete().catch(function() {});
-						bot.guilds.get(muteGuild).members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
+						muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
 					} else {
 						setTimeout(() => {
-							bot.guilds.get(muteGuild).members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
+							muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
 							msg.delete().catch(function() {});
 						}, timeUntilUnmute - Date.now());
 					}
