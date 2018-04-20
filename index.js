@@ -30,6 +30,30 @@ bot.on("ready", async () => {
 	await bot.user.setActivity("Woke Up From A Nap!!", {
 		type: "PLAYING"
 	});
+	
+	if (bot.user.id === "393532251398209536") {
+				bot.channels.get("436714650835484707").fetchMessages( {limit: 100} ).then(messagesFetched => {
+					var muteGuild;
+					var muteUser;
+					var timeUntilUnmute;
+					messagesFetched.forEach(msg => {
+						if (msg.author.id === "393532251398209536") {
+							muteGuild = msg.content.split(" ")[0];
+							muteUser = msg.content.split(" ")[1];
+							timeUntilUnmute = parseInt(msg.content.split(" ")[2]);
+							if (timeUntilUnmute <= Date.now()) {
+								msg.delete().catch(function() {});
+								muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
+							} else {
+								setTimeout(() => {
+									muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted")).catch(function() {});
+									msg.delete().catch(function() {});
+								}, timeUntilUnmute - Date.now());
+							}
+						}
+					});
+				});
+			}
 });
 
 bot.on("guildMemberAdd", (member) => {
