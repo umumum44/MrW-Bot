@@ -142,6 +142,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 								.send(`You attempted to use the \`role\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 						});
 					}
+				} else {
+					message.reply("Please specify a valid role to give below your (or my) hierarchy. Example: `!role all Nerds`.").catch(() => {
+						message.author
+							.send(`You attempted to use the \`role\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
+					});
 				}
 			} else if (paramaterOne === "humans") {
 				roleTarget = message.guild.roles.find(role => {
