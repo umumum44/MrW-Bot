@@ -1,6 +1,12 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, prefix, content) => {
+let timeoutchannel = bot.channels.find(`id`, `437397457073078272`)
+let uftimeoutmessages = await timeoutchannel.fetchMessages({
+                        limit: 100
+                })
+let checker = uftimeoutmessages.find(m => m.content === `${message.author.id}`)
+if(checker) return message.reply("You can only use this command once every two minutes!")
 	const pollTitle = content.split(":")[0];
 	if (content.split(":")[1] !== undefined) {
 		var pollOptions = content.split(":").slice(1).join(":").split("|");
@@ -21,6 +27,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 						await poll.react(eA[orderLoop]);
 						orderLoop = orderLoop+1;
 					}
+				await timeoutchannel.send(message.author.id)
 				}).catch(() => {
 					message.reply("Something went wrong and I could not create the poll.").catch(() => {
 						message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
