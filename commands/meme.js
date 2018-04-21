@@ -7,7 +7,7 @@ let ind = Math.floor(Math.random() * 4);
 let ps = 100
 
 
-getMemeUrls(sq, [{pageIndex: ind}, {pageSize: ps}]).then(result => {
+getMemeUrls(sq, [pageSize: ps]).then(result => {
 	console.log(result.length)
   if(!result[0]) return message.reply("Couldn't find memes with this name!")
     var meme = result[Math.floor(Math.random() * result.length)];
