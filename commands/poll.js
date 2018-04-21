@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
 	const pollTitle = content.split(":")[0];
 	if (content.split(":")[1] !== undefined) {
-		var pollOptions = content.split(":").slice(1).join(":").split(",");
+		var pollOptions = content.split(":").slice(1).join(":").split("|");
 		if (pollOptions[0] !== "") {
 			if (pollOptions.length <= 9 && pollOptions.length >= 2) {
 				const eA = ['1⃣','2⃣', '3⃣', '4⃣', '5⃣', '6⃣', '7⃣', '8⃣', '9⃣'];
@@ -27,18 +27,18 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 					});
 				});
 			} else {
-				message.reply("Please specify at least 2 and at most 9 poll options. Example: `!poll title: option 1, option 2, option 3`.")
+				message.reply("Please specify at least 2 and at most 9 poll options. Example: `!poll title: option 1 | option 2 | option 3`.")
 					.catch(() => {
 						message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
 			}
 		} else {
-			message.reply("Please specify valid poll options. Example: `!poll title: option 1, option 2, option 3`.").catch(() => {
+			message.reply("Please specify valid poll options. Example: `!poll title: option 1 | option 2 | option 3`.").catch(() => {
 				message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 			});
 		}
 	} else {
-		message.reply("Please specify a valid poll title. Example: `!poll title: option 1, option 2, option 3`.").catch(() => {
+		message.reply("Please specify a valid poll title. Example: `!poll title: option 1 | option 2 | option 3`.").catch(() => {
 			message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 		});
 	}
