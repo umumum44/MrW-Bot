@@ -107,7 +107,7 @@ bot.on("guildDelete", guild => {
 
 bot.on("message", async message => {
 	if (message.channel.type === "dm") return;
-if(message.channel.id === "437397457073078272") await message.delete(120000)
+if(message.channel.id === "437397457073078272") await message.delete(240000)
 	if ((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
 		message.delete(5000);
 	}
