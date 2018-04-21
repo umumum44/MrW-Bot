@@ -16,13 +16,11 @@ getMemeUrls(sq, {pageSize: 25, pageIndex: 10000}).then(result => {
  }
 		var memeo = result[Math.floor(Math.random() * result.length)];
 	message.reply(memeo)
-	})
+	}).catch(err => {
+console.log(err)
+ });
 	  
     var meme = result[Math.floor(Math.random() * result.length)];
-   /* let memee = new Discord.RichEmbed()
-	.setImage(meme)
-.setFooter(`Requested by ${message.author.tag}`)
-    message.channel.send(memee)*/
 	message.reply(meme)
   }).catch(err => {
 console.log(err)
