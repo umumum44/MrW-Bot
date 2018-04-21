@@ -238,7 +238,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 					if (roleTarget !== null) {
 						if (roleToChangeFromTarget !== null) {
 							message.channel
-								.send(`Changing roles for peoplen ot in the \`${roleTarget.name}\` role with the \`${roleToChangeFromTarget.name}\` role.`)
+								.send(`Changing roles for people not in the \`${roleTarget.name}\` role with the \`${roleToChangeFromTarget.name}\` role.`)
 								.catch(function() {});
 							message.guild.members.forEach(member => {
 								if (roleTarget.members.find(m => member.user.id === m.user.id) === null) {
