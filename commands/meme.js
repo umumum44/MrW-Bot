@@ -27,8 +27,6 @@ console.log(err)
 	message.reply(memeo)
 	}).catch(err => {
 console.log(err)
-  }).catch(err => {
-console.log(err)
  });
 		
 		
