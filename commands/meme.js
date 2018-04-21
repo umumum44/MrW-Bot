@@ -5,7 +5,7 @@ let sq = content
 if(!sq) return message.reply("You must provide something to search with!")
 let ind = Math.floor(Math.random() * 400);
 let ps = 25
-let inde = Math.floor(Math.random() * 20);
+let inde = Math.floor(Math.random() * 50);
 
  let pp = await new Promise((resolve, reject) => {
 getMemeUrls(sq, {pageSize: 25, pageIndex: ind}).then(result => {
