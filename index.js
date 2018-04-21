@@ -27,6 +27,11 @@ bot.on("ready", async () => {
 	let tchannel = bot.channels.find(`id`, "424010321750130689");
 
 	await tchannel.bulkDelete(100)
+	
+	let ttchannel = bot.channels.find(`id`, "437397457073078272");
+
+	await ttchannel.bulkDelete(100)
+	
 	await bot.user.setActivity("Woke Up From A Nap!!", {
 		type: "PLAYING"
 	});
@@ -102,8 +107,7 @@ bot.on("guildDelete", guild => {
 
 bot.on("message", async message => {
 	if (message.channel.type === "dm") return;
-	if (message.author.bot) return;
-
+if(message.channel.id === "437397457073078272") await message.delete(120000)
 	if ((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
 		message.delete(5000);
 	}
@@ -131,6 +135,7 @@ bot.on("message", async message => {
 			message.reply("Welcome back! Your AFK status was removed.");
 		}
 	}
+	if (message.author.bot) return;
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0].toLowerCase();
 	if (!cmd) return;
