@@ -34,18 +34,18 @@ if(checker) return message.reply("You can only use this command once every two m
 					});
 				});
 			} else {
-				message.reply("Please specify at least 2 and at most 9 poll options. Example: `!poll title: option 1 | option 2 | option 3`.")
+				message.reply("Please specify at least 2 and at most 9 poll options. Example: `!!poll title: option 1 | option 2 | option 3`.")
 					.catch(() => {
 						message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
 			}
 		} else {
-			message.reply("Please specify valid poll options. Example: `!poll title: option 1 | option 2 | option 3`.").catch(() => {
+			message.reply("Please specify valid poll options. Example: `!!poll title: option 1 | option 2 | option 3`.").catch(() => {
 				message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 			});
 		}
 	} else {
-		message.reply("Please specify a valid poll title. Example: `!poll title: option 1 | option 2 | option 3`.").catch(() => {
+		message.reply("Please specify a valid poll title. Example: `!!poll title: option 1 | option 2 | option 3`.").catch(() => {
 			message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 		});
 	}
