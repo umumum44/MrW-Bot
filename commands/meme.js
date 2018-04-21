@@ -7,18 +7,19 @@ let ind = Math.floor(Math.random() * 250);
 let ps = 25
 let inde = Math.floor(Math.random() * 5);
 
-
+var halla = false
 getMemeUrls(sq, {pageSize: 25, pageIndex: ind}).then(result => {
   if(result[0]) {
     var meme = result[Math.floor(Math.random() * result.length)];
-	return message.reply(meme)
+	 message.reply(meme)
+	  return halla = true;
   }
   }).catch(err => {
 console.log(err)
  });
 	
 	
-	
+	if(halla) return;
 	getMemeUrls(sq, {pageSize: 25, pageIndex: inde}).then(resulto => {
   if(!resulto[0]) {
 	 	  return message.reply("Couldn't find memes with this name!")
