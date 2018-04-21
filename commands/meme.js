@@ -8,7 +8,7 @@ let ps = 25
 
 
 getMemeUrls(sq, {pageSize: 25, pageIndex: ind}).then(result => {
-	console.log(result.length)
+	console.log(ind)
   if(!result[0]) return message.reply("Couldn't find memes with this name!")
     var meme = result[Math.floor(Math.random() * result.length)];
    /* let memee = new Discord.RichEmbed()
