@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 					});
 				}
 			} else if (paramaterOne === "in") {
-				roles = params.readRaw().split(" ").slice(1).join(" ").split(", ").slice(0, 2).filter(r => r !== "");
+				roles = content.split(" ").slice(1).join(" ").split(", ").slice(0, 2).filter(r => r !== "");
 				if (roles.length === 2) {
 					roleTarget = message.guild.roles.find(role => role.name.toLowerCase().startsWith(roles[0].toLowerCase()));
 					roleToChangeFromTarget = message.guild.roles.find(role => {
@@ -223,7 +223,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 					}
 				}
 			} else if (paramaterOne === "not-in") {
-				roles = params.readRaw().split(" ").slice(1).join(" ").split(", ").slice(0, 2).filter(r => r !== "");
+				roles = content.split(" ").slice(1).join(" ").split(", ").slice(0, 2).filter(r => r !== "");
 				if (roles.length === 2) {
 					roleTarget = message.guild.roles.find(role => role.name.toLowerCase().startsWith(roles[0].toLowerCase()));
 					roleToChangeFromTarget = message.guild.roles.find(role => {
