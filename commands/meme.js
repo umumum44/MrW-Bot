@@ -3,9 +3,9 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
 let sq = content
 if(!sq) return message.reply("You must provide something to search with!")
-let ind = Math.floor(Math.random() * 250);
+let ind = Math.floor(Math.random() * 400);
 let ps = 25
-let inde = Math.floor(Math.random() * 5);
+let inde = Math.floor(Math.random() * 20);
 
  let pp = await new Promise((resolve, reject) => {
 getMemeUrls(sq, {pageSize: 25, pageIndex: ind}).then(result => {
