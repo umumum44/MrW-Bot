@@ -19,7 +19,7 @@ console.log(err)
  });
  })
 	
-	if(pp) return;
+	if(pp === true) return;
 	getMemeUrls(sq, {pageSize: 25, pageIndex: inde}).then(resulto => {
   if(!resulto[0]) {
 	 	  return message.reply("Couldn't find memes with this name!")
