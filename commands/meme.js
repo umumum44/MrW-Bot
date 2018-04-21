@@ -13,6 +13,8 @@ getMemeUrls(sq, {pageSize: 25, pageIndex: ind}).then(result => {
     var meme = result[Math.floor(Math.random() * result.length)];
 	 message.reply(meme)
 	  resolve(true);
+  } else {
+	  resolve(false);
   }
   }).catch(err => {
 console.log(err)
