@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
         let helper = new Discord.RichEmbed()
                 .setTitle("Commands")
-                .setDescription("\`Bot Prefix:\` !!")
+                .setDescription("\`Default Bot Prefix:\` !!")
                 .addField("Fun", "\`!!8ball\` - An 8-Ball Simulation\n\`!!rps\` - Plays a game of rock-paper-scissors\n`!!say` - Makes me say whatever you want me to say\n`!!meme` - Returns a random meme")
                 .addField("Information", "\`!!about\` - Gets information about a server member\n\`!!getinfo\` - Sends information about a discord user's linked roblox account\n\`!!server\` - Sends the link to the support server\n\`!!invite\` - Sends the link to invite me\n`!!botinfo` - Sends you info all about me\n`!!channelinfo` - Sends you information about a channel\n`!!serverinfo` - Sends you information about a server\n`!!count` - Sends you the number of servers I am in\n`!!news` - Gives you updated news on me")
                 .addField("Roles", "`!!addrole` - Creates a role\n`!!delrole` - Deletes a role\n`!!autoroles` - Adds/removes roles to give roles to a user when they join a server\n`!!role` - Gives a user a specified role(s)")
