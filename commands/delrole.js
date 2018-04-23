@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			message.reply(`There was an error attempting to delete the \`${choice.name}\` role.`).catch(function() {});
 		});
 	} else {
-		choice = message.guild.roles.find(role => role.name.toLowerCase().startsWith(content) || args[0].includes(`${role.id}`));
+		choice = message.guild.roles.find(role => role.name.toLowerCase().startsWith(content) || content.includes(`${role.id}`));
 		if(choice === null) return message.reply("Please specify a valid role.").catch(function() {});
 		choice.delete().then(() => {
 			message.reply(`Successfully deleted the \`${choice.name}\` role.`).catch(function() {});
