@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	} else if (days === 1) {
 		`\`${days}\` day, `;
 	} else {
-		else days = "";
+		days = "";
 	}
 	if (hours > 1) {
 		hours = `\`${hours}\` hours, `;
