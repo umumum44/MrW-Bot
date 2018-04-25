@@ -1,5 +1,5 @@
 module.exports.run = async (bot, message, args, prefix, content) => {
-	const uptime = call.client.uptime;
+	const uptime = bot.uptime;
 	var days = ((uptime) - (uptime % 86400000)) / 86400000;
 	var hours = (((uptime) - (uptime % 3600000)) / 3600000) - (days * 24);
 	var minutes = ((uptime % 3600000) - (uptime % 3600000) % (60000)) / 60000;
