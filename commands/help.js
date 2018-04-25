@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         try {
                 await message.author.send(helper)
         } catch (e) {
-                return message.reply("Couldn't send you the list of commands, please check your privacy settings and try again!")
+                return message.reply("Couldn't send you the list of commands, please check your privacy settings and try again!!")
         }
         message.react("\u2705")
 }
