@@ -60,7 +60,30 @@ bot.on("ready", async () => {
                         });
                 });
 });
-bot.on("guildMemberAdd", (member) => {
+bot.on("guildMemberAdd", async member => {
+        var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
+        var byeHelloToggle = bot.channels.find(`id`, `438864222537908225`);
+        var byeHelloToggleMsgs = await byeHelloToggle.fetchMessages({
+                        limit: 100
+                });
+        var checkToSeeIfOn = byeHelloToggleMsgs.find(m => m.content === member.guild.id);
+        if (checkToSeeIfOn) {
+                var byeHelloChannelsMsgs = await byeHelloChannels.fetchMessages({
+                        limit: 100
+                })
+                var channelToSendMsg = byeHelloChannelsMsgs.find(m => m.content.startsWith(member.guild.id));
+                if (channelToSendMsg) {
+                        let channelToSendid = channelToSendMsg.content.substr(member.guild.id.length)
+                        let channelToSend = bot.channels.find(`id`, channelToSendid)
+                        const welcomeMessage = new Discord.RichEmbed()
+							.setTitle("Welcome")
+							.setColor("#FFA500")
+							.setDescription(`Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`);
+                        channelToSend.send(welcomeMessage)
+                }
+        }
+                                            
+                                                             
         var dbguild = bot.guilds.get("417149156193337344");
         var dbchannels = dbguild.channels.filter(channel => channel.name.includes("autoroles-database"));
         if (dbchannels != null) {
@@ -80,6 +103,30 @@ bot.on("guildMemberAdd", (member) => {
                 });
         }
 });
+bot.on("guildMemberRemove", member => {
+ var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
+        var byeHelloToggle = bot.channels.find(`id`, `438864222537908225`);
+        var byeHelloToggleMsgs = await byeHelloToggle.fetchMessages({
+                        limit: 100
+                });
+        var checkToSeeIfOn = byeHelloToggleMsgs.find(m => m.content === member.guild.id);
+        if (checkToSeeIfOn) {
+                var byeHelloChannelsMsgs = await byeHelloChannels.fetchMessages({
+                        limit: 100
+                })
+                var channelToSendMsg = byeHelloChannelsMsgs.find(m => m.content.startsWith(member.guild.id));
+                if (channelToSendMsg) {
+                        let channelToSendid = channelToSendMsg.content.substr(member.guild.id.length)
+                        let channelToSend = bot.channels.find(`id`, channelToSendid)
+                        const goodbyeMessage = new Discord.RichEmbed()
+							.setTitle("Goodbye")
+							.setColor("#0000ff")
+							.setDescription(`Sad to see you leave ${member.user.toString()}.`);
+                        channelToSend.send(goodbyeMessage)
+                }
+        }
+})
+        
 bot.on("guildCreate", async guilda => {
         let hello = new Discord.RichEmbed()
                 .setTitle("Thanks For Adding Me To Your Server!")
