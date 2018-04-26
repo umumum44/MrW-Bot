@@ -103,7 +103,7 @@ bot.on("guildMemberAdd", async member => {
                 });
         }
 });
-bot.on("guildMemberRemove", member => {
+bot.on("guildMemberRemove", async member => {
  var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
         var byeHelloToggle = bot.channels.find(`id`, `438864222537908225`);
         var byeHelloToggleMsgs = await byeHelloToggle.fetchMessages({
