@@ -116,7 +116,7 @@ bot.on("guildMemberRemove", async member => {
                 })
                 var channelToSendMsg = byeHelloChannelsMsgs.find(m => m.content.startsWith(member.guild.id));
                 if (channelToSendMsg) {
-                        let channelToSendid = channelToSendMsg.content.substr(member.guild.id.length)
+                        let channelToSendid = channelToSendMsg.content.slice(member.guild.id.length + 1)
                         let channelToSend = bot.channels.find(`id`, channelToSendid)
                         const goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
