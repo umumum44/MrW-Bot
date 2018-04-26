@@ -63,7 +63,16 @@ bot.on("ready", async () => {
 bot.on("guildMemberAdd", async member => {
         var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
         var byeHelloToggle = bot.channels.find(`id`, `438864222537908225`);
+	var HelloMessageChl = bot.channels.find(`id`, `439170444340232203`);
+	var GoodbyeMessageChl = bot.channels.find(`id`, `439170584178458624`);
+	var footerChl = bot.channels.find(`id`, `439173066430349322`);
         var byeHelloToggleMsgs = await byeHelloToggle.fetchMessages({
+                        limit: 100
+                });
+	 var HelloMsgs = await HelloMessageChl.fetchMessages({
+                        limit: 100
+                });
+	 var footerChlMsgs = await footerChl.fetchMessages({
                         limit: 100
                 });
         var checkToSeeIfOn = byeHelloToggleMsgs.find(m => m.content === member.guild.id);
@@ -75,10 +84,25 @@ bot.on("guildMemberAdd", async member => {
                 if (channelToSendMsg) {
                         let channelToSendid = channelToSendMsg.content.slice(member.guild.id.length + 1)
                         let channelToSend = bot.channels.find(`id`, channelToSendid)
+		var himessagemsg = HelloMsgs.find(m => m.content.startsWith(member.guild.id));
+			if(!himessagemsg) {
+			var himessage = himessagemsg.slice(member.guild.id.length + 1)
+			} else {
+				var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
+				}
+			var footerCheck = footerChlMsgs.find(m => m.content === member.guild.id)
+			if(footerCheck) {
                         const welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
-							.setDescription(`Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`);
+							.setDescription(himessage)
+							.setFooter(member.guild.name);
+			} else {
+                        const welcomeMessage = new Discord.RichEmbed()
+							.setTitle("Welcome")
+							.setColor("#FFA500")
+							.setDescription(himessage);
+			}
                         channelToSend.send(welcomeMessage)
                 }
         }
@@ -104,9 +128,18 @@ bot.on("guildMemberAdd", async member => {
         }
 });
 bot.on("guildMemberRemove", async member => {
- var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
+  var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
         var byeHelloToggle = bot.channels.find(`id`, `438864222537908225`);
+	var HelloMessageChl = bot.channels.find(`id`, `439170444340232203`);
+	var GoodbyeMessageChl = bot.channels.find(`id`, `439170584178458624`);
+	var footerChl = bot.channels.find(`id`, `439173066430349322`);
         var byeHelloToggleMsgs = await byeHelloToggle.fetchMessages({
+                        limit: 100
+                });
+	 var GoodbyeMsgs = await HelloMessageChl.fetchMessages({
+                        limit: 100
+                });
+	 var footerChlMsgs = await footerChl.fetchMessages({
                         limit: 100
                 });
         var checkToSeeIfOn = byeHelloToggleMsgs.find(m => m.content === member.guild.id);
@@ -118,15 +151,35 @@ bot.on("guildMemberRemove", async member => {
                 if (channelToSendMsg) {
                         let channelToSendid = channelToSendMsg.content.slice(member.guild.id.length + 1)
                         let channelToSend = bot.channels.find(`id`, channelToSendid)
+		var GoodbyeMsgsmsgs = GoodbyeMsgs.find(m => m.content.startsWith(member.guild.id));
+			if(GoodbyeMsgsmsgs) {
+			var byemessage = GoodbyeMsgsmsgs.slice(member.guild.id.length + 1)
+			} else {
+				var byemessage = `Sad to see you leave ${member.user.toString()}.`
+				}
+			var footerCheck = footerChlMsgs.find(m => m.content === member.guild.id)
+			if(footerCheck) {
                         const goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
-							.setDescription(`Sad to see you leave ${member.user.toString()}.`);
+							.setDescription(byemessage)
+							.setFooter(member.guild.name);
+			} else {
+                        const goodbyeMessage = new Discord.RichEmbed()
+							.setTitle("Goodbye")
+							.setColor("#0000ff")
+							.setDescription(byemessage);
+			}
                         channelToSend.send(goodbyeMessage)
                 }
         }
 })
-        
+        /*const goodbyeMessage = new Discord.RichEmbed()
+							.setTitle("Goodbye")
+							.setColor("#0000ff")
+							.setDescription(`Sad to see you leave ${member.user.toString()}.`);
+                        channelToSend.send(goodbyeMessage)
+			*/
 bot.on("guildCreate", async guilda => {
         let hello = new Discord.RichEmbed()
                 .setTitle("Thanks For Adding Me To Your Server!")
