@@ -1,5 +1,19 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
+        var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
+        var announcermsgs = await announcerchannel.fetchMessages({
+                        limit: 100
+                })
+        var announcermsg = announcermsgs.find(m => m.content.startsWith(member.guild.id));
+	if(!announcermsg) return;
+	//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
+	var settings = announcermsg.content
+	var togglesetting = settings.split("|")[1];
+      	var channelsetting = settings.split("|")[2];
+	var avatarsetting = settings.split("|")[3];
+	var footersetting = settings.split("|")[4];
+	var hellomsg = settings.split("|")[5];
+	var byemsg = settings.split("|")[6];
 let togglechannel
         if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You don't have permission to use this command!")
         if(args[0] === "toggle") {
