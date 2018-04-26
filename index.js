@@ -61,53 +61,61 @@ bot.on("ready", async () => {
                 });
 });
 bot.on("guildMemberAdd", async member => {
-        var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
-        var byeHelloToggle = bot.channels.find(`id`, `438864222537908225`);
-	var HelloMessageChl = bot.channels.find(`id`, `439170444340232203`);
-	var GoodbyeMessageChl = bot.channels.find(`id`, `439170584178458624`);
-	var footerChl = bot.channels.find(`id`, `439173066430349322`);
-        var byeHelloToggleMsgs = await byeHelloToggle.fetchMessages({
-                        limit: 100
-                });
-	 var HelloMsgs = await HelloMessageChl.fetchMessages({
-                        limit: 100
-                });
-	 var footerChlMsgs = await footerChl.fetchMessages({
-                        limit: 100
-                });
-        var checkToSeeIfOn = byeHelloToggleMsgs.find(m => m.content === member.guild.id);
-        if (checkToSeeIfOn) {
-                var byeHelloChannelsMsgs = await byeHelloChannels.fetchMessages({
+        var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
+        var announcermsgs = await announcerchannel.fetchMessages({
                         limit: 100
                 })
-                var channelToSendMsg = byeHelloChannelsMsgs.find(m => m.content.startsWith(member.guild.id));
-                if (channelToSendMsg) {
-                        let channelToSendid = channelToSendMsg.content.slice(member.guild.id.length + 1)
-                        let channelToSend = bot.channels.find(`id`, channelToSendid)
-		var himessagemsg = HelloMsgs.find(m => m.content.startsWith(member.guild.id));
-			if(!himessagemsg) {
-			var himessage = himessagemsg.slice(member.guild.id.length + 1)
-			} else {
-				var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
-				}
-			var footerCheck = footerChlMsgs.find(m => m.content === member.guild.id)
-			if(footerCheck) {
-                        const welcomeMessage = new Discord.RichEmbed()
+        var announcermsg = announcermsgs.find(m => m.content.startsWith(member.guild.id));
+	if(!announcermsg) return;
+	//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
+	var settings = announcermsg.content
+	var togglesetting = settings.split("|")[1];
+      	var channelsetting = settings.split("|")[2];
+	var avatarsetting = settings.split("|")[3];
+	var footersetting = settings.split("|")[4];
+	var hellomsg = settings.split("|")[5];
+	var byemsg = settings.split("|")[6];
+	if(togglesetting === "false") return;
+	if(channelsetting === "none") return;
+	if(!hellomsg === "none") {
+	var himessage = hellomsg.replace(/{user}/i, `${member.user.toString()}`);
+	    } else {
+		    var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
+	    }
+	if((footersetting === "true") && (avatarsetting === "true")) {
+	const welcomeMessage = new Discord.RichEmbed()
+							.setTitle("Welcome")
+							.setColor("#FFA500")
+							.setDescription(himessage)
+							.setFooter(member.guild.name)
+							.setAvatar(member.user.displayAvatarURL);
+	}
+	if((footersetting === "true") && (avatarsetting === "false")) {
+	const welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
 							.setFooter(member.guild.name);
-			} else {
-                        const welcomeMessage = new Discord.RichEmbed()
+	}
+	if((footersetting === "false") && (avatarsetting === "true")) {
+	const welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
-							.setDescription(himessage);
-			}
-                        channelToSend.send(welcomeMessage)
-                }
-        }
+							.setDescription(himessage)
+							.setAvatar(member.user.displayAvatarURL);
+	}
+	if((footersetting === "false") && (avatarsetting === "false")) {
+	const welcomeMessage = new Discord.RichEmbed()
+							.setTitle("Welcome")
+							.setColor("#FFA500")
+							.setDescription(himessage)
+	}
+	var channeltosend = bot.channels.find(`id`, channelsetting)
+                        if(!channeltosend) return;
+                        channeltosend.send(welcomeMessage)
+            
                                             
-                                                             
+                                                            
         var dbguild = bot.guilds.get("417149156193337344");
         var dbchannels = dbguild.channels.filter(channel => channel.name.includes("autoroles-database"));
         if (dbchannels != null) {
@@ -128,51 +136,58 @@ bot.on("guildMemberAdd", async member => {
         }
 });
 bot.on("guildMemberRemove", async member => {
-  var byeHelloChannels = bot.channels.find(`id`, `438864035958620171`);
-        var byeHelloToggle = bot.channels.find(`id`, `438864222537908225`);
-	var HelloMessageChl = bot.channels.find(`id`, `439170444340232203`);
-	var GoodbyeMessageChl = bot.channels.find(`id`, `439170584178458624`);
-	var footerChl = bot.channels.find(`id`, `439173066430349322`);
-        var byeHelloToggleMsgs = await byeHelloToggle.fetchMessages({
-                        limit: 100
-                });
-	 var GoodbyeMsgs = await HelloMessageChl.fetchMessages({
-                        limit: 100
-                });
-	 var footerChlMsgs = await footerChl.fetchMessages({
-                        limit: 100
-                });
-        var checkToSeeIfOn = byeHelloToggleMsgs.find(m => m.content === member.guild.id);
-        if (checkToSeeIfOn) {
-                var byeHelloChannelsMsgs = await byeHelloChannels.fetchMessages({
+  var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
+        var announcermsgs = await announcerchannel.fetchMessages({
                         limit: 100
                 })
-                var channelToSendMsg = byeHelloChannelsMsgs.find(m => m.content.startsWith(member.guild.id));
-                if (channelToSendMsg) {
-                        let channelToSendid = channelToSendMsg.content.slice(member.guild.id.length + 1)
-                        let channelToSend = bot.channels.find(`id`, channelToSendid)
-		var GoodbyeMsgsmsgs = GoodbyeMsgs.find(m => m.content.startsWith(member.guild.id));
-			if(GoodbyeMsgsmsgs) {
-			var byemessage = GoodbyeMsgsmsgs.slice(member.guild.id.length + 1)
-			} else {
-				var byemessage = `Sad to see you leave ${member.user.toString()}.`
-				}
-			var footerCheck = footerChlMsgs.find(m => m.content === member.guild.id)
-			if(footerCheck) {
-                        const goodbyeMessage = new Discord.RichEmbed()
+        var announcermsg = announcermsgs.find(m => m.content.startsWith(member.guild.id));
+	if(!announcermsg) return;
+	//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
+	var settings = announcermsg.content
+	var togglesetting = settings.split("|")[1];
+      	var channelsetting = settings.split("|")[2];
+	var avatarsetting = settings.split("|")[3];
+	var footersetting = settings.split("|")[4];
+	var hellomsg = settings.split("|")[5];
+	var byemsg = settings.split("|")[6];
+	if(togglesetting === "false") return;
+	if(channelsetting === "none") return;
+	if(!hellomsg === "none") {
+	var byemessage = byemsg.replace(/{user}/i, `${member.user.toString()}`);
+	    } else {
+		    var byemessage = `Sad to see you leave ${member.user.toString()}.`
+	    }
+	if((footersetting === "true") && (avatarsetting === "true")) {
+	const goodbyeMessage = new Discord.RichEmbed()
+							.setTitle("Goodbye")
+							.setColor("#0000ff")
+							.setDescription(byemessage)
+							.setFooter(member.guild.name)
+							.setAvatar(member.user.displayAvatarURL);
+	}
+	if((footersetting === "true") && (avatarsetting === "false")) {
+	const goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(byemessage)
 							.setFooter(member.guild.name);
-			} else {
-                        const goodbyeMessage = new Discord.RichEmbed()
+	}
+	if((footersetting === "false") && (avatarsetting === "true")) {
+	const goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
-							.setDescription(byemessage);
-			}
-                        channelToSend.send(goodbyeMessage)
-                }
-        }
+							.setDescription(byemessage)
+							.setAvatar(member.user.displayAvatarURL);
+	}
+	if((footersetting === "false") && (avatarsetting === "false")) {
+	const goodbyeMessage = new Discord.RichEmbed()
+							.setTitle("Goodbye")
+							.setColor("#0000ff")
+							.setDescription(byemessage)
+	}
+	var channeltosend = bot.channels.find(`id`, channelsetting)
+                        if(!channeltosend) return;
+                        channeltosend.send(goodbyeMessage)
 })
         /*const goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
