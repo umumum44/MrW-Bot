@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-*/async function checkIfDisabled(cmdname) {
+/*async function checkIfDisabled(cmdname) {
         var checkerChannel = bot.channels.find(`id`, "439530415984738316")
         var messages = checkerChannel.fetchMessages({
                 limit: 100
