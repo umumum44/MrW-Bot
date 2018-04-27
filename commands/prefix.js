@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-async function checkIfDisabled(bot, message, args, cmdname, channels) {
-                const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
+async function checkIfDisabled(bot, message, args, cmdname, channelsa) {
+                const nestedMessages = await Promise.all(channelsa.map(ch => ch.fetchMessages({
                         limit: 100
                 })))
                 const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
@@ -12,8 +12,8 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
 		}
 }
 module.exports.run = async (bot, message, args) => {
-        let channels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi").test(m.name));
-	let cmddisablecheck = await checkIfDisabled(bot, message, args, "prefix", channels)
+        let channelsa = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi").test(m.name));
+	let cmddisablecheck = await checkIfDisabled(bot, message, args, "prefix", channelsa)
 	if(cmddisablecheck) return message.reply("This command has been disabled by a server manager!")
         if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You don't have permission to use this command!")
         if (!args[0]) return message.reply("Please provide the new prefix!")
