@@ -69,12 +69,12 @@ bot.on("guildMemberAdd", async member => {
 	if(!announcermsg) return;
 	//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
 	var settings = announcermsg.content
-	var togglesetting = settings.split("|")[1];
-      	var channelsetting = settings.split("|")[2];
-	var avatarsetting = settings.split("|")[3];
-	var footersetting = settings.split("|")[4];
-	var hellomsg = settings.split("|")[5];
-	var byemsg = settings.split("|")[6];
+	var togglesetting = settings.split("|")[1].trim()
+      	var channelsetting = settings.split("|")[2].trim()
+	var avatarsetting = settings.split("|")[3].trim()
+	var footersetting = settings.split("|")[4].trim()
+	var hellomsg = settings.split("|")[5].trim()
+	var byemsg = settings.split("|")[6].trim()
 	if(togglesetting === "false") return;
 	if(channelsetting === "none") return;
 	if(!hellomsg === "none") {
