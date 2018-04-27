@@ -13,7 +13,7 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
 }
 module.exports.run = async (bot, message, args, prefix, content) => {
 	let channels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi").test(m.name));
-	let cmddisablecheck = await checkIfDisabled(bot, message, args, "8ball", channels)
+	let cmddisablecheck = await checkIfDisabled(bot, message, args, "autoroles", channels)
 	if(cmddisablecheck) return message.reply("This command has been disabled by a server manager!")
 	if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You do not have permissions to use this command.");
 	var dbguild = bot.guilds.get("417149156193337344");
