@@ -88,22 +88,22 @@ bot.on("guildMemberAdd", async member => {
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
-							.setFooter(member.guild.name)
-							.setAvatar(member.user.displayAvatarURL);
+							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`)
+							.setThumbnail(member.user.displayAvatarURL);
 	}
 	if((footersetting === "true") && (avatarsetting === "false")) {
 	welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
-							.setFooter(member.guild.name);
+							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
 	}
 	if((footersetting === "false") && (avatarsetting === "true")) {
 	welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
-							.setAvatar(member.user.displayAvatarURL);
+							.setThumbnail(member.user.displayAvatarURL);
 	}
 	if((footersetting === "false") && (avatarsetting === "false")) {
 	welcomeMessage = new Discord.RichEmbed()
