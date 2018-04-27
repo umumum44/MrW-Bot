@@ -68,10 +68,13 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				return await message.reply("Leave message was edited!")
 		} else {
-			message.reply("Your leave message cannot be more than 250 characters!")
+			return await message.reply("Your leave message cannot be more than 250 characters!")
 		}
 		}
-		
+		if(args[0].toLowerCase() === "reset") {
+			await announcermsg.delete()
+			await return message.reply("Erased your join/leave message settings!")
+		}
 			
 		//execute if no msg
 	} else if(!announcermsg) {
@@ -119,6 +122,9 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		} else {
 			message.reply("Your leave message cannot be more than 250 characters!")
 		}
+		}
+		if(args[0].toLowerCase() === "reset") {
+			message.reply("Erased your join/leave message settings!")
 		}
                  
 	}
