@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
                
 	if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You don't have permission to use this command!")
-	if(!args[0]) return message.reply("You did not supply the correct parameters! \n`!!announcer (toggle/channel/avatar/footer/joinmessage/leavemessage) (-/#channel/-/-/message/message)`\n*Note - `-`'s represent something that doesn't need another parameter*") 
+	if(!args[0]) return message.reply("You did not supply the correct parameters! \n`!!announcer (toggle/channel/avatar/footer/joinmessage/leavemessage/reset) (-/#channel/-/-/message/message/-)`\n*Note - `-`'s represent something that doesn't need another parameter*") 
 	var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
         var announcermsgs = await announcerchannel.fetchMessages({
                         limit: 100
@@ -66,14 +66,14 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		if(args[0].toLowerCase() === "leavemessage") {
 			if(content.length <= 250) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
-				return await message.reply("Leave message was edited!")
+				 return await message.reply("Leave message was edited!")
 		} else {
 			return await message.reply("Your leave message cannot be more than 250 characters!")
 		}
 		}
 		if(args[0].toLowerCase() === "reset") {
 			await announcermsg.delete()
-			await return message.reply("Erased your join/leave message settings!")
+			return await message.reply("Erased your join/leave message settings!")
 		}
 			
 		//execute if no msg
@@ -120,11 +120,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				return await message.reply("Leave message was edited!")
 		} else {
-			message.reply("Your leave message cannot be more than 250 characters!")
+			await message.reply("Your leave message cannot be more than 250 characters!")
 		}
 		}
 		if(args[0].toLowerCase() === "reset") {
-			message.reply("Erased your join/leave message settings!")
+			return await message.reply("Erased your join/leave message settings!")
 		}
                  
 	}
