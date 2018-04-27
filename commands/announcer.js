@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 
 	}
 		if(args[0].toLowerCase() === "joinmessage") {
-			if(!message.content.length > 250) {
+			if(message.content.length > 250) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
 				return await message.reply("Join message was edited!")
 		} else {
@@ -64,7 +64,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		}
 		}
 		if(args[0].toLowerCase() === "leavemessage") {
-			if(!message.content.length > 250) {
+			if(message.content.length > 250) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				return await message.reply("Leave message was edited!")
 		} else {
