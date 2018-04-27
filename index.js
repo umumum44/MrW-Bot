@@ -313,6 +313,20 @@ bot.on("message", async message => {
         if (!message.content.startsWith(prefix)) return;
         let commandfile = bot.commands.get(cmd.slice(prefix.length));
         if (!commandfile) return;
+	async function checkIfDisabled(bot, message, args, commandfile, channels) {
+                const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
+                        limit: 100
+                })))
+                const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
+                const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id} ${commandfile}`))
+		if(msg) {
+			return(true)
+		} else {
+			return(false)
+		}
+}
+	var disablecheck = await checkIfDisabled(bot, message, args, commandfile, channels);
+	if(disablecheck) return message.reply("This command is disabled by an admin in this server!")
         return commandfile.run(bot, message, args, prefix, content);
 });
 bot.login(botconfig.token);
