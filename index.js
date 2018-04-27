@@ -164,15 +164,15 @@ bot.on("guildMemberRemove", async member => {
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(byemessage)
-							.setFooter(member.user.displayAvatarURL)
-							.setAvatar(member.user.displayAvatarURL);
+							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`)
+							.setThumbnail(member.user.displayAvatarURL);
 	}
 	if((footersetting === "true") && (avatarsetting === "false")) {
 	goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(byemessage)
-							.setFooter(member.user.displayAvatarURL);
+							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
 	}
 	if((footersetting === "false") && (avatarsetting === "true")) {
 	goodbyeMessage = new Discord.RichEmbed()
