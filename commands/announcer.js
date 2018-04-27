@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
- const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
+ async function checkIfDisabled(bot, message, args, cmdname, channels) {
+                const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
                         limit: 100
                 })))
                 const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
