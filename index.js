@@ -199,7 +199,7 @@ bot.on("guildMemberRemove", async member => {
 			*/
 bot.on("guildCreate", async guilda => {
         let hello = new Discord.RichEmbed()
-                .setTitle("Thanks For Adding Me To Your Server!")
+                .setTitle("Thanks For Adding Me To Your Server!!")
                 .setColor("#0000ff")
                 .setDescription("Thanks for adding Mr.W Bot to your server he is a very helpful bot! This bot is owned by Windows 10 > MacOS#0001 and was made by the epic @ethanlaj and @gt_c For all the cmds run !!help however if u need any help join our support server https://discord.gg/UC37qGN");
         let hichannels = guilda.channels.filter(c => c.type === "text")
