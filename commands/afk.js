@@ -1,5 +1,4 @@
 async function checkIfDisabled(bot, message, args, cmdname, channels) {
-              async function checkIfDisabled(bot, message, args, cmdname, channels) {
                 const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
                         limit: 100
                 })))
