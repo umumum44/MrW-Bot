@@ -83,30 +83,30 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	var byemsg = "none"
 		
         if(args[0].toLowerCase() === "toggle") {
-		await announcermsg.send(`${message.guild.id} | true | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
+		await announcerchannel.send(`${message.guild.id} | true | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `enabled` join/leave messages!")
 	}
 		if(args[0].toLowerCase() === "channel") {
 			if(message.mentions.channels.first().id) {
-			await announcermsg.send(`${message.guild.id} | ${togglesetting} | ${message.mentions.channels.first().id} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
+			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${message.mentions.channels.first().id} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
 				return message.reply(`Set join/leave messages to <#${message.mentions.channels.first().id}>!`)
 			} else {
 				return message.reply("Please **mention** a valid channel!")
 			}
 		}
 		if(args[0].toLowerCase() === "avatar") {
-		await announcermsg.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | true | ${footersetting} | ${hellomsg} | ${byemsg}`)
+		await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | true | ${footersetting} | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `enabled` avatars on join/leave messages!")
 
 	}
 		if(args[0].toLowerCase() === "footer") {
-		await announcermsg.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | true | ${hellomsg} | ${byemsg}`)
+		await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | true | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `enabled` footers on join/leave messages!")
 
 	}
 		if(args[0].toLowerCase() === "joinmessage") {
 			if(!message.content.length > 250) {
-			await announcermsg.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
+			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
 				return await message.reply("Join message was edited!")
 		} else {
 			message.reply("Your join message cannot be more than 250 characters!")
@@ -114,7 +114,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		}
 		if(args[0].toLowerCase() === "leavemessage") {
 			if(!message.content.length > 250) {
-			await announcermsg.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
+			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				return await message.reply("Leave message was edited!")
 		} else {
 			message.reply("Your leave message cannot be more than 250 characters!")
