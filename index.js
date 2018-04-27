@@ -75,8 +75,8 @@ bot.on("guildMemberAdd", async member => {
 	var footersetting = settings.split("|")[4].trim()
 	var hellomsg = settings.split("|")[5].trim()
 	var byemsg = settings.split("|")[6].trim()
-	//if(togglesetting === "false") return;
-	//if(channelsetting === "none") return;
+	if(togglesetting === "false") return;
+	if(channelsetting === "none") return;
 	if(!hellomsg === "none") {
 	var himessage = hellomsg.replace(/{user}/i, `${member.user.toString()}`);
 	    } else {
@@ -145,12 +145,12 @@ bot.on("guildMemberRemove", async member => {
 	if(!announcermsg) return;
 	//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
 	var settings = announcermsg.content
-	var togglesetting = settings.split("|")[1];
-      	var channelsetting = settings.split("|")[2];
-	var avatarsetting = settings.split("|")[3];
-	var footersetting = settings.split("|")[4];
-	var hellomsg = settings.split("|")[5];
-	var byemsg = settings.split("|")[6];
+	var togglesetting = settings.split("|")[1].trim()
+      	var channelsetting = settings.split("|")[2].trim()
+	var avatarsetting = settings.split("|")[3].trim()
+	var footersetting = settings.split("|")[4].trim()
+	var hellomsg = settings.split("|")[5].trim()
+	var byemsg = settings.split("|")[6].trim()
 	if(togglesetting === "false") return;
 	if(channelsetting === "none") return;
 	if(!byemsg === "none") {
@@ -158,30 +158,31 @@ bot.on("guildMemberRemove", async member => {
 	    } else {
 		    var byemessage = `Sad to see you leave ${member.user.toString()}.`
 	    }
+	var goodbyeMessage;
 	if((footersetting === "true") && (avatarsetting === "true")) {
-	const goodbyeMessage = new Discord.RichEmbed()
+	goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(byemessage)
-							.setFooter(member.guild.name)
+							.setFooter(member.user.displayAvatarURL)
 							.setAvatar(member.user.displayAvatarURL);
 	}
 	if((footersetting === "true") && (avatarsetting === "false")) {
-	const goodbyeMessage = new Discord.RichEmbed()
+	goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(byemessage)
-							.setFooter(member.guild.name);
+							.setFooter(member.user.displayAvatarURL);
 	}
 	if((footersetting === "false") && (avatarsetting === "true")) {
-	const goodbyeMessage = new Discord.RichEmbed()
+	goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(byemessage)
-							.setAvatar(member.user.displayAvatarURL);
+							.setThumbnail(member.user.displayAvatarURL);
 	}
 	if((footersetting === "false") && (avatarsetting === "false")) {
-	const goodbyeMessage = new Discord.RichEmbed()
+	goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(byemessage)
