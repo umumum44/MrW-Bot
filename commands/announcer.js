@@ -26,16 +26,14 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		await announcermsg.edit(`${message.guild.id} | true | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `enabled` join/leave messages!")
 	}
-		}
-		if(args[0].toLowerCase() === "channel") {
+		} else if(args[0].toLowerCase() === "channel") {
 			if(message.mentions.channels.first().id) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${message.mentions.channels.first().id} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
 				return message.reply(`Set join/leave messages to <#${message.mentions.channels.first().id}>!`)
 			} else {
 				return message.reply("Please **mention** a valid channel!")
 			}
-		}
-		if(args[0].toLowerCase() === "avatar") {
+		} else if(args[0].toLowerCase() === "avatar") {
 			if(avatarsetting === "true") {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | false | ${footersetting} | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `disabled` avatars on join/leave messages!")
@@ -44,8 +42,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			return await message.reply("I have `enabled` avatars on join/leave messages!")
 	}
 
-	}
-		if(args[0].toLowerCase() === "footer") {
+	} else if(args[0].toLowerCase() === "footer") {
 			if(footersetting === "true") {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | false | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `disabled` footers on join/leave messages!")
@@ -54,28 +51,26 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			return await message.reply("I have `enabled` footers on join/leave messages!")
 	}
 
-	}
-		if(args[0].toLowerCase() === "joinmessage") {
+	} else if(args[0].toLowerCase() === "joinmessage") {
 			if(content.length <= 250) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
 				return await message.reply("Join message was edited!")
 		} else {
 			message.reply("Your join message cannot be more than 250 characters!")
 		}
-		}
-		if(args[0].toLowerCase() === "leavemessage") {
+		} else if(args[0].toLowerCase() === "leavemessage") {
 			if(content.length <= 250) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				 return await message.reply("Leave message was edited!")
 		} else {
 			return await message.reply("Your leave message cannot be more than 250 characters!")
 		}
-		}
-		if(args[0].toLowerCase() === "reset") {
+		} else if(args[0].toLowerCase() === "reset") {
 			await announcermsg.delete()
 			return await message.reply("Erased your join/leave message settings!")
+		} else {
+		return await message.reply("You did not supply the correct parameters! \n`!!announcer (toggle/channel/avatar/footer/joinmessage/leavemessage/reset) (-/#channel/-/-/message/message/-)`\n*Note - `-`'s represent something that doesn't need another parameter*") 
 		}
-			
 		//execute if no msg
 	} else if(!announcermsg) {
 	var togglesetting = "false"
@@ -88,46 +83,43 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         if(args[0].toLowerCase() === "toggle") {
 		await announcerchannel.send(`${message.guild.id} | true | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `enabled` join/leave messages!")
-	}
-		if(args[0].toLowerCase() === "channel") {
+	} else if(args[0].toLowerCase() === "channel") {
 			if(message.mentions.channels.first().id) {
 			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${message.mentions.channels.first().id} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${byemsg}`)
 				return message.reply(`Set join/leave messages to <#${message.mentions.channels.first().id}>!`)
 			} else {
 				return message.reply("Please **mention** a valid channel!")
 			}
-		}
-		if(args[0].toLowerCase() === "avatar") {
+		} else if(args[0].toLowerCase() === "avatar") {
 		await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | true | ${footersetting} | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `enabled` avatars on join/leave messages!")
 
-	}
-		if(args[0].toLowerCase() === "footer") {
+	} else if(args[0].toLowerCase() === "footer") {
 		await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | true | ${hellomsg} | ${byemsg}`)
 			return await message.reply("I have `enabled` footers on join/leave messages!")
 
-	}
-		if(args[0].toLowerCase() === "joinmessage") {
+	} else if(args[0].toLowerCase() === "joinmessage") {
 			if(content.length <= 250) {
 			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
 				return await message.reply("Join message was edited!")
 		} else {
 			message.reply("Your join message cannot be more than 250 characters!")
 		}
-		}
-		if(args[0].toLowerCase() === "leavemessage") {
+		} else if(args[0].toLowerCase() === "leavemessage") {
 			if(content.length <= 250) {
 			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				return await message.reply("Leave message was edited!")
 		} else {
 			await message.reply("Your leave message cannot be more than 250 characters!")
 		}
-		}
-		if(args[0].toLowerCase() === "reset") {
+		} else if(args[0].toLowerCase() === "reset") {
 			return await message.reply("Erased your join/leave message settings!")
 		}
                  
-	}
+	} else {
+		return await message.reply("You did not supply the correct parameters! \n`!!announcer (toggle/channel/avatar/footer/joinmessage/leavemessage/reset) (-/#channel/-/-/message/message/-)`\n*Note - `-`'s represent something that doesn't need another parameter*") 
+		}
+		
 
                 
 
