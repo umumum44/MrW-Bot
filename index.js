@@ -75,8 +75,8 @@ bot.on("guildMemberAdd", async member => {
 	var footersetting = settings.split("|")[4].trim()
 	var hellomsg = settings.split("|")[5].trim()
 	var byemsg = settings.split("|")[6].trim()
-	if(togglesetting === "false") return;
-	if(channelsetting === "none") return;
+	//if(togglesetting === "false") return;
+	//if(channelsetting === "none") return;
 	if(!hellomsg === "none") {
 	var himessage = hellomsg.replace(/{user}/i, `${member.user.toString()}`);
 	    } else {
