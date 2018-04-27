@@ -77,7 +77,7 @@ bot.on("guildMemberAdd", async member => {
 	var byemsg = settings.split("|")[6].trim()
 	if(togglesetting === "false") return;
 	if(channelsetting === "none") return;
-	if(!hellomsg === "none") {
+	if(hellomsg !== "none") {
 	var himessage = hellomsg.replace(/{user}/i, `${member.user.toString()}`);
 	    } else {
 		    var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
@@ -153,7 +153,7 @@ bot.on("guildMemberRemove", async member => {
 	var byemsg = settings.split("|")[6].trim()
 	if(togglesetting === "false") return;
 	if(channelsetting === "none") return;
-	if(!byemsg === "none") {
+	if(byemsg !== "none") {
 	var byemessage = byemsg.replace(/{user}/i, `${member.user.toString()}`);
 	    } else {
 		    var byemessage = `Sad to see you leave ${member.user.toString()}.`
