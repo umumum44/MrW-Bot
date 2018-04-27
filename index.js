@@ -82,8 +82,9 @@ bot.on("guildMemberAdd", async member => {
 	    } else {
 		    var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
 	    }
+		var welcomeMessage;
 	if((footersetting === "true") && (avatarsetting === "true")) {
-	const welcomeMessage = new Discord.RichEmbed()
+	welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
@@ -91,21 +92,21 @@ bot.on("guildMemberAdd", async member => {
 							.setAvatar(member.user.displayAvatarURL);
 	}
 	if((footersetting === "true") && (avatarsetting === "false")) {
-	const welcomeMessage = new Discord.RichEmbed()
+	welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
 							.setFooter(member.guild.name);
 	}
 	if((footersetting === "false") && (avatarsetting === "true")) {
-	const welcomeMessage = new Discord.RichEmbed()
+	welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
 							.setAvatar(member.user.displayAvatarURL);
 	}
 	if((footersetting === "false") && (avatarsetting === "false")) {
-	const welcomeMessage = new Discord.RichEmbed()
+	welcomeMessage = new Discord.RichEmbed()
 							.setTitle("Welcome")
 							.setColor("#FFA500")
 							.setDescription(himessage)
