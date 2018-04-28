@@ -314,6 +314,7 @@ bot.on("message", async message => {
         let commandfile = bot.commands.get(cmd.slice(prefix.length));
         if (!commandfile) return;
 	var commandname = commandfile.help.name	
+	console.log(commandname)
 	async function checkIfDisabled(bot, message, args, commandname, channels) {
                 const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
                         limit: 100
