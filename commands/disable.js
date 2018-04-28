@@ -8,17 +8,17 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
         if (!msg) {
                 return (false)
         }
-        if(msg) {
+        if (msg) {
                 var commands = msg.content.split(" ");
-        // ["guild_id", "command", "command", "command"];
-        if (commands.shift() === message.guild.id) {
-        // ["command", "command", "command"];
-                if(commands.includes(cmdname)) {
-                   return(true)
-                } else {
-                        return(false)
+                // ["guild_id", "command", "command", "command"];
+                if (commands.shift() === message.guild.id) {
+                        // ["command", "command", "command"];
+                        if (commands.includes(cmdname)) {
+                                return (true)
+                        } else {
+                                return (false)
+                        }
                 }
-        }
         }
 }
 async function findthemessage(bot, message, args, channels) {
@@ -53,17 +53,16 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         if (cmddisablecheck) {
                 let anewedit = findmessage.content.replace(args[0].toLowerCase(), "");
                 let newedit = anewedit.replace("  ", " ");
-                        await findmessage.edit(newedit)
-                                message.reply("Re-enabled the command!")
+                await findmessage.edit(newedit)
+                message.reply("Re-enabled the command!")
         }
-                                             
         if (!cmddisablecheck) {
-                if(findmessage !== false) {
+                if (findmessage !== false) {
                         await findmessage.edit(findmessage.content + ` ${args[0].toLowerCase()}`);
-                       await message.reply("Disabled the command!")
+                        await message.reply("Disabled the command!")
                 } else {
                         await channel.send(`${message.guild.id} ${args[0].toLowerCase()}`)
-                await message.reply("Disabled the command!")
+                        await message.reply("Disabled the command!")
                 }
         }
         if (messages.size > 97) {
