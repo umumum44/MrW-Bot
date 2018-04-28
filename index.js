@@ -78,7 +78,12 @@ bot.on("guildMemberAdd", async member => {
         if (togglesetting === "false") return;
         if (channelsetting === "none") return;
         if (hellomsg !== "none") {
-                var himessage = hellomsg.replace(/{user}/gi, `${member.user.toString()}`);
+                var himessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
+		himessage = himessage.replace(/{user.tag}/gi, member.user.tag);
+		himessage = himessage.replace(/{user.discriminator}/gi, member.user.discriminator);
+		himessage = himessage.replace(/{user.username}/gi, member.user.username);
+		himessage = himessage.replace(/{user.nickname}/gi, member.displayName);
+		himessage = himessage.replace(/{user.id}/gi, member.user.id);
         } else {
                 var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
         }
@@ -151,7 +156,12 @@ bot.on("guildMemberRemove", async member => {
         if (togglesetting === "false") return;
         if (channelsetting === "none") return;
         if (byemsg !== "none") {
-                var byemessage = byemsg.replace(/{user}/gi, `${member.user.toString()}`);
+                var byemessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
+		byemessage = byemessage.replace(/{user.tag}/gi, member.user.tag);
+		byemessage = byemessage.replace(/{user.discriminator}/gi, member.user.discriminator);
+		byemessage = byemessage.replace(/{user.username}/gi, member.user.username);
+		byemessage = byemessage.replace(/{user.nickname}/gi, member.displayName);
+		byemessage = byemessage.replace(/{user.id}/gi, member.user.id);
         } else {
                 var byemessage = `Sad to see you leave ${member.user.toString()}.`
         }
