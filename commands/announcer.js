@@ -50,8 +50,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                                 return await message.reply("I have `enabled` footers on join/leave messages!")
                         }
                 } else if (args[0].toLowerCase() === "joinmessage") {
-                        if (content.slice(args[0].length)
-                                .length <= 300) {
+                        if (content.slice(args[0].length).length <= 300) {
                                 await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
                                 return await message.reply("Join message was edited!")
                         } else {
@@ -68,6 +67,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 } else if (args[0].toLowerCase() === "reset") {
                         await announcermsg.delete()
                         return await message.reply("Erased your join/leave message settings!")
+                } else if (args[0].toLowerCase() === "view") {
+                        return await message.reply(`Announcer messages is \`${togglesetting}\`\nChannel: ${channelsetting}\nAvatars: \`${avatarsetting}\`\nFooter: \`${footersetting}\`\nJoin message: \`${hellomsg}\`\nLeave message: \`${byemsg}\``).catch(function() {});
                 } else {
                         return await message.reply("You did not supply the correct parameters! \n\n`!!announcer toggle\n!!announcer channel (#channel)\n!!announcer avatar\n!!announcer footer\n!!announcer joinmessage (message)\n!!announcer leavemessage (message)\n!!announcer reset`")
                 }
