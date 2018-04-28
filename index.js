@@ -78,12 +78,21 @@ bot.on("guildMemberAdd", async member => {
         if (togglesetting === "false") return;
         if (channelsetting === "none") return;
         if (hellomsg !== "none") {
-                var himessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
+		var himessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
+		himessage = himessage.replace(/{user}/gi, member.user.toString());
 		himessage = himessage.replace(/{user.tag}/gi, member.user.tag);
 		himessage = himessage.replace(/{user.discriminator}/gi, member.user.discriminator);
+		himessage = himessage.replace(/{user.discrim}/gi, member.user.discriminator);
 		himessage = himessage.replace(/{user.username}/gi, member.user.username);
+		himessage = himessage.replace(/{user.name}/gi, member.user.username);
 		himessage = himessage.replace(/{user.nickname}/gi, member.displayName);
+		himessage = himessage.replace(/{user.nick}/gi, member.displayName);
 		himessage = himessage.replace(/{user.id}/gi, member.user.id);
+		himessage = himessage.replace(/{user.status}/gi, member.user.presence.status);
+		himessage = himessage.replace(/{user.game}/gi, member.user.presence.game.name);
+		himessage = himessage.replace(/{guild.id}/gi, member.guild.id);
+		himessage = himessage.replace(/{guild.name}/gi, member.guild.name);
+		himessage = himessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
         } else {
                 var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
         }
@@ -157,11 +166,20 @@ bot.on("guildMemberRemove", async member => {
         if (channelsetting === "none") return;
         if (byemsg !== "none") {
                 var byemessage = byemsg.replace(/{user.mention}/gi, member.user.toString());
+		byemessage = byemessage.replace(/{user}/gi, member.user.toString());
 		byemessage = byemessage.replace(/{user.tag}/gi, member.user.tag);
 		byemessage = byemessage.replace(/{user.discriminator}/gi, member.user.discriminator);
+		byemessage = byemessage.replace(/{user.discrim}/gi, member.user.discriminator);
 		byemessage = byemessage.replace(/{user.username}/gi, member.user.username);
+		byemessage = byemessage.replace(/{user.name}/gi, member.user.username);
 		byemessage = byemessage.replace(/{user.nickname}/gi, member.displayName);
+		byemessage = byemessage.replace(/{user.nick}/gi, member.displayName);
 		byemessage = byemessage.replace(/{user.id}/gi, member.user.id);
+		byemessage = byemessage.replace(/{user.status}/gi, member.user.presence.status);
+		byemessage = byemessage.replace(/{user.game}/gi, member.user.presence.game.name);
+		byemessage = byemessage.replace(/{guild.id}/gi, member.guild.id);
+		byemessage = byemessage.replace(/{guild.name}/gi, member.guild.name);
+		byemessage = byemessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
         } else {
                 var byemessage = `Sad to see you leave ${member.user.toString()}.`
         }
