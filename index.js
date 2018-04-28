@@ -115,8 +115,8 @@ bot.on("guildMemberAdd", async member => {
                 var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`;
         }
        	var welcomeMessage = new Discord.RichEmbed().setTitle("Welcome").setColor("#0000ff").setDescription(himessage);
-        if (footersetting === "true") welcomeMessage = welcomeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
-        if (avatarsetting === "true") welcomeMessage = welcomeMessage.setThumbnail(member.user.displayAvatarURL);
+        if (footersetting === "true") welcomeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
+        if (avatarsetting === "true") welcomeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
         if (!channeltosend) return;
         channeltosend.send({ embed: welcomeMessage });
@@ -158,8 +158,8 @@ bot.on("guildMemberRemove", async member => {
                 var byemessage = `Sad to see you leave ${member.user.toString()}.`
         }
         var goodbyeMessage = new Discord.RichEmbed().setTitle("Goodbye").setColor("#0000ff").setDescription(byemessage);
-        if (footersetting === "true") goodbyeMessage = goodbyeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
-        if (avatarsetting === "true") goodbyeMessage = goodbyeMessage.setThumbnail(member.user.displayAvatarURL);
+        if (footersetting === "true") goodbyeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
+        if (avatarsetting === "true") goodbyeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
         if (!channeltosend) return;
         channeltosend.send({ embed: goodbyeMessage })
