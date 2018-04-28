@@ -311,7 +311,13 @@ bot.on("message", async message => {
                 message.react("\u2705")
         }
         if (!message.content.startsWith(prefix)) return;
-        let commandfile = bot.commands.get(cmd.slice(prefix.length));
+        var commandfile = undefined;
+	bot.commands.forEach(command => {
+		let aliases = command.help.aliases
+		if (aliases == undefined) aliases = [];
+		aliases.push(command.help.name);
+		if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
+	});
         if (!commandfile) return;
 	var commandname = commandfile.help.name.toLowerCase()
 	//console.log(commandname)
