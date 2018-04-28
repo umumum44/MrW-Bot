@@ -157,7 +157,7 @@ bot.on("guildMemberRemove", async member => {
         } else {
                 var byemessage = `Sad to see you leave ${member.user.toString()}.`
         }
-        var goodbyeMessage = new.Discord.RichEmbed().setTitle("Goodbye").setColor("#0000ff").setDescription(byemessage);
+        var goodbyeMessage = new Discord.RichEmbed().setTitle("Goodbye").setColor("#0000ff").setDescription(byemessage);
         if (footersetting === "true") goodbyeMessage = goodbyeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
         if (avatarsetting === "true") goodbyeMessage = goodbyeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
