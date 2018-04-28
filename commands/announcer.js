@@ -53,18 +53,18 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	}
 
 	} else if(args[0].toLowerCase() === "joinmessage") {
-			if(content.length <= 250) {
+			if(content.slice(args[0].length) <= 300) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
 				return await message.reply("Join message was edited!")
 		} else {
-			message.reply("Your join message cannot be more than 250 characters!")
+			message.reply("Your join message cannot be more than 300 characters!")
 		}
 		} else if(args[0].toLowerCase() === "leavemessage") {
-			if(content.length <= 250) {
+			if(content.slice(args[0].length) <= 300) {
 			await announcermsg.edit(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				 return await message.reply("Leave message was edited!")
 		} else {
-			return await message.reply("Your leave message cannot be more than 250 characters!")
+			return await message.reply("Your leave message cannot be more than 300 characters!")
 		}
 		} else if(args[0].toLowerCase() === "reset") {
 			await announcermsg.delete()
@@ -100,18 +100,18 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			return await message.reply("I have `enabled` footers on join/leave messages!")
 
 	} else if(args[0].toLowerCase() === "joinmessage") {
-			if(content.length <= 250) {
+			if(content.slice(args[0].length) <= 300) {
 			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${content.slice(args[0].length)} | ${byemsg}`)
 				return await message.reply("Join message was edited!")
 		} else {
-			message.reply("Your join message cannot be more than 250 characters!")
+			message.reply("Your join message cannot be more than 300 characters!")
 		}
 		} else if(args[0].toLowerCase() === "leavemessage") {
-			if(content.length <= 250) {
+			if(content.slice(args[0].length) <= 300) {
 			await announcerchannel.send(`${message.guild.id} | ${togglesetting} | ${channelsetting} | ${avatarsetting} | ${footersetting} | ${hellomsg} | ${content.slice(args[0].length)}`)
 				return await message.reply("Leave message was edited!")
 		} else {
-			await message.reply("Your leave message cannot be more than 250 characters!")
+			await message.reply("Your leave message cannot be more than 300 characters!")
 		}
 		} else if(args[0].toLowerCase() === "reset") {
 			return await message.reply("Erased your join/leave message settings!")
