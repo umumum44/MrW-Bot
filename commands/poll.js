@@ -52,5 +52,6 @@ if(checker) return message.reply("You can only use this command once every two m
 	}
 }
 module.exports.help = {
-	name: "poll"
+	name: "poll",
+	aliases: ["p"]
 }
