@@ -15,8 +15,9 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
         // ["command", "command", "command"];
                 if(commands.includes(cmdname)) {
                    return(true)
-        } else {
-                return(false)
+                } else {
+                        return(false)
+                }
         }
         
 }
