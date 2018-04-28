@@ -114,7 +114,7 @@ bot.on("guildMemberAdd", async member => {
         } else {
                 var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`;
         }
-       	var welcomeMessage = new Discord.RichEmbed().setTitle("Welcome").setColor("#0000ff").setDescription(himessage);
+       	var welcomeMessage = new Discord.RichEmbed().setTitle("Welcome").setColor("#ffa500").setDescription(himessage);
         if (footersetting === "true") welcomeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
         if (avatarsetting === "true") welcomeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
