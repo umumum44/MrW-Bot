@@ -63,60 +63,57 @@ bot.on("ready", async () => {
 bot.on("guildMemberAdd", async member => {
         var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
         var announcermsgs = await announcerchannel.fetchMessages({
-                        limit: 100
-                })
+                limit: 100
+        })
         var announcermsg = announcermsgs.find(m => m.content.startsWith(member.guild.id));
-	if(!announcermsg) return;
-	//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
-	var settings = announcermsg.content
-	var togglesetting = settings.split("|")[1].trim()
-      	var channelsetting = settings.split("|")[2].trim()
-	var avatarsetting = settings.split("|")[3].trim()
-	var footersetting = settings.split("|")[4].trim()
-	var hellomsg = settings.split("|")[5].trim()
-	var byemsg = settings.split("|")[6].trim()
-	if(togglesetting === "false") return;
-	if(channelsetting === "none") return;
-	if(hellomsg !== "none") {
-	var himessage = hellomsg.replace(/{user}/gi, `${member.user.toString()}`);
-	    } else {
-		    var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
-	    }
-		var welcomeMessage;
-	if((footersetting === "true") && (avatarsetting === "true")) {
-	welcomeMessage = new Discord.RichEmbed()
-							.setTitle("Welcome")
-							.setColor("#FFA500")
-							.setDescription(himessage)
-							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`)
-							.setThumbnail(member.user.displayAvatarURL);
-	}
-	if((footersetting === "true") && (avatarsetting === "false")) {
-	welcomeMessage = new Discord.RichEmbed()
-							.setTitle("Welcome")
-							.setColor("#FFA500")
-							.setDescription(himessage)
-							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
-	}
-	if((footersetting === "false") && (avatarsetting === "true")) {
-	welcomeMessage = new Discord.RichEmbed()
-							.setTitle("Welcome")
-							.setColor("#FFA500")
-							.setDescription(himessage)
-							.setThumbnail(member.user.displayAvatarURL);
-	}
-	if((footersetting === "false") && (avatarsetting === "false")) {
-	welcomeMessage = new Discord.RichEmbed()
-							.setTitle("Welcome")
-							.setColor("#FFA500")
-							.setDescription(himessage)
-	}
-	var channeltosend = bot.channels.find(`id`, channelsetting)
-                        if(!channeltosend) return;
-                        channeltosend.send(welcomeMessage)
-            
-                                            
-                                                            
+        if (!announcermsg) return;
+        //guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
+        var settings = announcermsg.content
+        var togglesetting = settings.split("|")[1].trim()
+        var channelsetting = settings.split("|")[2].trim()
+        var avatarsetting = settings.split("|")[3].trim()
+        var footersetting = settings.split("|")[4].trim()
+        var hellomsg = settings.split("|")[5].trim()
+        var byemsg = settings.split("|")[6].trim()
+        if (togglesetting === "false") return;
+        if (channelsetting === "none") return;
+        if (hellomsg !== "none") {
+                var himessage = hellomsg.replace(/{user}/gi, `${member.user.toString()}`);
+        } else {
+                var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`
+        }
+        var welcomeMessage;
+        if ((footersetting === "true") && (avatarsetting === "true")) {
+                welcomeMessage = new Discord.RichEmbed()
+                        .setTitle("Welcome")
+                        .setColor("#FFA500")
+                        .setDescription(himessage)
+                        .setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`)
+                        .setThumbnail(member.user.displayAvatarURL);
+        }
+        if ((footersetting === "true") && (avatarsetting === "false")) {
+                welcomeMessage = new Discord.RichEmbed()
+                        .setTitle("Welcome")
+                        .setColor("#FFA500")
+                        .setDescription(himessage)
+                        .setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
+        }
+        if ((footersetting === "false") && (avatarsetting === "true")) {
+                welcomeMessage = new Discord.RichEmbed()
+                        .setTitle("Welcome")
+                        .setColor("#FFA500")
+                        .setDescription(himessage)
+                        .setThumbnail(member.user.displayAvatarURL);
+        }
+        if ((footersetting === "false") && (avatarsetting === "false")) {
+                welcomeMessage = new Discord.RichEmbed()
+                        .setTitle("Welcome")
+                        .setColor("#FFA500")
+                        .setDescription(himessage)
+        }
+        var channeltosend = bot.channels.find(`id`, channelsetting)
+        if (!channeltosend) return;
+        channeltosend.send(welcomeMessage)
         var dbguild = bot.guilds.get("417149156193337344");
         var dbchannels = dbguild.channels.filter(channel => channel.name.includes("autoroles-database"));
         if (dbchannels != null) {
@@ -137,61 +134,61 @@ bot.on("guildMemberAdd", async member => {
         }
 });
 bot.on("guildMemberRemove", async member => {
-  var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
+        var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
         var announcermsgs = await announcerchannel.fetchMessages({
-                        limit: 100
-                })
+                limit: 100
+        })
         var announcermsg = announcermsgs.find(m => m.content.startsWith(member.guild.id));
-	if(!announcermsg) return;
-	//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
-	var settings = announcermsg.content
-	var togglesetting = settings.split("|")[1].trim()
-      	var channelsetting = settings.split("|")[2].trim()
-	var avatarsetting = settings.split("|")[3].trim()
-	var footersetting = settings.split("|")[4].trim()
-	var hellomsg = settings.split("|")[5].trim()
-	var byemsg = settings.split("|")[6].trim()
-	if(togglesetting === "false") return;
-	if(channelsetting === "none") return;
-	if(byemsg !== "none") {
-	var byemessage = byemsg.replace(/{user}/gi, `${member.user.toString()}`);
-	    } else {
-		    var byemessage = `Sad to see you leave ${member.user.toString()}.`
-	    }
-	var goodbyeMessage;
-	if((footersetting === "true") && (avatarsetting === "true")) {
-	goodbyeMessage = new Discord.RichEmbed()
-							.setTitle("Goodbye")
-							.setColor("#0000ff")
-							.setDescription(byemessage)
-							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`)
-							.setThumbnail(member.user.displayAvatarURL);
-	}
-	if((footersetting === "true") && (avatarsetting === "false")) {
-	goodbyeMessage = new Discord.RichEmbed()
-							.setTitle("Goodbye")
-							.setColor("#0000ff")
-							.setDescription(byemessage)
-							.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
-	}
-	if((footersetting === "false") && (avatarsetting === "true")) {
-	goodbyeMessage = new Discord.RichEmbed()
-							.setTitle("Goodbye")
-							.setColor("#0000ff")
-							.setDescription(byemessage)
-							.setThumbnail(member.user.displayAvatarURL);
-	}
-	if((footersetting === "false") && (avatarsetting === "false")) {
-	goodbyeMessage = new Discord.RichEmbed()
-							.setTitle("Goodbye")
-							.setColor("#0000ff")
-							.setDescription(byemessage)
-	}
-	var channeltosend = bot.channels.find(`id`, channelsetting)
-                        if(!channeltosend) return;
-                        channeltosend.send(goodbyeMessage)
+        if (!announcermsg) return;
+        //guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
+        var settings = announcermsg.content
+        var togglesetting = settings.split("|")[1].trim()
+        var channelsetting = settings.split("|")[2].trim()
+        var avatarsetting = settings.split("|")[3].trim()
+        var footersetting = settings.split("|")[4].trim()
+        var hellomsg = settings.split("|")[5].trim()
+        var byemsg = settings.split("|")[6].trim()
+        if (togglesetting === "false") return;
+        if (channelsetting === "none") return;
+        if (byemsg !== "none") {
+                var byemessage = byemsg.replace(/{user}/gi, `${member.user.toString()}`);
+        } else {
+                var byemessage = `Sad to see you leave ${member.user.toString()}.`
+        }
+        var goodbyeMessage;
+        if ((footersetting === "true") && (avatarsetting === "true")) {
+                goodbyeMessage = new Discord.RichEmbed()
+                        .setTitle("Goodbye")
+                        .setColor("#0000ff")
+                        .setDescription(byemessage)
+                        .setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`)
+                        .setThumbnail(member.user.displayAvatarURL);
+        }
+        if ((footersetting === "true") && (avatarsetting === "false")) {
+                goodbyeMessage = new Discord.RichEmbed()
+                        .setTitle("Goodbye")
+                        .setColor("#0000ff")
+                        .setDescription(byemessage)
+                        .setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
+        }
+        if ((footersetting === "false") && (avatarsetting === "true")) {
+                goodbyeMessage = new Discord.RichEmbed()
+                        .setTitle("Goodbye")
+                        .setColor("#0000ff")
+                        .setDescription(byemessage)
+                        .setThumbnail(member.user.displayAvatarURL);
+        }
+        if ((footersetting === "false") && (avatarsetting === "false")) {
+                goodbyeMessage = new Discord.RichEmbed()
+                        .setTitle("Goodbye")
+                        .setColor("#0000ff")
+                        .setDescription(byemessage)
+        }
+        var channeltosend = bot.channels.find(`id`, channelsetting)
+        if (!channeltosend) return;
+        channeltosend.send(goodbyeMessage)
 })
-        /*const goodbyeMessage = new Discord.RichEmbed()
+/*const goodbyeMessage = new Discord.RichEmbed()
 							.setTitle("Goodbye")
 							.setColor("#0000ff")
 							.setDescription(`Sad to see you leave ${member.user.toString()}.`);
@@ -312,31 +309,31 @@ bot.on("message", async message => {
         }
         if (!message.content.startsWith(prefix)) return;
         var commandfile = false;
-	bot.commands.forEach(command => {
-		let aliases = command.help.aliases
-		if (aliases == undefined) aliases = [];
-		aliases.push(command.help.name);
-		if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
-	});
+        bot.commands.forEach(command => {
+                let aliases = command.help.aliases
+                if (aliases == undefined) aliases = [];
+                aliases.push(command.help.name);
+                if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
+        });
         if (!commandfile) return;
-	var commandname = commandfile.help.name.toLowerCase();
-	//console.log(commandname)
-	let achannels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi")
+        var commandname = commandfile.help.name.toLowerCase();
+        //console.log(commandname)
+        let achannels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi")
                 .test(m.name));
-	async function checkIfDisabled(bot, message, args, commandname, achannels) {
+        async function checkIfDisabled(bot, message, args, commandname, achannels) {
                 const nestedMessages = await Promise.all(achannels.map(ch => ch.fetchMessages({
                         limit: 100
                 })))
                 const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
                 const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id} ${commandname}`))
-		if(msg) {
-			return(true)
-		} else {
-			return(false)
-		}
-}
-	var disablecheck = await checkIfDisabled(bot, message, args, commandname, achannels);
-	if(disablecheck) return message.reply("This command is disabled by an admin in this server!")
+                if (msg) {
+                        return (true)
+                } else {
+                        return (false)
+                }
+        }
+        var disablecheck = await checkIfDisabled(bot, message, args, commandname, achannels);
+        if (disablecheck) return message.reply("This command is disabled by an admin in this server!")
         return commandfile.run(bot, message, args, prefix, content);
 });
 bot.login(botconfig.token);
