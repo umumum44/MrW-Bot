@@ -1,20 +1,7 @@
 const Discord = require("discord.js");
-async function checkIfDisabled(bot, message, args, cmdname, channels) {
-                const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
-                        limit: 100
-                })))
-                const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
-                const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id} ${cmdname}`))
-		if(msg) {
-			return(true)
-		} else {
-			return(false)
-		}
-}
+
 module.exports.run = async (bot, message, args, prefix, content) => {
-	let channels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi").test(m.name));
-	let cmddisablecheck = await checkIfDisabled(bot, message, args, "addrole", channels)
-	if(cmddisablecheck) return message.reply("This command has been disabled by a server manager!")
+	
 	if(args[0] === undefined) return message.reply("Please specify the following params [optional] (required). `!!addrole [hexcolor: #XXXXXX] [hoist: true/false] (role name)`.").catch(function() {});
 	var ishextag = null;
 	if(args[0].startsWith("#")) ishextag = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(args[0]);
