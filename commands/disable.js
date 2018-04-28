@@ -46,7 +46,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 await channel.send(`${message.guild.id} ${args[0].toLowerCase()}`)
                 await message.reply("Disabled the command!")
         }
-        if (message.size > 97) {
+        if (messages.size > 97) {
                 await channel.setName("o-wbotdisable-database")
                 await dbguild.createChannel('wbotdisable-database')
                 let newc = dbguild.channels.find(`name`, "wbotdisable-database")
