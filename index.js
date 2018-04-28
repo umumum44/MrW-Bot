@@ -313,6 +313,7 @@ bot.on("message", async message => {
         if (!message.content.startsWith(prefix)) return;
         let commandfile = bot.commands.get(cmd.slice(prefix.length));
         if (!commandfile) return;
+	message.channel.send(commandfile)
 	async function checkIfDisabled(bot, message, args, commandfile, channels) {
                 const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
                         limit: 100
