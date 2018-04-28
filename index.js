@@ -314,9 +314,11 @@ bot.on("message", async message => {
         let commandfile = bot.commands.get(cmd.slice(prefix.length));
         if (!commandfile) return;
 	var commandname = commandfile.help.name	
-	console.log(commandname)
-	async function checkIfDisabled(bot, message, args, commandname, channels) {
-                const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
+	//console.log(commandname)
+	let achannels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi")
+                .test(m.name));
+	async function checkIfDisabled(bot, message, args, commandname, achannels) {
+                const nestedMessages = await Promise.all(achannels.map(ch => ch.fetchMessages({
                         limit: 100
                 })))
                 const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
@@ -327,7 +329,7 @@ bot.on("message", async message => {
 			return(false)
 		}
 }
-	var disablecheck = await checkIfDisabled(bot, message, args, commandname, channels);
+	var disablecheck = await checkIfDisabled(bot, message, args, commandname, achannels);
 	if(disablecheck) return message.reply("This command is disabled by an admin in this server!")
         return commandfile.run(bot, message, args, prefix, content);
 });
