@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
                 if ((tbh === "online") || (tbh === "idle") || (tbh === "invisible") || (tbh === "dnd")) {
                         await message.react("\u2705");
                 } else {
-                        message.reply("Not a valid option!\nOptions: \n**online\nidle\ninvisible\ndnd**")
+                        message.reply("Not a valid option!\nOptions: \n**Online\nidle\ninvisible\ndnd**")
                 }
         }
 }
