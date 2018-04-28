@@ -156,7 +156,7 @@ bot.on("guildMemberRemove", async member => {
         if (togglesetting === "false") return;
         if (channelsetting === "none") return;
         if (byemsg !== "none") {
-                var byemessage = byemessage.replace(/{user.mention}/gi, member.user.toString());
+                var byemessage = byemsg.replace(/{user.mention}/gi, member.user.toString());
 		byemessage = byemessage.replace(/{user.tag}/gi, member.user.tag);
 		byemessage = byemessage.replace(/{user.discriminator}/gi, member.user.discriminator);
 		byemessage = byemessage.replace(/{user.username}/gi, member.user.username);
