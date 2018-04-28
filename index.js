@@ -119,7 +119,10 @@ bot.on("guildMemberAdd", async member => {
         if (avatarsetting === "true") welcomeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
         if (!channeltosend) return;
-        channeltosend.send({ embed: welcomeMessage });
+        channeltosend.send({ embed: welcomeMessage }).catch(() => {
+		welcomeMessage.setThumbnail(null);
+		channeltosend.send({ embed: welcomeMessage }).catch(function() {});
+	});
 });
 bot.on("guildMemberRemove", async member => {
         var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
@@ -162,7 +165,10 @@ bot.on("guildMemberRemove", async member => {
         if (avatarsetting === "true") goodbyeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
         if (!channeltosend) return;
-        channeltosend.send({ embed: goodbyeMessage })
+        channeltosend.send({ embed: goodbyeMessage }).catch(() => {
+		goodbyeMessage.setThumbnail(null);
+		channeltosend.send({ embed: goodbyeMessage }).catch(function() {});
+	});
 })
 
 bot.on("guildCreate", async guilda => {
