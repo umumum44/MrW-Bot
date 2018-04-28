@@ -9,7 +9,7 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
                 return (false)
         }
         if(msg) {
-                var commands = msg.split(" ");
+                var commands = msg.content.split(" ");
         // ["guild_id", "command", "command", "command"];
         if (commands.shift() === message.guild.id) {
         // ["command", "command", "command"];
