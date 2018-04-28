@@ -14,22 +14,9 @@ async function awaitReply(message, question, limit = 300000) {
                 return message.author.send("**Prompt Cancelled -- There Was No Response After Five Minutes**");
         }
 }
-async function checkIfDisabled(bot, message, args, cmdname, channels) {
-                const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
-                        limit: 100
-                })))
-                const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
-                const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id} ${cmdname}`))
-		if(msg) {
-			return(true)
-		} else {
-			return(false)
-		}
-}
+
 module.exports.run = async (bot, message, args) => {
-         let channels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi").test(m.name));
-	let cmddisablecheck = await checkIfDisabled(bot, message, args, "report", channels)
-	if(cmddisablecheck) return message.reply("This command has been disabled by a server manager!")
+         
         let timeoutchannel = bot.channels.find(`id`, "424010321750130689");
         let reportchannel = bot.channels.find(`id`, "420180153931530240");
         let blacklistchannel = bot.channels.find(`id`, "424006591411519499");
