@@ -11,6 +11,18 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
                 return (false)
         }
 }
+async function findthemessage(bot, message, args, channels) {
+        const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
+                limit: 100
+        })))
+        const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
+        const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id}`))
+        if (msg) {
+                return (msg)
+        } else {
+                return (false)
+        }
+}
 module.exports.run = async (bot, message, args, prefix, content) => {
         var nodisable = ["help", "disable"]
         if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You do not have permission to use this command!")
@@ -27,24 +39,20 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         var findit = bot.commands.get(args[0].toLowerCase())
         if (!findit) return message.reply("Not a valid command! Note: You cannot disable a command from its aliases!")
         let cmddisablecheck = await checkIfDisabled(bot, message, args, args[0].toLowerCase(), channels)
+        let findmessage = await findthemessage(bot, message, args, channels)
         if (cmddisablecheck) {
-                channels.forEach(chl => {
-                        chl.fetchMessages({
-                                        limit: 100
-                                })
-                                .then(msgs => {
-                                        msgs.forEach(msg => {
-                                                if (msg.content.startsWith(`${message.guild.id} ${args[0].toLowerCase()}`)) {
-                                                        msg.delete()
-                                                }
-                                        })
-                                })
-                })
-                message.reply("Re-enabled the command!")
+                        findmessage.edit(message.content.replace(args[0].toLowerCase(), ""))
+                                message.reply("Re-enabled the command!")
         }
+                                             
         if (!cmddisablecheck) {
-                await channel.send(`${message.guild.id} ${args[0].toLowerCase()}`)
+                if(findmessage !== false) {
+                        await findmessage.edit(findmessage.content + ` ${args[0].toLowerCase()}`);
+                       await message.reply("Disabled the command!")
+                } else {
+                        await channel.send(`${message.guild.id} ${args[0].toLowerCase()}`)
                 await message.reply("Disabled the command!")
+                }
         }
         if (messages.size > 97) {
                 await channel.setName("o-wbotdisable-database")
