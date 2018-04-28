@@ -313,7 +313,7 @@ bot.on("message", async message => {
         if (!message.content.startsWith(prefix)) return;
         let commandfile = bot.commands.get(cmd.slice(prefix.length));
         if (!commandfile) return;
-	var commandname = commandfile.help.name	
+	var commandname = commandfile.help.name.toLowerCase()
 	//console.log(commandname)
 	let achannels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi")
                 .test(m.name));
