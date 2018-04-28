@@ -61,7 +61,7 @@ bot.on("ready", async () => {
                 });
 });
 bot.on("guildMemberAdd", async member => {
-	var dbguild = bot.guilds.get("417149156193337344");
+        var dbguild = bot.guilds.get("417149156193337344");
         var dbchannels = dbguild.channels.filter(channel => channel.name.includes("autoroles-database"));
         if (dbchannels != null) {
                 dbchannels.forEach(dbchannel => {
@@ -96,33 +96,42 @@ bot.on("guildMemberAdd", async member => {
         if (togglesetting === "false") return;
         if (channelsetting === "none") return;
         if (hellomsg !== "none") {
-		var himessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
-		himessage = himessage.replace(/{user}/gi, member.user.toString());
-		himessage = himessage.replace(/{user.tag}/gi, member.user.tag);
-		himessage = himessage.replace(/{user.discriminator}/gi, member.user.discriminator);
-		himessage = himessage.replace(/{user.discrim}/gi, member.user.discriminator);
-		himessage = himessage.replace(/{user.username}/gi, member.user.username);
-		himessage = himessage.replace(/{user.name}/gi, member.user.username);
-		himessage = himessage.replace(/{user.nickname}/gi, member.displayName);
-		himessage = himessage.replace(/{user.nick}/gi, member.displayName);
-		himessage = himessage.replace(/{user.id}/gi, member.user.id);
-		himessage = himessage.replace(/{user.status}/gi, member.user.presence.status);
-		himessage = himessage.replace(/{user.game}/gi, member.user.presence.game.name);
-		himessage = himessage.replace(/{guild.id}/gi, member.guild.id);
-		himessage = himessage.replace(/{guild.name}/gi, member.guild.name);
-		himessage = himessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
+                var himessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
+                himessage = himessage.replace(/{user}/gi, member.user.toString());
+                himessage = himessage.replace(/{user.tag}/gi, member.user.tag);
+                himessage = himessage.replace(/{user.discriminator}/gi, member.user.discriminator);
+                himessage = himessage.replace(/{user.discrim}/gi, member.user.discriminator);
+                himessage = himessage.replace(/{user.username}/gi, member.user.username);
+                himessage = himessage.replace(/{user.name}/gi, member.user.username);
+                himessage = himessage.replace(/{user.nickname}/gi, member.displayName);
+                himessage = himessage.replace(/{user.nick}/gi, member.displayName);
+                himessage = himessage.replace(/{user.id}/gi, member.user.id);
+                himessage = himessage.replace(/{user.status}/gi, member.user.presence.status);
+                himessage = himessage.replace(/{user.game}/gi, member.user.presence.game.name);
+                himessage = himessage.replace(/{guild.id}/gi, member.guild.id);
+                himessage = himessage.replace(/{guild.name}/gi, member.guild.name);
+                himessage = himessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
         } else {
                 var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`;
         }
-       	var welcomeMessage = new Discord.RichEmbed().setTitle("Welcome").setColor("#ffa500").setDescription(himessage);
+        var welcomeMessage = new Discord.RichEmbed()
+                .setTitle("Welcome")
+                .setColor("#ffa500")
+                .setDescription(himessage);
         if (footersetting === "true") welcomeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
         if (avatarsetting === "true") welcomeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
         if (!channeltosend) return;
-        channeltosend.send({ embed: welcomeMessage }).catch(() => {
-		welcomeMessage.setThumbnail(null);
-		channeltosend.send({ embed: welcomeMessage }).catch(function() {});
-	});
+        channeltosend.send({
+                        embed: welcomeMessage
+                })
+                .catch(() => {
+                        welcomeMessage.setThumbnail(null);
+                        channeltosend.send({
+                                        embed: welcomeMessage
+                                })
+                                .catch(function () {});
+                });
 });
 bot.on("guildMemberRemove", async member => {
         var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
@@ -143,34 +152,42 @@ bot.on("guildMemberRemove", async member => {
         if (channelsetting === "none") return;
         if (byemsg !== "none") {
                 var byemessage = byemsg.replace(/{user.mention}/gi, member.user.toString());
-		byemessage = byemessage.replace(/{user}/gi, member.user.toString());
-		byemessage = byemessage.replace(/{user.tag}/gi, member.user.tag);
-		byemessage = byemessage.replace(/{user.discriminator}/gi, member.user.discriminator);
-		byemessage = byemessage.replace(/{user.discrim}/gi, member.user.discriminator);
-		byemessage = byemessage.replace(/{user.username}/gi, member.user.username);
-		byemessage = byemessage.replace(/{user.name}/gi, member.user.username);
-		byemessage = byemessage.replace(/{user.nickname}/gi, member.displayName);
-		byemessage = byemessage.replace(/{user.nick}/gi, member.displayName);
-		byemessage = byemessage.replace(/{user.id}/gi, member.user.id);
-		byemessage = byemessage.replace(/{user.status}/gi, member.user.presence.status);
-		byemessage = byemessage.replace(/{user.game}/gi, member.user.presence.game.name);
-		byemessage = byemessage.replace(/{guild.id}/gi, member.guild.id);
-		byemessage = byemessage.replace(/{guild.name}/gi, member.guild.name);
-		byemessage = byemessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
+                byemessage = byemessage.replace(/{user}/gi, member.user.toString());
+                byemessage = byemessage.replace(/{user.tag}/gi, member.user.tag);
+                byemessage = byemessage.replace(/{user.discriminator}/gi, member.user.discriminator);
+                byemessage = byemessage.replace(/{user.discrim}/gi, member.user.discriminator);
+                byemessage = byemessage.replace(/{user.username}/gi, member.user.username);
+                byemessage = byemessage.replace(/{user.name}/gi, member.user.username);
+                byemessage = byemessage.replace(/{user.nickname}/gi, member.displayName);
+                byemessage = byemessage.replace(/{user.nick}/gi, member.displayName);
+                byemessage = byemessage.replace(/{user.id}/gi, member.user.id);
+                byemessage = byemessage.replace(/{user.status}/gi, member.user.presence.status);
+                byemessage = byemessage.replace(/{user.game}/gi, member.user.presence.game.name);
+                byemessage = byemessage.replace(/{guild.id}/gi, member.guild.id);
+                byemessage = byemessage.replace(/{guild.name}/gi, member.guild.name);
+                byemessage = byemessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
         } else {
                 var byemessage = `Sad to see you leave ${member.user.toString()}.`
         }
-        var goodbyeMessage = new Discord.RichEmbed().setTitle("Goodbye").setColor("#0000ff").setDescription(byemessage);
+        var goodbyeMessage = new Discord.RichEmbed()
+                .setTitle("Goodbye")
+                .setColor("#0000ff")
+                .setDescription(byemessage);
         if (footersetting === "true") goodbyeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
         if (avatarsetting === "true") goodbyeMessage.setThumbnail(member.user.displayAvatarURL);
         var channeltosend = bot.channels.find(`id`, channelsetting)
         if (!channeltosend) return;
-        channeltosend.send({ embed: goodbyeMessage }).catch(() => {
-		goodbyeMessage.setThumbnail(null);
-		channeltosend.send({ embed: goodbyeMessage }).catch(function() {});
-	});
+        channeltosend.send({
+                        embed: goodbyeMessage
+                })
+                .catch(() => {
+                        goodbyeMessage.setThumbnail(null);
+                        channeltosend.send({
+                                        embed: goodbyeMessage
+                                })
+                                .catch(function () {});
+                });
 })
-
 bot.on("guildCreate", async guilda => {
         let hello = new Discord.RichEmbed()
                 .setTitle("Thanks For Adding Me To Your Server!!")
@@ -298,27 +315,27 @@ bot.on("message", async message => {
         let achannels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi")
                 .test(m.name));
         async function checkIfDisabled(bot, message, args, commandname, achannels) {
-        const nestedMessages = await Promise.all(achannels.map(ch => ch.fetchMessages({
-                limit: 100
-        })))
-        const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
-        const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id}`))
-        if (!msg) {
-                return (false)
-        }
-        if(msg) {
-                var commands = msg.content.split(" ");
-        // ["guild_id", "command", "command", "command"];
-        if (commands.shift() === message.guild.id) {
-        // ["command", "command", "command"];
-                if(commands.includes(commandname)) {
-                   return(true)
-                } else {
-                        return(false)
+                const nestedMessages = await Promise.all(achannels.map(ch => ch.fetchMessages({
+                        limit: 100
+                })))
+                const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
+                const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id}`))
+                if (!msg) {
+                        return (false)
+                }
+                if (msg) {
+                        var commands = msg.content.split(" ");
+                        // ["guild_id", "command", "command", "command"];
+                        if (commands.shift() === message.guild.id) {
+                                // ["command", "command", "command"];
+                                if (commands.includes(commandname)) {
+                                        return (true)
+                                } else {
+                                        return (false)
+                                }
+                        }
                 }
         }
-        }
-}
         var disablecheck = await checkIfDisabled(bot, message, args, commandname, achannels);
         if (disablecheck) return message.reply("This command is disabled by an admin in this server!")
         return commandfile.run(bot, message, args, prefix, content);
