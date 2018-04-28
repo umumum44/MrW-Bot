@@ -311,7 +311,7 @@ bot.on("message", async message => {
                 message.react("\u2705")
         }
         if (!message.content.startsWith(prefix)) return;
-        var commandfile = undefined;
+        var commandfile = false;
 	bot.commands.forEach(command => {
 		let aliases = command.help.aliases
 		if (aliases == undefined) aliases = [];
@@ -319,7 +319,7 @@ bot.on("message", async message => {
 		if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
 	});
         if (!commandfile) return;
-	var commandname = commandfile.help.name.toLowerCase()
+	var commandname = commandfile.help.name.toLowerCase();
 	//console.log(commandname)
 	let achannels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi")
                 .test(m.name));
