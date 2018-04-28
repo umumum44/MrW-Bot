@@ -18,8 +18,7 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
         } else {
                 return(false)
         }
-                   
-        }
+        
 }
 async function findthemessage(bot, message, args, channels) {
         const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({
