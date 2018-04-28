@@ -51,7 +51,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         let cmddisablecheck = await checkIfDisabled(bot, message, args, args[0].toLowerCase(), channels)
         let findmessage = await findthemessage(bot, message, args, channels)
         if (cmddisablecheck) {
-                let newedit = findmessage.content.replace(args[0].toLowerCase(), "")
+                let newedit = findmessage.content.replace(args[0].toLowerCase(), "").replaceAll("\\s+", " "));
                         findmessage.edit(newedit)
                                 message.reply("Re-enabled the command!")
         }
