@@ -4,11 +4,21 @@ async function checkIfDisabled(bot, message, args, cmdname, channels) {
                 limit: 100
         })))
         const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
-        const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id} ${cmdname}`))
-        if (msg) {
-                return (true)
-        } else {
+        const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id}`))
+        if (!msg) {
                 return (false)
+        }
+        if(msg) {
+                var commands = msg.split(" ");
+        // ["guild_id", "command", "command", "command"];
+        if (commands.shift() === message.guild.id) {
+        // ["command", "command", "command"];
+                if(commands.includes(cmdname) {
+                   return(true)
+        } else {
+                return(false)
+        }
+                   
         }
 }
 async function findthemessage(bot, message, args, channels) {
