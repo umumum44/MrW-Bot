@@ -27,7 +27,7 @@ bot.on("ready", async () => {
         let ttchannel = bot.channels.find(`id`, "437397457073078272");
         await ttchannel.bulkDelete(100)
         await bot.user.setActivity("Servers", {
-                type: "WATCHING"
+                type: "PLAYING"
         });
         bot.channels.get("436947091483262996")
                 .fetchMessages({
