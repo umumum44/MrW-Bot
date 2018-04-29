@@ -5,8 +5,12 @@ module.exports.run = async (bot, message, args, prefix, content) => {
        google(args[0], function (err, res){
   if (err) console.error(err)
               var linkuno = res.links[0]
+              console.log(linkuno)
               var linkdos = res.links[2]
+               console.log(linkdos)
               var linktres = res.links[3]
+             console.log(linktres)
+
 if((linkuno) && (linkdos) && (linktres)) {
  message.reply(`**Results:**\nTitle: ${linkuno.title}\nLink: ${linkuno.link}\nDescription: ${linkuno.description}\n-----------------\nTitle: ${linkdos.title}\nLink: ${linkdos.link}\nDescription: ${linkdos.description}\n-----------------\nTitle: ${linktres.title}\nLink: ${linktres.link}\nDescription: ${linktres.description}`)
 } else if (linkuno) {
