@@ -11,6 +11,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	var usersToRole;
 	var roleTarget;
 	var roleToChangeFromTarget;
+	if (paramaterOne == undefined) return message.reply("You must specify a user or users to target. Example: `!!role @user/all role`.").catch(function() {});
 	if (!options.includes(paramaterOne.toLowerCase())) {
 		target = message.guild.members
 			.find(member => paramaterOne.includes(member.user.id) || member.user.tag.toLowerCase().startsWith(paramaterOne.toLowerCase()));
