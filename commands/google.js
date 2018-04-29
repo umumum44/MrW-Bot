@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 var google = require('google')
-google.resultsPerPage = 3
+google.resultsPerPage = 12
 module.exports.run = async (bot, message, args, prefix, content) => {
        google(args[0], function (err, res){
   if (err) console.error(err)
@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
               return message.reply("Couldn't find enough information with this search!")
 
  
-}
+
 })
 }
 module.exports.help = {
