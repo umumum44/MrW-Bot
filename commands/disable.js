@@ -35,8 +35,8 @@ async function findthemessage(bot, message, args, channels) {
 }
 module.exports.run = async (bot, message, args, prefix, content) => {
         var nodisable = ["help", "disable"]
-        if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You do not have permission to use this command!")
-        if (!args[0]) return message.reply("You must provide the name of the command to enable/disable!! Please try again.")
+        if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You do not have permission to use this command.")
+        if (!args[0]) return message.reply("You must provide the name of the command to enable/disable. Please try again.")
         //if(args[0] === "disable" || "help") return message.reply("This command cannot be disabled!")
         let dbguild = bot.guilds.find(`id`, "417149156193337344");
         let channel = dbguild.channels.find(`name`, "wbotdisable-database")
