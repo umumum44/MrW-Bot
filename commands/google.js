@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
               while(i <= 10) {
                link = res.links[i]
                if((link.title) && (link.description) && (link.link)) {
-                      let embed = Discord.RichEmbed()
+                      let embed = new Discord.RichEmbed()
                        .setTitle("Result")
                 .setColor("#000080")
                 .addField("Title", link.title)
