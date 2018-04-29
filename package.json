@@ -12,6 +12,7 @@
   "dependencies": {
     "discord.js": "^11.3.0",
     "get-meme-urls": "^1.0.1",
+    "google": "^2.1.0",
     "ms": "^2.1.1",
     "pg": "^7.4.1",
     "random_meme": "^2.0.1",
