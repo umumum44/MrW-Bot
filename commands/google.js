@@ -17,6 +17,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 .addField("Title", link.title)
                 .addField("Link", link.link)
                 .addField("Description", link.description)
+                .setThumbnail(link.href)
                 .setFooter(`Requested by ${message.author.tag}`);
                       return message.channel.send(embed)
                       }
