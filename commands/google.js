@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 .addField("Link", link.link)
                 .addField("Description", link.description)
                 .setFooter(`Requested by ${message.author.tag}`);
-                      return await message.channel.send(embed)
+                      return message.channel.send(embed)
                       }
                      i++
               }
