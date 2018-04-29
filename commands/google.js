@@ -4,19 +4,26 @@ google.resultsPerPage = 3
 module.exports.run = async (bot, message, args, prefix, content) => {
        google(args[0], function (err, res){
   if (err) console.error(err)
-              var linkuno = res.links[0]
-              console.log(linkuno)
-              var linkdos = res.links[2]
-               console.log(linkdos)
-              var linktres = res.links[3]
-             console.log(linktres)
+             if(!res.links[0]) return message.reply("Couldn't find anything with this search query!")
+              var i = 0
+              var link;
+              while(i <= 10) {
+               link = res.links[i]
+               if((link.title) && (link.description) && (link.link)) {
+                      let embed = Discord.RichEmbed()
+                       .setTitle("Result")
+                .setColor("#000080")
+                .addField("Title", link.title)
+                .addField("Link", link.link)
+                .addField("Description", link.description)
+                .setFooter(`Requested by ${message.author.tag}`);
+                      return await message.channel.send(embed)
+                      }
+                     i++
+              }
+              return message.reply("Couldn't find enough information with this search!")
 
-if((linkuno) && (linkdos) && (linktres)) {
- message.reply(`**Results:**\nTitle: ${linkuno.title}\nLink: ${linkuno.link}\nDescription: ${linkuno.description}\n-----------------\nTitle: ${linkdos.title}\nLink: ${linkdos.link}\nDescription: ${linkdos.description}\n-----------------\nTitle: ${linktres.title}\nLink: ${linktres.link}\nDescription: ${linktres.description}`)
-} else if (linkuno) {
-        message.reply(`**Result:**\nTitle: ${linkuno.title}\nLink: ${linkuno.link}\nDescription: ${linkuno.description}`)
-} else {
-       message.reply("Couldn't find anything with this search query!")
+ 
 }
 })
 }
