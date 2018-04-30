@@ -2,7 +2,7 @@ var randomHex = require('random-hex');
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
 	var hex = randomHex.generate();
-	var justhex = hex.slice(1)
+	var justhex = hex.slice(1);
 	const embed = new Discord.RichEmbed()
 		.setTitle("Random Color")
 		.setColor(hex)
