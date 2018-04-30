@@ -68,7 +68,7 @@ async function everything(args, message, bot) {
 						m.edit(`**${target.user.tag}'s Roblox Info**\nUsername: \`${username}\`\nUser ID: \`${userid}\`\nFriends: \`${friends.total}/200\`\nMembership: \`${membership}\``)
 					}
 					count = count + 1;
-					if (count == messages.size && count2 == dbchannels.size) return m.edit(`${target.user.tag} is not verified, please tell them to run \`!verify\``);
+					if (count == messages.size && count2 == dbchannels.size) return m.edit(`${target.user.tag} is not verified, please tell them to run \`!!verify\``);
 				});
 			});
 		});
