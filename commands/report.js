@@ -18,7 +18,7 @@ async function awaitReply(message, question, limit = 300000) {
 module.exports.run = async (bot, message, args) => {
          
         let timeoutchannel = bot.channels.find(`id`, "424010321750130689");
-        let reportchannel = bot.channels.find(`id`, "420180153931530240");
+        let reportchannel = bot.channels.find(`id`, "424014842106740737");
         let blacklistchannel = bot.channels.find(`id`, "424006591411519499");
         let tmessages = await timeoutchannel.fetchMessages({
                 limit: 100
