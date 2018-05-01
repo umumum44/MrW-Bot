@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
 	if(!args[0]) { 
     		let number = Math.floor(Math.random() * (6 - 1)) + 1;
-    		return await message.reply(`You rolled ${number}!`);
+    		return await message.reply(`:game_die: You rolled ${number}! :game_die:`);
 		}
 	let num = Number(args[0])
 	if(!num) return message.reply("Please provide a valid number!")
@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	let max = num * 6
 	let min = num
 	let numero = Math.floor(Math.random() * (max - num)) + num;
-	return await message.reply(`You rolled ${numero}!`);
+	return await message.reply(`:game_die: You rolled ${numero}! :game_die:`);
 		
   
   
