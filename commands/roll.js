@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, prefix, content) => {
-	if(args[0]) { 
-    		let number = Math.floor(Math.random(7));
+	if(!args[0]) { 
+    		let number = Math.floor(Math.random() * 7);
     		return await message.reply(`You rolled a(n) ${number}!`);
 		}
 	let num = Number(args[0])
