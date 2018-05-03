@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
 	var memberEmbed = new Discord.RichEmbed().setColor("ORANGE");
 	var members;
-	var content = params.readRaw();
+	var content = content;
 	if (message.guild.roles.find(r => r.name.toLowerCase().startsWith(content.toLowerCase()))) {
 		if (content !== "") {
 			members = message.guild.roles.find(r => r.name.toLowerCase().startsWith(content.toLowerCase())).members.map(m => m.user.tag).sort()
