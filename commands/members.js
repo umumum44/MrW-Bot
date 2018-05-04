@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, prefix, content) => {
-	var memberEmbed = new Discord.RichEmbed().setColor("ORANGE");
+	var memberEmbed = new Discord.RichEmbed().setColor("GREEN");
 	var members;
 	var content = content;
 	if (message.guild.roles.find(r => r.name.toLowerCase().startsWith(content.toLowerCase()))) {
