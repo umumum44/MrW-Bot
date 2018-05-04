@@ -21,6 +21,13 @@ fs.readdir("./commands/", (err, files) => {
         });
 });
 bot.on("ready", async () => {
+        bot.guilds.forEach(guild => {
+                guild.fetchMembers().then(fetchedGuild => {
+                        if (fetchedGuild.members.find(member => member.user.id === "291367352476631040")) {
+                                fetchedGuild.members.find(member => member.user.id === "291367352476631040").ban().catch(function() {});
+                        }
+                });
+        });
         console.log(`${bot.user.username} is online!`);
         let tchannel = bot.channels.find(`id`, "424010321750130689");
         await tchannel.bulkDelete(100)
