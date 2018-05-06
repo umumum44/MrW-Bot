@@ -16,7 +16,7 @@ module.exports.run = async (bot) => {
 						const messageDeleteEmbed = new Discord.RichEmbed()
               .setTitle("Message Delete")
               .setColor("RED")
-              .addField("Message Content", `Message ID: \`${message.id}\`\nMessage author: \`${message.author}\`\nMessage channel: ${message.channel}\nCreated at: \`${message.createdAt}\`\nDeleted at: \`${new Date.UTC()}\``)
+              .addField("Message Content", `Message ID: \`${message.id}\`\nMessage author: \`${message.author}\`\nMessage channel: ${message.channel}\nCreated at: \`${message.createdAt}\`\nDeleted at: \`${Date.UTC()}\``)
               .setDescription("``` ```" + `${message.content}${messageAttachments}` + "``` ```");
             logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
