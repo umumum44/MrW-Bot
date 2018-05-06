@@ -18,7 +18,7 @@ module.exports.run = async (bot) => {
               .setColor("RED")
               .addField("Message Content", `Message ID: \`${message.id}\`\nMessage author: ${message.author}\nMessage channel: ${message.channel}\nCreated at: \`${message.createdAt}\`\nDeleted at: \`${Date.now().getDate()}\``)
               .setDescription(`\`\`\`${message.content}${messageAttachments}\`\`\``);
-            logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
+            logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
 				});
 			});
@@ -44,7 +44,7 @@ module.exports.run = async (bot) => {
               .setColor("RED")
               .addField("Message Information", `Message ID: \`${newmessage.id}\`\nMessage author: ${newmessage.author}\nMessage channel: ${newmessage.channel}\nCreated at: \`${newmessage.createdAt}\``)
               .setDescription(`**Old Message:**\`\`\`${oldmessage.content}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content}${nmessageAttachments}\`\`\``);
-            logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
+            logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
 				});
 			});
