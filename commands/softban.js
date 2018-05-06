@@ -31,12 +31,12 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 											if (logChannel == undefined) return msg.delete();
 											var logGuild = logChannel.guild;
 											if (logGuild == undefined) return msg.delete();
-											if (logGuild.id === msg.guild.id) {
+											if (`${logGuild.id}` === `${msg.guild.id}`) {
 												const softbanEmbed = new Discord.RichEmbed()
 													.setTitle("Member Softbanned")
 													.setColor("RED")
 													.addField("Softban Information", `Softbanned ID: \`${target.id}\`\nMember Softbanned: ${target}\nSoftbanned At: \`${Date.now()}\`\nSoftban Reason: \`${reason}\``)
-												logsDatabase.send({ embed: softbanEmbed }).catch(function() {});
+												logChannel.send({ embed: softbanEmbed }).catch(function() {});
 											}
 										});
 									});
