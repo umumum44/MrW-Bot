@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
 						.setTitle("Message Purge")
 						.setColor("RED")
 						.addField("Purge Information", `Messages Purged: \`${num}\`\nChannel Purged: ${message.channel}\nModerator: ${message.author}\nPurged At: \`${new Date(Date.now())}\``)
-					logsDatabase.send({ embed: purgeEmbed }).catch(function() {});
+					logChannel.send({ embed: purgeEmbed }).catch(function() {});
 				}
 			});
 		});
