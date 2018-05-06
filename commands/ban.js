@@ -35,8 +35,9 @@ module.exports.run = async (bot, message, args) => {
 										.setColor("RED")
 										.addField("Member Information", `Member ID: \`${target.id}\`\nMember Banned: ${target}\nBanned At: \`${Date.now()}\``)
 									logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
-					}
-				});
+								}
+							});
+							});
 						}).catch(() => {
 							message.channel.send(`Failed to ban \`${target.user.tag}\`.`).then(msg => msg.delete(5000).catch(function() {}));
 						});
