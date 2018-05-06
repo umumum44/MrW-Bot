@@ -22,6 +22,22 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 								message.guild.unban(target.user, `Softbanned by ${message.author.tag} for ${reason}`).then(() => {
 									message.channel.send(`***Successfully softbanned \`${target.user.tag}\`.***`)
 											.catch(function() {});
+									var logsDatabase = bot.channels.get("440238037201453056");
+									logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+										logmessages.forEach(msg => {
+											var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+											if (logChannel == undefined) return msg.delete();
+											var logGuild = logChannel.guild;
+											if (logGuild == undefined) return msg.delete();
+											if (logGuild.id === msg.guild.id) {
+												const softbanEmbed = new Discord.RichEmbed()
+													.setTitle("Member Softbanned")
+													.setColor("RED")
+													.addField("Softban Information", `Softbanned ID: \`${target.id}\`\nMember Softbanned: ${target}\nSoftbanned At: \`${Date.now()}\`\nSoftban Reason: \`${reason}\``)
+												logsDatabase.send({ embed: softbanEmbed }).catch(function() {});
+											}
+										});
+									});
 								}).catch(() => {
 									message.reply(`Failed to unban \`${target.user.tag}\`.`)
 										.catch(function() {});
