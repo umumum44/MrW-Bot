@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args, prefix) => {
 									const warnEmbed = new Discord.RichEmbed()
 										.setTitle("Member Warned")
 										.setColor("RED")
-							.addField("Warn Information", `Warned ID: \`${target.id}\`\nMember Warned: ${target}\nWarned At: \`${Date.now()}\`\nModerator: ${message.author}\nWarn Reason: \`${reason}\``)
+							.addField("Warn Information", `Warned ID: \`${target.id}\`\nMember Warned: ${target}\nWarned At: \`${new Date(Date.now())}\`\nModerator: ${message.author}\nWarn Reason: \`${reason}\``)
 									logChannel.send({ embed: warnEmbed }).catch(function() {});
 								}
 							});
