@@ -24,6 +24,22 @@ module.exports.run = async (bot, message, args, prefix) => {
       var dbchannel = dbguild.channels.find("name", "warn-database")
       var olo = await dbchannel.fetchMessages({ limit: 100 });
       var msgcount = olo.size;
+      							var logsDatabase = bot.channels.get("440238037201453056");
+							logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+							logmessages.forEach(msg => {
+								var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+								if (logChannel == undefined) return msg.delete();
+								var logGuild = logChannel.guild;
+								if (logGuild == undefined) return msg.delete();
+								if (logGuild.id === msg.guild.id) {
+									const warnEmbed = new Discord.RichEmbed()
+										.setTitle("Member Banned")
+										.setColor("RED")
+							.addField("Warn Information", `Warned ID: \`${target.id}\`\nMember Warned: ${target}\nWarned At: \`${Date.now()}\`\nWarn Reason: \`${reason}\``)
+									logsDatabase.send({ embed: warnEmbed }).catch(function() {});
+								}
+							});
+							});
       if (msgcount == "100") {
         await dbchannel.setName("archived-warn-database");
         // Create a new category channel with permission overwrites
