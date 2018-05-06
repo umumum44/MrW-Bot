@@ -24,9 +24,9 @@ module.exports.run = async (bot) => {
 			});
 		}
 	});
-	bot.on("messageUpdate", (messages) => {
-		var oldmessage = messages.oldMessage
-		var newmessage = messages.newMessage
+	bot.on("messageUpdate", (oldMessage, newMessage) => {
+		var oldmessage = oldMessage
+		var newmessage = newMessage
 		var omessageAttachments = "";
 		var nmessageAttachments = "";
 		if (oldmessage.attachments.first() !== undefined) omessageAttachments = `\n${oldmessage.attachments.first().url}`;
