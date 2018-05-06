@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 															const messageDeleteEmbed = new Discord.RichEmbed()
 																.setTitle("Member Muted")
 																.setColor("RED")
-																.addField("Member Information", `Member ID: \`${target.id}\`\nMember Muted: ${target}\nModerator: ${message.author}\nMuted At: \`${Date.now()}\``)
+																.addField("Member Information", `Member ID: \`${target.id}\`\nMember Muted: ${target}\nModerator: ${message.author}\nMuted At: \`${new Date(Date.now())}\`\``)
 															logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 														}
 													});
