@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
 					const purgeEmbed = new Discord.RichEmbed()
 						.setTitle("Message Purge")
 						.setColor("RED")
-						.addField("Purge Information", `Messages Purged: \`${num}\`\nChannel Purged: ${message.channel}\nModerator: ${message.author}\nPurged At: \`${Date.now()}\``)
+						.addField("Purge Information", `Messages Purged: \`${num}\`\nChannel Purged: ${message.channel}\nModerator: ${message.author}\nPurged At: \`${new Date(Date.now())}\``)
 					logsDatabase.send({ embed: purgeEmbed }).catch(function() {});
 				}
 			});
