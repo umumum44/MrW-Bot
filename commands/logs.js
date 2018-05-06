@@ -15,6 +15,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			//assume they are trying to switch channels
 			let schannelid = message.mentions.channels.first().id;
 			await logschannel.send(`${message.guild.id} ${schannelid}`);
+			await checker.delete()
 			return message.reply(`Changed logs channel to <#${schannelid}>!`);
 		} else {
 			//disable completely
