@@ -1,5 +1,6 @@
 const botconfig = require("./botconfig.js");
 const Discord = require("discord.js");
+const logsfile = require("./logs.js")
 const fs = require("fs");
 const bot = new Discord.Client({
         disableEveryone: true
@@ -29,6 +30,7 @@ bot.on("ready", async () => {
         await bot.user.setActivity("New Commands Very Soon™!", {
                 type: "PLAYING"
         });
+        logsfile.run(bot);
         bot.channels.get("436947091483262996")
                 .fetchMessages({
                         limit: 100
