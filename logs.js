@@ -38,7 +38,7 @@ module.exports.run = async (bot) => {
 					if (logChannel == undefined) return msg.delete();
 					var logGuild = logChannel.guild;
 					if (logGuild == undefined) return msg.delete();
-					if (logGuild.id === msg.guild.id) {
+					if (`${logGuild.id}` === `${msg.guild.id}`) {
 						const messageDeleteEmbed = new Discord.RichEmbed()
               .setTitle("Message Edit")
               .setColor("RED")
