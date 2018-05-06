@@ -21,12 +21,12 @@ module.exports.run = async (bot, message, args) => {
 				if (logChannel == undefined) return msg.delete();
 				var logGuild = logChannel.guild;
 				if (logGuild == undefined) return msg.delete();
-				if (logGuild.id === msg.guild.id) {
+				if (`${logGuild.id}` === `${msg.guild.id}`) {
 				        const unmuteEmbed = new Discord.RichEmbed()
 					        .setTitle("Member Banned")
 					        .setColor("RED")
 					        .addField("Unmute Information", `Unmuted ID: \`${tounmute.id}\`\nMember Unmuted: ${tounmute}\Unmuted At: \`${Date.now()}\``)
-					logsDatabase.send({ embed: unmuteEmbed }).catch(function() {});
+					logChannel.send({ embed: unmuteEmbed }).catch(function() {});
 								}
 							});
 							});
