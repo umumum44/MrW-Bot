@@ -1,11 +1,6 @@
 module.exports.run = async (bot, message, args, prefix, content) => {
 	if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("You don't have permission to use this command!");
        	var logschannel = bot.channels.find(`id`, `440238037201453056`);
-	if(!args[0]) {
-		//disable completely
-			checker.delete();
-			return message.reply("Disabled logs in this server!");
-		}
 	var msgs = await logschannel.fetchMessages({ limit: 100 });
 	var checker = msgs.find(m => m.content.startsWith(`${message.guild.id}`));
 	if(!checker) {
