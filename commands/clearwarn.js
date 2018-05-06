@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 				const clearwarnEmbed = new Discord.RichEmbed()
 					.setTitle("Cleared Warns")
 					.setColor("RED")
-					.addField("Clear Information", `Member Cleared ID: \`${target.id}\`\nMember Cleared: ${target}\Cleared At: \`${new Date(Date.now())}\`\nModerator: ${message.author}`)
+					.addField("Clear Information", `Member Cleared ID: \`${target.id}\`\nMember Cleared: ${target}\nCleared At: \`${new Date(Date.now())}\`\nModerator: ${message.author}`)
 				logChannel.send({ embed: clearwarnEmbed }).catch(function() {});
 			}
 		});
