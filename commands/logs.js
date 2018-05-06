@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	var checker = msgs.find(m => m.content.startsWith(`${message.guild.id}`));
 	if(!checker) {
 	//assume it is disabled
-		if(!message.mentions.channels) return message.reply("You must mention a valid channel!");
+		if(!message.mentions.channels.first()) return message.reply("You must mention a valid channel!");
 		let channelid = message.mentions.channels.first().id;
 		await logschannel.send(`${message.guild.id} ${channelid}`);
 		return message.reply(`Enabled and set logs channel to <#${channelid}>!`);
