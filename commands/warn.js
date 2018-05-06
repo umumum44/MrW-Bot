@@ -31,12 +31,12 @@ module.exports.run = async (bot, message, args, prefix) => {
 								if (logChannel == undefined) return msg.delete();
 								var logGuild = logChannel.guild;
 								if (logGuild == undefined) return msg.delete();
-								if (logGuild.id === msg.guild.id) {
+								if (`${logGuild.id}` === `${msg.guild.id}`) {
 									const warnEmbed = new Discord.RichEmbed()
 										.setTitle("Member Warned")
 										.setColor("RED")
 							.addField("Warn Information", `Warned ID: \`${target.id}\`\nMember Warned: ${target}\nWarned At: \`${Date.now()}\`\nWarn Reason: \`${reason}\``)
-									logsDatabase.send({ embed: warnEmbed }).catch(function() {});
+									logChannel.send({ embed: warnEmbed }).catch(function() {});
 								}
 							});
 							});
