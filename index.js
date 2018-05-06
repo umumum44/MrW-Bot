@@ -227,13 +227,12 @@ bot.on("messageDelete", (message) => {
               .setColor("RED")
               .addField("Message Content", `Message ID: \`${message.id}\`\nMessage author: \`${message.author}\`\nMessage channel: ${message.channel}\nCreated at: \`${message.createdAt}\`\nDeleted at: \`${new Date.UTC()}\``)
               .setDescription("``` ```" + `${message.content}${messageAttachments}` + "``` ```");
-            logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
-					}
-				});
+						logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
+				}
 			});
-		}
-	});
-}
+		});
+	}
+});
 bot.on("message", async message => {
         if (message.channel.type === "dm") return;
         if (message.channel.id === "437397457073078272") await message.delete(240000)
