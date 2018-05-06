@@ -8,7 +8,7 @@ module.exports.run = async (bot) => {
 			var logsDatabase = bot.channels.get("440238037201453056");
 			logsDatabase.fetchMessages({ limit: 100 }).then(messages => {
 				messages.forEach(msg => {
-					var logChannel = bot.channels.get(msg.split(" ")[1]);
+					var logChannel = bot.channels.get(msg.content.split(" ")[1]);
 					if (logChannel == undefined) return msg.delete();
 					var logGuild = logChannel.guild;
 					if (logGuild == undefined) return msg.delete();
