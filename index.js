@@ -108,7 +108,12 @@ bot.on("guildMemberAdd", async member => {
                 himessage = himessage.replace(/{user.nick}/gi, member.displayName);
                 himessage = himessage.replace(/{user.id}/gi, member.user.id);
                 himessage = himessage.replace(/{user.status}/gi, member.user.presence.status);
-                if(member.user.presence.game.name) himessage = himessage.replace(/{user.game}/gi, member.user.presence.game.name);
+                if(member.user.presence.game) {
+                        himessage = himessage.replace(/{user.game}/gi, member.user.presence.game.name);
+                } else {
+			himessage = himessage.replace(/{user.game}/gi, "None");
+
+                }
                 himessage = himessage.replace(/{guild.id}/gi, member.guild.id);
                 himessage = himessage.replace(/{guild.name}/gi, member.guild.name);
                 himessage = himessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
@@ -163,8 +168,12 @@ bot.on("guildMemberRemove", async member => {
                 byemessage = byemessage.replace(/{user.nick}/gi, member.displayName);
                 byemessage = byemessage.replace(/{user.id}/gi, member.user.id);
                 byemessage = byemessage.replace(/{user.status}/gi, member.user.presence.status);
-               if(member.user.presence.game.name) byemessage = byemessage.replace(/{user.game}/gi, member.user.presence.game.name);
-                byemessage = byemessage.replace(/{guild.id}/gi, member.guild.id);
+		if(member.user.presence.game) {
+                        byemessage = byemessage.replace(/{user.game}/gi, member.user.presence.game.name);
+                } else {
+			byemessage = byemessage.replace(/{user.game}/gi, "None");
+
+                }                byemessage = byemessage.replace(/{guild.id}/gi, member.guild.id);
                 byemessage = byemessage.replace(/{guild.name}/gi, member.guild.name);
                 byemessage = byemessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
         } else {
