@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
 				        const unmuteEmbed = new Discord.RichEmbed()
 					        .setTitle("Member Banned")
 					        .setColor("RED")
-					        .addField("Unmute Information", `Unmuted ID: \`${tounmute.id}\`\nMember Unmuted: ${tounmute}\nModerator: ${message.author}\nUnmuted At: \`${Date.now()}\``)
+					        .addField("Unmute Information", `Unmuted ID: \`${tounmute.id}\`\nMember Unmuted: ${tounmute}\nModerator: ${message.author}\nUnmuted At: \`${new Date(Date.now())}\``)
 					logChannel.send({ embed: unmuteEmbed }).catch(function() {});
 								}
 							});
