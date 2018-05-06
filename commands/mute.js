@@ -33,12 +33,12 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 														if (logChannel == undefined) return msg.delete();
 														var logGuild = logChannel.guild;
 														if (logGuild == undefined) return msg.delete();
-														if (logGuild.id === msg.guild.id) {
+														if (`${logGuild.id}` === `${msg.guild.id}`) {
 															const messageDeleteEmbed = new Discord.RichEmbed()
 																.setTitle("Member Muted")
 																.setColor("RED")
 																.addField("Member Information", `Member ID: \`${target.id}\`\nMember Muted: ${target}\Muted At: \`${Date.now()}\``)
-															logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
+															logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 														}
 													});
 													});
