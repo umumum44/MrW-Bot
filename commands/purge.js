@@ -9,6 +9,22 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.bulkDelete(num + 1)
                         .then(messages => message.reply(`Deleted ${messages.size - 1} messages that were not over two weeks old!`))
                         .catch(console.error);
+                var logsDatabase = bot.channels.get("440238037201453056");
+		logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+			logmessages.forEach(msg => {
+				var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+				if (logChannel == undefined) return msg.delete();
+				var logGuild = logChannel.guild;
+				if (logGuild == undefined) return msg.delete();
+				if (logGuild.id === msg.guild.id) {
+					const purgeEmbed = new Discord.RichEmbed()
+						.setTitle("Message Purge")
+						.setColor("RED")
+						.addField("Purge Information", `Messages Purged: \`${num}\`\nChannel Purged: ${message.channel}\nModerator: ${message.author}\nPurged At: \`${Date.now()}\``)
+					logsDatabase.send({ embed: purgeEmbed }).catch(function() {});
+				}
+			});
+		});
         } else return message.reply(`You do not have permission to purge messages!`);
 }
 module.exports.help = {
