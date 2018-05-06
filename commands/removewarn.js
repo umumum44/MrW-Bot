@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
 						const rwarnEmbed = new Discord.RichEmbed()
 							.setTitle("Removed Warning")
 							.setColor("RED")
-							.addField("Removed Warn Information", `Member Removed Warning From's ID: \`${target.id}\`\nMember Removed Warning From: ${target}\Removed At: \`${new Date(Date.now())}\`\nModerator: ${message.author}\nWarning Number: \`${warn2clear}\`\nWarning Reason: \`${reason}\``)
+							.addField("Removed Warning Information", `Member Removed Warning From's ID: \`${target.id}\`\nMember Removed Warning From: ${target}\nRemoved At: \`${new Date(Date.now())}\`\nModerator: ${message.author}\nWarning Number: \`${warn2clear}\`\nWarning Reason: \`${reason}\``)
 						logChannel.send({ embed: rwarnEmbed }).catch(function() {});
 					}
 				});
