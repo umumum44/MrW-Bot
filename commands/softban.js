@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 												const softbanEmbed = new Discord.RichEmbed()
 													.setTitle("Member Softbanned")
 													.setColor("RED")
-													.addField("Softban Information", `Softbanned ID: \`${target.id}\`\nMember Softbanned: ${target}\nSoftbanned At: \`${Date.now()}\`\nSoftban Reason: \`${reason}\``)
+													.addField("Softban Information", `Softbanned ID: \`${target.id}\`\nMember Softbanned: ${target}\nSoftbanned At: \`${Date.now()}\`\nModerator: ${message.author}\nSoftban Reason: \`${reason}\``)
 												logChannel.send({ embed: softbanEmbed }).catch(function() {});
 											}
 										});
