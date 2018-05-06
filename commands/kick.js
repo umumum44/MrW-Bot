@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
 									const kickEmbed = new Discord.RichEmbed()
 										.setTitle("Member Kicked")
 										.setColor("RED")
-										.addField("Kick Information", `Kicked ID: \`${target.id}\`\nMember Kicked: ${target}\nBanned At: \`${Date.now()}\`\nKick Reason: \`${reason}\``)
+										.addField("Kick Information", `Kicked ID: \`${target.id}\`\nMember Kicked: ${target}\nKicked At: \`${Date.now()}\`\nKick Reason: \`${reason}\``)
 									logsDatabase.send({ embed: kickEmbed }).catch(function() {});
 								}
 							});
