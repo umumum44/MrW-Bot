@@ -17,7 +17,7 @@ module.exports.run = async (bot) => {
 						const messageDeleteEmbed = new Discord.RichEmbed()
               .setTitle("Message Delete")
               .setColor("RED")
-              .addField("Message Content", `Message ID: \`${message.id}\`\nMessage Author: ${message.author}\nMessage Channel: ${message.channel}\nCreated At: \`${message.createdAt}\`\nDeleted At: \`${Date.now()}\``)
+              .addField("Message Content", `Message ID: \`${message.id}\`\nMessage Author: ${message.author}\nMessage Channel: ${message.channel}\nCreated At: \`${message.createdAt}\`\nDeleted At: \`${new Date(Date.now())}\``)
               .setDescription(`\`\`\`${message.content.replace(/\`/gi, "")}${messageAttachments}\`\`\``);
             logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
@@ -44,7 +44,7 @@ module.exports.run = async (bot) => {
 						const messageDeleteEmbed = new Discord.RichEmbed()
               .setTitle("Message Edit")
               .setColor("RED")
-              .addField("Message Information", `Message ID: \`${newmessage.id}\`\nMessage Author: ${newmessage.author}\nMessage Channel: ${newmessage.channel}\nCreated At: \`${newmessage.createdAt}\`\nEdited At: \`${Date.now()}\``)
+              .addField("Message Information", `Message ID: \`${newmessage.id}\`\nMessage Author: ${newmessage.author}\nMessage Channel: ${newmessage.channel}\nCreated At: \`${newmessage.createdAt}\`\nEdited At: \`${new Date(Date.now())}\``)
               .setDescription(`**Old Message:**\`\`\`${oldmessage.content.replace(/\`/gi, "")}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content.replace(/\`/gi, "")}${nmessageAttachments}\`\`\``);
             logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
