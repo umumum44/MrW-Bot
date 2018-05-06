@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot) => {
 	bot.on("messageDelete", (message) => {
+		if(message.author.bot) return;
 		var messageAttachments = "";
 		if (message.attachments.first() !== undefined) messageAttachments = `\n${message.attachments.first().url}`;
 		if (message.content !== "" || messageAttachments !== "") {
@@ -25,6 +26,7 @@ module.exports.run = async (bot) => {
 		}
 	});
 	bot.on("messageUpdate", (oldMessage, newMessage) => {
+		if(oldMessage.author.bot) return;
 		var oldmessage = oldMessage
 		var newmessage = newMessage
 		var omessageAttachments = "";
