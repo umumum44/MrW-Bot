@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
 									const banEmbed = new Discord.RichEmbed()
 										.setTitle("Member Banned")
 										.setColor("RED")
-							.addField("Member Information", `Member ID: \`${target.id}\`\nMember Banned: ${target}\nBanned At: \`${Date.now()}\`\nBan Reason: \`${reason}\``)
+							.addField("Ban Information", `Banned ID: \`${target.id}\`\nMember Banned: ${target}\nBanned At: \`${Date.now()}\`\nBan Reason: \`${reason}\``)
 									logsDatabase.send({ embed: banEmbed }).catch(function() {});
 								}
 							});
