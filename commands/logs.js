@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		return message.reply(`Enabled and set logs channel to <#${channelid}>!`);
 	} else {
 	//assume it is enabled
-		if(message.mentions.channels) {
+		if(message.mentions.channels.first()) {
 			//assume they are trying to switch channels
 			let schannelid = message.mentions.channels.first().id;
 			await logschannel.send(`${message.guild.id} ${schannelid}`);
