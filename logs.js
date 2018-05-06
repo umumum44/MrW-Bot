@@ -10,9 +10,9 @@ module.exports.run = async (bot) => {
 			logsDatabase.fetchMessages({ limit: 100 }).then(messages => {
 				messages.forEach(msg => {
 					var logChannel = bot.channels.get(msg.content.split(" ")[1]);
-					if (logChannel == undefined) return msg.delete();
+					if (!logChannel) return msg.delete();
 					var logGuild = logChannel.guild;
-					if (logGuild == undefined) return msg.delete();
+					if (!logGuild) return msg.delete();
 					if (`${logGuild.id}` === `${msg.guild.id}`) {
 						const messageDeleteEmbed = new Discord.RichEmbed()
               .setTitle("Message Delete")
