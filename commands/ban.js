@@ -29,12 +29,12 @@ module.exports.run = async (bot, message, args) => {
 								if (logChannel == undefined) return msg.delete();
 								var logGuild = logChannel.guild;
 								if (logGuild == undefined) return msg.delete();
-								if (logGuild.id === msg.guild.id) {
+								if (`${logGuild.id}` === `${msg.guild.id}`) {
 									const banEmbed = new Discord.RichEmbed()
 										.setTitle("Member Banned")
 										.setColor("RED")
 							.addField("Ban Information", `Banned ID: \`${target.id}\`\nMember Banned: ${target}\nBanned At: \`${Date.now()}\`\nBan Reason: \`${reason}\``)
-									logsDatabase.send({ embed: banEmbed }).catch(function() {});
+									logChannel.send({ embed: banEmbed }).catch(function() {});
 								}
 							});
 							});
