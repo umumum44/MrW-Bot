@@ -22,6 +22,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			await logschannel.send(`${message.guild.id} ${schannelid}`);
 			await checker.delete()
 			return message.reply(`Changed logs channel to <#${schannelid}>!`);
+		} else {
+			//disable completely
+			checker.delete();
+			return message.reply("Disabled logs in this server!");
+		}
 	}
 
 }
