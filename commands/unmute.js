@@ -14,6 +14,22 @@ module.exports.run = async (bot, message, args) => {
                 let muterole = message.guild.roles.find(`name`, "Muted");
                 if (tounmute.roles.has(muterole.id)) {
                         tounmute.removeRole(muterole)
+                        var logsDatabase = bot.channels.get("440238037201453056");
+			logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+			logmessages.forEach(msg => {
+				var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+				if (logChannel == undefined) return msg.delete();
+				var logGuild = logChannel.guild;
+				if (logGuild == undefined) return msg.delete();
+				if (logGuild.id === msg.guild.id) {
+				        const unmuteEmbed = new Discord.RichEmbed()
+					        .setTitle("Member Banned")
+					        .setColor("RED")
+					        .addField("Unmute Information", `Unmuted ID: \`${tounmute.id}\`\nMember Unmuted: ${tounmute}\Unmuted At: \`${Date.now()}\``)
+					logsDatabase.send({ embed: unmuteEmbed }).catch(function() {});
+								}
+							});
+							});
                         message.react("\u2705")
                 } else return message.reply("This user is not muted!")
         }
