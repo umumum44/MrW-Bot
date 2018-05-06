@@ -21,12 +21,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                                                                         bot.channels.get("436947091483262996")
                                                                                 .send(`${message.guild.id} ${target.user.id} ${Date.now() + muteTime}`)
                                                                                 .then(msg => {
-                                                                                        setTimeout(() => {
-                                                                                                target.removeRole(message.guild.roles.find("name", "Muted"))
-                                                                                                        .catch(function () {});
-                                                                                                msg.delete()
-                                                                                                        .catch(function () {});
-												var logsDatabase = bot.channels.get("440238037201453056");
+										var logsDatabase = bot.channels.get("440238037201453056");
 												logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 													logmessages.forEach(msg => {
 														var logChannel = bot.channels.get(msg.content.split(" ")[1]);
@@ -42,6 +37,12 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 														}
 													});
 													});
+                                                                                        setTimeout(() => {
+                                                                                                target.removeRole(message.guild.roles.find("name", "Muted"))
+                                                                                                        .catch(function () {});
+                                                                                                msg.delete()
+                                                                                                        .catch(function () {});
+												
                                                                                         }, muteTime);
                                                                                 });
                                                                 })
