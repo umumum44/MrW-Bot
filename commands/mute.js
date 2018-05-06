@@ -41,6 +41,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 															logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
 														}
 													});
+													});
                                                                                         }, muteTime);
                                                                                 });
                                                                 })
