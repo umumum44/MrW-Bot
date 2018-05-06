@@ -26,12 +26,12 @@ module.exports.run = async (bot, message, args) => {
 								if (logChannel == undefined) return msg.delete();
 								var logGuild = logChannel.guild;
 								if (logGuild == undefined) return msg.delete();
-								if (logGuild.id === msg.guild.id) {
+								if (`${logGuild.id}` === `${msg.guild.id}`) {
 									const kickEmbed = new Discord.RichEmbed()
 										.setTitle("Member Kicked")
 										.setColor("RED")
 										.addField("Kick Information", `Kicked ID: \`${target.id}\`\nMember Kicked: ${target}\nKicked At: \`${Date.now()}\`\nKick Reason: \`${reason}\``)
-									logsDatabase.send({ embed: kickEmbed }).catch(function() {});
+									logChannel.send({ embed: kickEmbed }).catch(function() {});
 								}
 							});
 							});
