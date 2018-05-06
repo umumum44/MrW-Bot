@@ -22,6 +22,21 @@ module.exports.run = async (bot, message, args) => {
 							reason: `Banned by ${message.author.tag} for ${reason}`
 						}).then(() => {
 							message.channel.send(`***Successfully banned \`${target.user.tag}\`.***`).then(msg => msg.delete(5000).catch(function() {}));
+							var logsDatabase = bot.channels.get("440238037201453056");
+							logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+							logmessages.forEach(msg => {
+								var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+								if (logChannel == undefined) return msg.delete();
+								var logGuild = logChannel.guild;
+								if (logGuild == undefined) return msg.delete();
+								if (logGuild.id === msg.guild.id) {
+									const messageDeleteEmbed = new Discord.RichEmbed()
+										.setTitle("Member Banned")
+										.setColor("RED")
+										.addField("Member Information", `Member ID: \`${target.id}\`\nMember Banned: ${target}\nBanned At: \`${Date.now()}\``)
+									logsDatabase.send({ embed: messageDeleteEmbed }).catch(function() {});
+					}
+				});
 						}).catch(() => {
 							message.channel.send(`Failed to ban \`${target.user.tag}\`.`).then(msg => msg.delete(5000).catch(function() {}));
 						});
