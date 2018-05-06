@@ -18,7 +18,7 @@ module.exports.run = async (bot) => {
               .setTitle("Message Delete")
               .setColor("RED")
               .addField("Message Content", `Message ID: \`${message.id}\`\nMessage Author: ${message.author}\nMessage Channel: ${message.channel}\nCreated At: \`${message.createdAt}\`\nDeleted At: \`${Date.now()}\``)
-              .setDescription(`\`\`\`${message.content}${messageAttachments}\`\`\``);
+              .setDescription(`\`\`\`${message.content.replace(/\`/gi, "")}${messageAttachments}\`\`\``);
             logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
 				});
@@ -45,7 +45,7 @@ module.exports.run = async (bot) => {
               .setTitle("Message Edit")
               .setColor("RED")
               .addField("Message Information", `Message ID: \`${newmessage.id}\`\nMessage Author: ${newmessage.author}\nMessage Channel: ${newmessage.channel}\nCreated At: \`${newmessage.createdAt}\`\Edited At: \`${Date.now()}\``)
-              .setDescription(`**Old Message:**\`\`\`${oldmessage.content}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content}${nmessageAttachments}\`\`\``);
+              .setDescription(`**Old Message:**\`\`\`${oldmessage.content.replace(/\`/gi, "")}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content.replace(/\`/gi, "")}${nmessageAttachments}\`\`\``);
             logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
 				});
