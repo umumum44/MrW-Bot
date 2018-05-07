@@ -56,7 +56,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			if (logChannel == undefined) return msg.delete();
 			var logGuild = logChannel.guild;
 			if (logGuild == undefined) return msg.delete();
-			if (`${logGuild.id}` === `${msg.guild.id}`) {
+			if (`${logGuild.id}` === `${message.guild.id}`) {
 				const clearwarnEmbed = new Discord.RichEmbed()
 					.setTitle("Cleared Warns")
 					.setColor("RED")
