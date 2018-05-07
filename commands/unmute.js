@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
 				if (logGuild == undefined) return msg.delete();
 				if (`${logGuild.id}` === `${msg.guild.id}`) {
 				        const unmuteEmbed = new Discord.RichEmbed()
-					        .setTitle("Member Banned")
+					        .setTitle("Member Unmuted")
 					        .setColor("RED")
 					        .addField("Unmute Information", `Unmuted ID: \`${tounmute.id}\`\nMember Unmuted: ${tounmute}\nModerator: ${message.author}\nUnmuted At: \`${new Date(Date.now())}\``)
 					logChannel.send({ embed: unmuteEmbed }).catch(function() {});
