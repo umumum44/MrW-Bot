@@ -24,11 +24,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 														var logGuild = logChannel.guild;
 														if (logGuild == undefined) return msg.delete();
 														if (`${logGuild.id}` === `${msg.guild.id}`) {
-															const messageDeleteEmbed = new Discord.RichEmbed()
+															const muteEmbed = new Discord.RichEmbed()
 																.setTitle("Member Muted")
 																.setColor("RED")
 																.addField("Member Information", `Member ID: \`${target.id}\`\nMember Muted: ${target}\nModerator: ${message.author}\nMuted At: \`${new Date(Date.now())}\``)
-															logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
+															logChannel.send({ embed: muteEmbed }).catch(function() {});
 														}
 													});
 													});
