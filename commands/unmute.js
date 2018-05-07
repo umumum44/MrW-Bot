@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
 				if (logChannel == undefined) return msg.delete();
 				var logGuild = logChannel.guild;
 				if (logGuild == undefined) return msg.delete();
-				if (`${logGuild.id}` === `${msg.guild.id}`) {
+				if (`${logGuild.id}` === `${message.guild.id}`) {
 				        const unmuteEmbed = new Discord.RichEmbed()
 					        .setTitle("Member Unmuted")
 					        .setColor("RED")
