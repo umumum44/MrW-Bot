@@ -16,22 +16,22 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                                                 if (muteTime >= 10000) {
                                                         target.addRole(message.guild.roles.find("name", "Muted"))
                                                                 .then(() => {
-								var logsDatabase = bot.channels.get("440238037201453056");
-												logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
-													logmessages.forEach(msg => {
-														var logChannel = bot.channels.get(msg.content.split(" ")[1]);
-														if (logChannel == undefined) return msg.delete();
-														var logGuild = logChannel.guild;
-														if (logGuild == undefined) return msg.delete();
-														if (`${logGuild.id}` === `${msg.guild.id}`) {
-															const muteEmbed = new Discord.RichEmbed()
-																.setTitle("Member Muted")
-																.setColor("RED")
-																.addField("Member Information", `Member ID: \`${target.id}\`\nMember Muted: ${target}\nModerator: ${message.author}\nMuted At: \`${new Date(Date.now())}\``)
-															logChannel.send({ embed: muteEmbed }).catch(function() {});
-														}
-													});
-													});
+									var logsDatabase = bot.channels.get("440238037201453056");
+										logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+											logmessages.forEach(msg => {
+												var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+												if (logChannel == undefined) return msg.delete();
+												var logGuild = logChannel.guild;
+												if (logGuild == undefined) return msg.delete();
+												if (`${logGuild.id}` === `${msg.guild.id}`) {
+													const muteEmbed = new Discord.RichEmbed()
+															.setTitle("Member Muted")
+															.setColor("RED")
+															.addField("Member Information", `Member ID: \`${target.id}\`\nMember Muted: ${target}\nModerator: ${message.author}\nMuted At: \`${new Date(Date.now())}\``)
+														logChannel.send({ embed: muteEmbed }).catch(function() {});
+												}
+											});
+										});
                                                                         message.channel.send(`***Successfully muted \`${target.user.tag}\` for ${ms(muteTime, { long: true })}.***`)
                                                                                 .catch(function () {});
                                                                         bot.channels.get("436947091483262996")
