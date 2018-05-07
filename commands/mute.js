@@ -19,7 +19,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									var logsDatabase = bot.channels.get("440238037201453056");
 										logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 											logmessages.forEach(msg => {
-												console.log("hello")
 												var logChannel = bot.channels.get(msg.content.split(" ")[1]);
 												if (logChannel == undefined) return msg.delete();
 												var logGuild = logChannel.guild;
@@ -60,6 +59,22 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                                                         .then(() => {
                                                                 message.channel.send(`***Successfully muted \`${target.user.tag}\`.***`)
                                                                         .catch(function () {});
+								var logsDatabase = bot.channels.get("440238037201453056");
+								logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+									logmessages.forEach(msg => {
+										var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+										if (logChannel == undefined) return msg.delete();
+										var logGuild = logChannel.guild;
+										if (logGuild == undefined) return msg.delete();
+										if (`${logGuild.id}` === `${msg.guild.id}`) {
+											const muteEmbed = new Discord.RichEmbed()
+													.setTitle("Member Muted")
+													.setColor("RED")
+													.addField("Member Information", `Member ID: \`${target.id}\`\nMember Muted: ${target}\nModerator: ${message.author}\nMuted At: \`${new Date(Date.now())}\``)
+												logChannel.send({ embed: muteEmbed }).catch(function() {});
+										}
+									});
+								});
                                                         })
                                                         .catch(() => {
                                                                 message.channel.send(`Failed to mute \`${target.user.tag}\`.`)
