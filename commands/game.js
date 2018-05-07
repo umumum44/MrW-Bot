@@ -241,7 +241,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	        });
 	      }
 	    } else {
-	      message.reply("Please specify a valid user. Example: `!game row4 @gt_c`.").catch(() => {
+	      message.reply("Please specify a valid user. Example: `!!game row4 @gt_c`.").catch(() => {
 	        message.author.send(`You attempted to use the \`row4\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 	      });
 	    }
