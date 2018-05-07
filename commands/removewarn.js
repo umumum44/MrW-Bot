@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
 					if (logChannel == undefined) return msg.delete();
 					var logGuild = logChannel.guild;
 					if (logGuild == undefined) return msg.delete();
-					if (`${logGuild.id}` === `${msg.guild.id}`) {
+					if (`${logGuild.id}` === `${message.guild.id}`) {
 						const rwarnEmbed = new Discord.RichEmbed()
 							.setTitle("Removed Warning")
 							.setColor("RED")
