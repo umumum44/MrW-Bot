@@ -19,6 +19,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									var logsDatabase = bot.channels.get("440238037201453056");
 										logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 											logmessages.forEach(msg => {
+												console.log("hello")
 												var logChannel = bot.channels.get(msg.content.split(" ")[1]);
 												if (logChannel == undefined) return msg.delete();
 												var logGuild = logChannel.guild;
