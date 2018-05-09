@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	if(!args[0]) return message.reply("You must provide the member's username/tag to unban!").catch(function() {});
 	message.guild.fetchBans().then((bans) => {
 		let filteredbans = bans.filter(user => user.username.startsWith(args[0]));
-		console.log(filteredbans)
+		console.log(bans)
 		if(filteredbans.size > 1) return message.reply("Please be more specific with the username to unban!").catch(function() {});
 		if(filteredbans.size > 0) return message.reply("Couldn't find anyone with this username!").catch(function() {});
 		let banneduser = filteredbans.first();
