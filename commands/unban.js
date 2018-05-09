@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 					});
 				});
 			}).catch(() => {
-				message.reply("Couldn't unban this user. Please check my permissions and try again.")
+				message.reply("Couldn't unban this user. Please check my permissions and try again.").catch(function() {});
 		})
 	});
 };
