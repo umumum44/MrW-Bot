@@ -10,12 +10,27 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		let banneduser = filteredbans.first();
 		message.guild.unban(banneduser).then(() => {
 			message.reply(`Successfully unbanned \`${banneduser.tag}\``).catch(function() {});
+			var logsDatabase = bot.channels.get("440238037201453056");
+				logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
+					logmessages.forEach(msg => {
+						var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+						if (logChannel == undefined) return msg.delete();
+						var logGuild = logChannel.guild;
+						if (logGuild == undefined) return msg.delete();
+						if (`${logGuild.id}` === `${message.guild.id}`) {
+							const banEmbed = new Discord.RichEmbed()
+								.setTitle("Member Unbanned")
+								.setColor("RED")
+								.addField("Unban Information", `Unbanned ID: \`${banneduser.id}\`\nMember Unbanned: ${banneduser.tag}\nUnbanned At: \`${new Date(Date.now())}\`\nModerator: ${message.author}`)
+							logChannel.send({ embed: banEmbed }).catch(function() {});
+						}
+					});
+				});
 			}).catch(() => {
 				message.reply("Couldn't unban this user. Please check my permissions and try again.")
-		});
+		})
 	});
-	
-}
+};
 module.exports.help = {
         name: "unban"
 }
