@@ -28,7 +28,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 						}
 					});
 				});
-			}).catch(() => {
+			}).catch((e) => {
+				console.log(e)
 				message.reply("Couldn't unban this user. Please check my permissions and try again.").catch(function() {});
 		})
 	});
