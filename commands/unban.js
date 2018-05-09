@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		if(filteredbans.size = 0) return message.reply("Couldn't find anyone with this username!").catch(function() {});
 		let banneduser = filteredbans.first();
 		console.log(banneduser.tag)
-		message.guild.unban(banneduser).then(() => {
+		message.guild.unban(`${banneduser.id}`).then(() => {
 			message.reply(`Successfully unbanned \`${banneduser.tag}\``).catch(function() {});
 			var logsDatabase = bot.channels.get("440238037201453056");
 				logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
