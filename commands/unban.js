@@ -6,8 +6,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	message.guild.fetchBans().then((bans) => {
 		let filteredbans = bans.filter(b => b.tag.startsWith(args[0]));
 		console.log(bans)
-		if(filteredbans.size > 1) return message.reply("Please be more specific with the username to unban!").catch(function() {});
-		if(filteredbans.size = 0) return message.reply("Couldn't find anyone with this username!").catch(function() {});
+		if(filteredbans.size > 1) return message.reply("Please be more specific with the username/tag to unban!").catch(function() {});
+		if(filteredbans.size === 0) return message.reply("Couldn't find anyone with this username!").catch(function() {});
 		let banneduser = filteredbans.first();
 		console.log(banneduser.tag)
 		message.guild.unban(`${banneduser.id}`).then(() => {
