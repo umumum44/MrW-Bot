@@ -11,16 +11,15 @@ let rejectionembed = new Discord.RichEmbed()
   .setDescription("nah bro")
 
 module.exports.run = async (bot, message, args, prefix, content) => {
-  if (call.message.author.id != "289380085025472523" && call.message.author.id != "432650511825633317") return call.message.channel.send(rejectionembed);
+  if (message.author.id != "289380085025472523" && message.author.id != "432650511825633317") return message.channel.send(rejectionembed);
   try {
-    
-    const code = call.args.join(" ");
+    const code = args.join(" ");
     let evaled = eval(code);
     if (typeof evaled !== "string")
       evaled = require("util").inspect(evaled);
       call.message.channel.send(clean(evaled), {code:"xl"});
   } catch (err) {
-    call.message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
   }
 }
 module.exports.help = {
