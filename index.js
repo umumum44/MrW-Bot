@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const logsfile = require("./logs.js")
 const fs = require("fs");
 const bot = new Discord.Client({
-        disableEveryone: true
+        disableEveryone: false
 });
 bot.counter = false;
 bot.commands = new Discord.Collection();
