@@ -25,7 +25,7 @@ bot.on("ready", async () => {
         await tchannel.bulkDelete(100)
         let ttchannel = bot.channels.find(`id`, "437397457073078272");
         await ttchannel.bulkDelete(100)
-        await bot.user.setActivity("New Commands Very Soon™!", {
+        await bot.user.setActivity(" IDK", {
                 type: "PLAYING"
         });
         logsfile.run(bot);
