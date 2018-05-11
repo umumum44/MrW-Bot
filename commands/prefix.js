@@ -6,11 +6,9 @@ module.exports.run = async (bot, message, args) => {
         if (!args[0]) return message.reply("Please provide the new prefix!")
         let prefix = args[0]
         if (prefix.length > 5) return message.reply("The prefix cannot be more than 5 characters!")
-        let dbguild = bot.guilds.find(`id`, "417149156193337344");
+        let dbguild = bot.guilds.get("443929284411654144");
         let channel = dbguild.channels.find(`name`, "wbotprefixes-database")
-        let messages = await channel.fetchMessages({
-                limit: 100
-        })
+        let messages = await channel.fetchMessages({ limit: 100 });
         let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi")
                 .test(m.name));
         channels.forEach(chl => {
@@ -32,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
                 await newc.overwritePermissions(channel.guild.id, {
                         READ_MESSAGES: false
                 })
-                await newc.setParent("422122104499208214");
+                await newc.setParent("443931006437949440");
                 await newc.send(`${message.guild.id} ${prefix}`);
                 message.react("\u2705")
         } else {
