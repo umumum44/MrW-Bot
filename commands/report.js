@@ -17,9 +17,9 @@ async function awaitReply(message, question, limit = 300000) {
 
 module.exports.run = async (bot, message, args) => {
          
-        let timeoutchannel = bot.channels.find(`id`, "424010321750130689");
-        let reportchannel = bot.channels.find(`id`, "424014842106740737");
-        let blacklistchannel = bot.channels.find(`id`, "424006591411519499");
+        let timeoutchannel = bot.channels.get("443931386458406923");
+        let reportchannel = bot.channels.get("424014842106740737");
+        let blacklistchannel = bot.channels.get("443931370968973312");
         let tmessages = await timeoutchannel.fetchMessages({
                 limit: 100
         });
@@ -35,7 +35,7 @@ module.exports.run = async (bot, message, args) => {
         let cuser = carray.first();
         if (cuser) return message.reply("You cannot use this command because you just used it! To avoid spam, you must wait five minutes from the last time you used this command! If you are already in the process of using this command, you must cancel this prompt!");
         timeoutchannel.send(`${message.author.id}, ${message.author.username}#${message.author.discriminator}\n**MUST WAIT TO USE REPORT COMMAND (IP)**`)
-        let ttchannel = bot.channels.find(`id`, "424010321750130689")
+        let ttchannel = bot.channels.get("443931386458406923")
         let ttmessages = await ttchannel.fetchMessages({
                 limit: 100
         })
