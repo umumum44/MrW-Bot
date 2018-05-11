@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
 		.addField("Bot Name", bot.user.username)
 		.addField("Created On", bot.user.createdAt)
 		.addField("Created By", "Windows 10 MacOS#0001 The Wonderful people who coded the bot ethanlaj#8805 and gt_c#0495");
-	return message.channel.send({ embed: botinfocmd }).catch(function() {});
+	message.channel.send({ embed: botinfocmd }).catch(function() {});
 }
 
 module.exports.help = {
