@@ -38,8 +38,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You do not have permission to use this command.")
         if (!args[0]) return message.reply("You must provide the name of the command to enable/disable. Please try again.")
         //if(args[0] === "disable" || "help") return message.reply("This command cannot be disabled!")
-        let dbguild = bot.guilds.find(`id`, "417149156193337344");
-        let channel = dbguild.channels.find(`name`, "wbotdisable-database")
+        let dbguild = bot.guilds.get("443929284411654144");
+        let channel = dbguild.channels.find("name", "wbotdisable-database")
         let messages = await channel.fetchMessages({
                 limit: 100
         })
@@ -68,11 +68,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         if (messages.size > 97) {
                 await channel.setName("o-wbotdisable-database")
                 await dbguild.createChannel('wbotdisable-database')
-                let newc = dbguild.channels.find(`name`, "wbotdisable-database")
+                let newc = dbguild.channels.find("name", "wbotdisable-database")
                 await newc.overwritePermissions(channel.guild.id, {
                         READ_MESSAGES: false
-                })
-                await newc.setParent("422122104499208214");
+                });
+                await newc.setParent("443931006437949440");
         }
 }
 module.exports.help = {
