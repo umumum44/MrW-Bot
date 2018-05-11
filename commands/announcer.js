@@ -2,10 +2,8 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
         if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You don't have permission to use this command!")
         if (!args[0]) return message.reply("You did not supply the correct parameters! \n\n`!!announcer toggle\n!!announcer channel (#channel)\n!!announcer avatar\n!!announcer footer\n!!announcer joinmessage (message)\n!!announcer leavemessage (message)\n!!announcer reset`")
-        var announcerchannel = bot.channels.find(`id`, `439179955646234624`);
-        var announcermsgs = await announcerchannel.fetchMessages({
-                limit: 100
-        })
+        var announcerchannel = bot.channels.get("443931378011078666");
+        var announcermsgs = await announcerchannel.fetchMessages({ limit: 100 });
         var announcermsg = announcermsgs.find(m => m.content.startsWith(message.guild.id));
         if (announcermsg) {
                 //guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
