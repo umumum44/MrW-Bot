@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	let target = message.guild.member(message.mentions.users.first());
 	if (target) {
 		if (message.member.hasPermission("KICK_MEMBERS") || message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("BAN_MEMBERS")) {
-			var dbguild = bot.guilds.get("417149156193337344");
+			var dbguild = bot.guilds.get("443929284411654144");
 			var dbchannels = dbguild.channels.filter(m => RegExp("warn-database", "gi").test(m.name));
 			var warns = [];
 			var warningnum = 0;
@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	} else {
 		message.reply("Please **mention** a valid user.");
 	}
-	var logsDatabase = bot.channels.get("440238037201453056");
+	var logsDatabase = bot.channels.get("443931379907166210");
 	logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 		logmessages.forEach(msg => {
 			var logChannel = bot.channels.get(msg.content.split(" ")[1]);
