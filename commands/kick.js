@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-	       
+
 	const rawContent = args.join(" ");
 	const parameterOne = rawContent.split(" ")[0];
 	const parameterTwo = rawContent.split(" ")[1];
@@ -19,21 +19,21 @@ module.exports.run = async (bot, message, args) => {
 					target.send(`You have been kicked from the \`${message.guild.name}\` server by \`${message.author.tag}\` for ${reason}`).then(() => {
 						target.kick(`Kicked by ${message.author.tag} for ${reason}`).then(() => {
 							message.channel.send(`***Successfully kicked \`${target.user.tag}\`.***`).catch(function() {});
-							var logsDatabase = bot.channels.get("440238037201453056");
+							var logsDatabase = bot.channels.get("443931379907166210");
 							logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
-							logmessages.forEach(msg => {
-								var logChannel = bot.channels.get(msg.content.split(" ")[1]);
-								if (logChannel == undefined) return msg.delete();
-								var logGuild = logChannel.guild;
-								if (logGuild == undefined) return msg.delete();
-								if (`${logGuild.id}` === `${message.guild.id}`) {
-									const kickEmbed = new Discord.RichEmbed()
-										.setTitle("Member Kicked")
-										.setColor("RED")
-										.addField("Kick Information", `Kicked ID: \`${target.id}\`\nMember Kicked: ${target}\nKicked At: \`${new Date(Date.now())}\`\nModerator: ${message.author}\nKick Reason: \`${reason}\``)
-									logChannel.send({ embed: kickEmbed }).catch(function() {});
-								}
-							});
+								logmessages.forEach(msg => {
+									var logChannel = bot.channels.get(msg.content.split(" ")[1]);
+									if (logChannel == undefined) return msg.delete();
+									var logGuild = logChannel.guild;
+									if (logGuild == undefined) return msg.delete();
+									if (`${logGuild.id}` === `${message.guild.id}`) {
+										const kickEmbed = new Discord.RichEmbed()
+											.setTitle("Member Kicked")
+											.setColor("RED")
+											.addField("Kick Information", `Kicked ID: \`${target.id}\`\nMember Kicked: ${target}\nKicked At: \`${new Date(Date.now())}\`\nModerator: ${message.author}\nKick Reason: \`${reason}\``)
+										logChannel.send({ embed: kickEmbed }).catch(function() {});
+									}
+								});
 							});
 						}).catch(() => {
 							message.channel.send(`Failed to kick \`${target.user.tag}\`.`).catch(function() {});
