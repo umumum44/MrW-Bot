@@ -23,8 +23,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 							}).then(() => {
 								message.guild.unban(target.user, `Softbanned by ${message.author.tag} for ${reason}`).then(() => {
 									message.channel.send(`***Successfully softbanned \`${target.user.tag}\`.***`)
-											.catch(function() {});
-									var logsDatabase = bot.channels.get("440238037201453056");
+										.catch(function() {});
+									var logsDatabase = bot.channels.get("443931379907166210");
 									logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 										logmessages.forEach(msg => {
 											var logChannel = bot.channels.get(msg.content.split(" ")[1]);
@@ -58,7 +58,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									reason: `Softbanned by ${message.author.tag} for ${reason}`
 								}).then(() => {
 									message.channel.send(`***Successfully softbanned \`${target.user.tag}\`.***`)
-											.catch(function() {});
+										.catch(function() {});
 								}).catch(() => {
 									message.reply(`Failed to unban \`${target.user.tag}\`.`)
 										.catch(function() {});
