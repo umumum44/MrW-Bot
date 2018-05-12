@@ -204,14 +204,14 @@ bot.on("guildDelete", guildo => {
 
 bot.on("message", async message => {
 	if (message.channel.type === "dm") return;
-	if (message.channel.id === "443931386458406923") await message.delete(240000)
+	if (message.channel.id === "443931385577865237") await message.delete(120000)
 	if ((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
 		message.delete(5000);
 	}
 	if ((message.content.endsWith("just talk again!")) && (message.author.bot)) {
 		message.delete(5000);
 	}
-	if ((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "420748985410650123")) {
+	if ((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "443931386458406923")) {
 		message.delete(300000);
 	}
 	if ((message.content.endsWith("Your AFK status was removed.")) && (message.author.bot)) {
