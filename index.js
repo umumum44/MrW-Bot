@@ -221,7 +221,7 @@ bot.on("message", async message => {
 		message.delete(5000);
 	}
 	if (message.author.bot === false) {
-		let channel = bot.channels.find(`id`, "422201325623836682");
+		let channel = bot.channels.find(`id`, "443931374940979208");
 		let messages = await channel.fetchMessages({ limit: 100 });
 		let array = messages.filter(m => RegExp(message.author.id, "gi").test(m.content));
 		let first = array.first();
