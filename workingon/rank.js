@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 let dbguild = bot.guilds.get("443929284411654144");
 let channels = dbguild.channels.filter(m => RegExp("rank-database", "gi").test(m.name));
-async function checkIfDisabled(bot, message, args, commandname, channels) {
+async function checkRank(bot, message, args, persontolookfor, channels) {
 		//GUILDID AUTHORID RANK XP
 		const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({ limit: 100 })))
 		const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
-		const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id} ${persontolookfor.id}`))
+		const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id} ${persontolookfor}`))
 		if (!msg) {
 			return (false)
 		}
@@ -16,8 +16,14 @@ async function checkIfDisabled(bot, message, args, commandname, channels) {
 		}
 	}
 module.exports.run = async (bot, message, args, prefix, content) => {
+	let channels = dbguild.channels.filter(m => RegExp("rank-database", "gi").test(m.name));
 	if(!message.mentions.members.first()) {
-		//get their rank from databases
+		let persontolookfor = message.mentions.members.first().id;
+		let returnedarray = await checkRank(bot, message, args, persontolookfor, channels);
+		if (returnedarray === false) return message.reply("Couldn't find any data for this user!");
+		let rank = returnedarray[2];
+		let xp = returnedarray[3];
+		message.reply(`Rank for ${message.mentions.members.first().tag}:\n\`Rank:
 	} else {
 		//give them their rank
 	}
