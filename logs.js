@@ -33,7 +33,7 @@ module.exports.run = async (bot) => {
 		var nmessageAttachments = "";
 		if (oldmessage.attachments.first() !== undefined) omessageAttachments = `\n${oldmessage.attachments.first().url}`;
 		if (oldmessage.content !== "" || omessageAttachments !== "") {
-			var logsDatabase = bot.channels.get("440238037201453056");
+			var logsDatabase = bot.channels.get("443931379907166210");
 			logsDatabase.fetchMessages({ limit: 100 }).then(messages => {
 				messages.forEach(msg => {
 					var logChannel = bot.channels.get(msg.content.split(" ")[1]);
