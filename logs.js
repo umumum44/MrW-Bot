@@ -6,7 +6,7 @@ module.exports.run = async (bot) => {
 		var messageAttachments = "";
 		if (message.attachments.first() !== undefined) messageAttachments = `\n${message.attachments.first().url}`;
 		if (message.content !== "" || messageAttachments !== "") {
-			var logsDatabase = bot.channels.get("440238037201453056");
+			var logsDatabase = bot.channels.get("443931379907166210");
 			logsDatabase.fetchMessages({ limit: 100 }).then(messages => {
 				messages.forEach(msg => {
 					var logChannel = bot.channels.get(msg.content.split(" ")[1]);
@@ -15,11 +15,11 @@ module.exports.run = async (bot) => {
 					if (logGuild == undefined) return msg.delete();
 					if (`${logGuild.id}` === `${message.guild.id}`) {
 						const messageDeleteEmbed = new Discord.RichEmbed()
-              .setTitle("Message Delete")
-              .setColor("RED")
-              .addField("Message Content", `Message ID: \`${message.id}\`\nMessage Author: ${message.author}\nMessage Channel: ${message.channel}\nCreated At: \`${message.createdAt}\`\nDeleted At: \`${new Date(Date.now())}\``)
-              .setDescription(`\`\`\`${message.content.replace(/\`/gi, "")}${messageAttachments}\`\`\``);
-            logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
+							.setTitle("Message Delete")
+							.setColor("RED")
+							.addField("Message Content", `Message ID: \`${message.id}\`\nMessage Author: ${message.author}\nMessage Channel: ${message.channel}\nCreated At: \`${message.createdAt}\`\nDeleted At: \`${new Date(Date.now())}\``)
+							.setDescription(`\`\`\`${message.content.replace(/\`/gi, "")}${messageAttachments}\`\`\``);
+						logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
 				});
 			});
@@ -42,11 +42,11 @@ module.exports.run = async (bot) => {
 					if (logGuild == undefined) return msg.delete();
 					if (`${logGuild.id}` === `${newmessage.guild.id}`) {
 						const messageDeleteEmbed = new Discord.RichEmbed()
-              .setTitle("Message Edit")
-              .setColor("RED")
-              .addField("Message Information", `Message ID: \`${newmessage.id}\`\nMessage Author: ${newmessage.author}\nMessage Channel: ${newmessage.channel}\nCreated At: \`${newmessage.createdAt}\`\nEdited At: \`${new Date(Date.now())}\``)
-              .setDescription(`**Old Message:**\`\`\`${oldmessage.content.replace(/\`/gi, "")}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content.replace(/\`/gi, "")}${nmessageAttachments}\`\`\``);
-            logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
+							.setTitle("Message Edit")
+							.setColor("RED")
+							.addField("Message Information", `Message ID: \`${newmessage.id}\`\nMessage Author: ${newmessage.author}\nMessage Channel: ${newmessage.channel}\nCreated At: \`${newmessage.createdAt}\`\nEdited At: \`${new Date(Date.now())}\``)
+							.setDescription(`**Old Message:**\`\`\`${oldmessage.content.replace(/\`/gi, "")}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content.replace(/\`/gi, "")}${nmessageAttachments}\`\`\``);
+						logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
 					}
 				});
 			});
