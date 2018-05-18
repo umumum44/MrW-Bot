@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
    "engines": {
-    "node": "^8.9.4"
+    "node": ">= 7.10.1"
   },
   "author": "ethanlaj#8805",
   "license": "ISC",
