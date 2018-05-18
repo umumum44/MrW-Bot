@@ -10,7 +10,7 @@
   "author": "ethanlaj#8805",
   "license": "ISC",
   "dependencies": {
-    "node": "^8.9.4",
+    "node": "8.9.4",
     "discord.js": "^11.3.0",
     "get-meme-urls": "^1.0.1",
     "google": "^2.1.0",
