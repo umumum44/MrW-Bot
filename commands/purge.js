@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.bulkDelete(num + 1)
                         .then(messages => message.reply(`Deleted ${messages.size - 1} messages that were not over two weeks old!`))
                         .catch(console.error);
-                var logsDatabase = bot.channels.get("440238037201453056");
+		var logsDatabase = bot.channels.find("id", "443931379907166210");
 		logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 			logmessages.forEach(msg => {
 				var logChannel = bot.channels.get(msg.content.split(" ")[1]);
