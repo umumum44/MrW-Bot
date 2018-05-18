@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args, prefix) => {
 			var dbchannel = dbguild.channels.find("name", "warn-database")
 			var olo = await dbchannel.fetchMessages({ limit: 100 });
 			var msgcount = olo.size;
-			var logsDatabase = bot.channels.get("443931379907166210");
+                      	var logsDatabase = bot.channels.find("id", "443931379907166210");
 			logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 				logmessages.forEach(msg => {
 					var logChannel = bot.channels.get(msg.content.split(" ")[1]);
