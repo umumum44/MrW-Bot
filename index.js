@@ -71,7 +71,7 @@ bot.on("message", async message => {
 	let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 	var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 	if (prefix != null) prefix = prefix.prefix; else prefix = botconfig.prefix;
-	if (message.isMemberMentioned(bot.user) && (message.content.endsWith("prefix")) return message.reply(`My prefix is \`${prefix}\``);
+	if (message.isMemberMentioned(bot.user) && message.content.endsWith("prefix")) return message.reply(`My prefix is \`${prefix}\``);
 	if (message.isMemberMentioned(bot.user) && message.content.endsWith("prefix reset") && message.member.hasPermission("MANAGE_GUILD")) {
 		let aaa = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 		aaa.forEach(chl => {
