@@ -66,12 +66,10 @@ bot.on("message", async message => {
 		bot.rateLimits.afk.splice(bot.rateLimits.afk.indexOf(checker), 1);
 		message.reply("Welcome back! Your AFK status was removed.").then(msg => msg.delete(5000));
 	}
-	let messageArray = message.content.split(" ");
-	let cmd = messageArray[0].toLowerCase();
+	let cmd = message.content.split(" ")[0].toLowerCase();
 	if (!cmd) return;
-	let args = messageArray.slice(1);
+	let args = message.content.split(" ").slice(1);
 	let content = args.join(" ");
-	let guildid = message.guild.id;
 	let dbguild = bot.guilds.get("443929284411654144");
 	let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 	async function getPrefix(bot, message, args) {
@@ -118,7 +116,7 @@ bot.on("message", async message => {
 		const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
 		const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id}`))
 		if (!msg) {
-			return (false)
+			return false;
 		}
 		if (msg) {
 			var commands = msg.content.split(" ");
@@ -126,9 +124,9 @@ bot.on("message", async message => {
 			if (commands.shift() === message.guild.id) {
 				// ["command", "command", "command"];
 				if (commands.includes(commandname)) {
-					return (true)
+					return true;
 				} else {
-					return (false)
+					return false;
 				}
 			}
 		}
