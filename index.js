@@ -21,7 +21,6 @@ fs.readdirSync(__dirname + "/messageload").forEach(file => {
 	console.log(file);
 	loaders.push(require("./messageload/" + file));
 });
-console.log(messageLoaders);
 
 fs.readdir("./commands/", (err, files) => {
 	if (err) return console.log(err);
