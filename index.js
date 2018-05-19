@@ -16,12 +16,6 @@ fs.readdirSync(__dirname + "/load").forEach(file => {
 	loaders.push(require("./load/" + file));
 });
 
-var messageLoaders = [];
-fs.readdirSync(__dirname + "/messageload").forEach(file => {
-	console.log(file);
-	loaders.push(require("./messageload/" + file));
-});
-
 fs.readdir("./commands/", (err, files) => {
 	if (err) return console.log(err);
 	let jsfile = files.filter((f) => f.split(".").pop() === "js")
