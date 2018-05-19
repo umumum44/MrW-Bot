@@ -46,10 +46,6 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
 	if (message.channel.type === "dm") return;
-	if (message.channel.id === "443931385577865237") await message.delete(120000);
-	if ((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "443931386458406923")) {
-		message.delete(300000);
-	}
 	if (message.author.bot) return;
 	let mention = message.mentions.members.first();
 	var checker;
