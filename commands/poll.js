@@ -3,6 +3,10 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
 	const checker = bot.rateLimits.poll.find(value => value === message.author.id);
 	if (checker) return message.reply("You can only use this command once every two minutes!").catch(function() {});
+	bot.rateLimits.poll.push(message.author.id);
+	setTimeout(function() {
+		bot.rateLimits.poll.splice(bot.rateLimits.afk.indexOf(checker), 1);
+	}, 120000);
 	const pollTitle = content.split(":")[0];
 	if (content.split(":")[1] !== undefined) {
 		var pollOptions = content.split(":").slice(1).join(":").split("|");
@@ -23,10 +27,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 						await poll.react(eA[orderLoop]);
 						orderLoop = orderLoop + 1;
 					}
-					bot.rateLimits.poll.push(message.author.id);
-					setTimeout(function() {
-						bot.rateLimits.poll.splice(bot.rateLimits.afk.indexOf(checker), 1);
-					}, 120000);
 				}).catch(() => {
 					message.reply("Something went wrong and I could not create the poll.").catch(() => {
 						message.author.send(`You attempted to use the \`poll\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
