@@ -8,6 +8,7 @@ const bot = new Discord.Client({
 bot.counter = false;
 bot.commands = new Discord.Collection();
 bot.disabledCommands = new Discord.Collection();
+bot.rateLimits = { poll: [], report: [], afk: [] };
 
 var loaders = [];
 fs.readdirSync(__dirname + "/load").forEach(file => { 
