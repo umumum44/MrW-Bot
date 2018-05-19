@@ -44,31 +44,39 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-	if (message.channel.type === "dm") return;
-	if (message.author.bot) return;
-	let cmd = message.content.split(" ")[0].toLowerCase();
-	if (!cmd) return;
-	let args = message.content.split(" ").slice(1);
-	let content = args.join(" ");
-	let dbguild = bot.guilds.get("443929284411654144");
-	let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
-	var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
-	if (prefix != null) prefix = prefix.prefix; else prefix = botconfig.prefix;
-	if (message.isMemberMentioned(bot.user) && message.content.endsWith("prefix")) return message.reply(`My prefix is \`${prefix}\``);
-	if (!message.content.startsWith(prefix)) return;
-	var commandfile = false;
-	bot.commands.forEach(command => {
-		let aliases = command.help.aliases;
-		if (aliases == undefined) aliases = [];
-		aliases.push(command.help.name);
-		if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
-	});
-	if (!commandfile) return;
-	var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
-	var disableCheck = false;
-	disableCheck = (disabled == null) ? false : true;
-	if (disableCheck) disableCheck = (disabled.commands.includes(cmd.slice(prefix.length))) ? true : false;
-	if (disableCheck) return message.reply("This command is disabled by an admin in this server!")
-	return commandfile.run(bot, message, args, prefix, content);
+	if (message.channel.type !== "dm") {
+		if (!message.author.bot) {
+			let cmd = message.content.split(" ")[0].toLowerCase();
+			if (cmd != null) {
+				let args = message.content.split(" ").slice(1);
+				let content = args.join(" ");
+				let dbguild = bot.guilds.get("443929284411654144");
+				let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
+				var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
+				if (prefix != null) prefix = prefix.prefix;
+				else prefix = botconfig.prefix;
+				if (message.isMemberMentioned(bot.user) && message.content.endsWith("prefix")) return message.reply(`My prefix is \`${prefix}\``);
+				if (message.content.startsWith(prefix)) {
+					var commandfile = false;
+					bot.commands.forEach(command => {
+						let aliases = command.help.aliases;
+						if (aliases == undefined) aliases = [];
+						aliases.push(command.help.name);
+						if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
+					});
+					if (!commandfile) {
+						var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
+						var disableCheck = false;
+						disableCheck = (disabled == null) ? false : true;
+						if (disableCheck) disableCheck = (disabled.commands.includes(cmd.slice(prefix.length))) ? true : false;
+						if (!disableCheck) {
+							commandfile.run(bot, message, args, prefix, content);
+
+						} else message.reply("This command is disabled by an admin in this server!");
+					}
+				}
+			}
+		}
+	}
 });
 bot.login(botconfig.token);
