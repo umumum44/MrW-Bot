@@ -65,10 +65,6 @@ bot.on("ready", async () => {
 	});
 });
 
-bot.on("guildDelete", guildo => {
-	if (bot.counter) bot.user.setActivity(`${bot.guilds.size} servers`, { type: "WATCHING" });
-});
-
 bot.on("message", async message => {
 	if (message.channel.type === "dm") return;
 	if (message.channel.id === "443931385577865237") await message.delete(120000)
