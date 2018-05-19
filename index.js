@@ -1,11 +1,16 @@
 const botconfig = require("./botconfig.js");
 const Discord = require("discord.js");
-const logsfile = require("./load/logs.js")
 const fs = require("fs");
 const bot = new Discord.Client({
 	disableEveryone: true,
 	fetchAllMembers: true
 });
+
+var loaders = [];
+fs.readdirSync(__dirname + "./load").forEach(file => 
+	loaders.push(require("./load/" + file));
+});
+
 bot.counter = false;
 bot.commands = new Discord.Collection();
 fs.readdir("./commands/", (err, files) => {
@@ -29,7 +34,9 @@ bot.on("ready", async () => {
 	let ttchannel = bot.channels.get("443931386458406923");
 	await ttchannel.bulkDelete(100)
 	await bot.user.setActivity(" IDK", { type: "PLAYING" });
-	logsfile.run(bot);
+	loaders.forEach(loader => {
+		loader.run(bot);
+	});
 	bot.channels.get("443931383866458123").fetchMessages({ limit: 100 }).then(messagesFetched => {
 		var muteGuild;
 		var muteUser;
