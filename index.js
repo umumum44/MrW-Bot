@@ -41,7 +41,6 @@ bot.on("ready", async () => {
 	loaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
-	bot.user.setActivity("IDK", { type: "PLAYING" });
 });
 
 bot.on("message", async message => {
