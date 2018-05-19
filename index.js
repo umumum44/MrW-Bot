@@ -48,7 +48,6 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-	console.log(bot.rateLimits.afk);
 	if (message.channel.type === "dm") return;
 	if (message.channel.id === "443931385577865237") await message.delete(120000);
 	if ((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "443931386458406923")) {
@@ -64,7 +63,7 @@ bot.on("message", async message => {
 	}
 	checker = bot.rateLimits.afk.find(value => value.user === message.author.id);
 	if (checker) {
-		bot.rateLimits.splice(bot.rateLimits.afk.indexOf(checker), 1);
+		bot.rateLimits.afk.splice(bot.rateLimits.afk.indexOf(checker), 1);
 		message.reply("Welcome back! Your AFK status was removed.").then(msg => msg.delete(5000));
 	}
 	let messageArray = message.content.split(" ");
