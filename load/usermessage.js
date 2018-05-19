@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 module.exports.run = async (bot) => {
 	bot.on("guildMemberAdd", async member => {
 		var dbguild = bot.guilds.get("443929284411654144");
