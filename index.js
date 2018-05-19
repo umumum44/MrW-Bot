@@ -107,29 +107,10 @@ bot.on("message", async message => {
 	if (!commandfile) return;
 	var commandname = commandfile.help.name.toLowerCase();
 	//console.log(commandname)
-	let achannels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi").test(m.name));
-	async function checkIfDisabled(bot, message, args, commandname, achannels) {
-		const nestedMessages = await Promise.all(achannels.map(ch => ch.fetchMessages({ limit: 100 })))
-		const flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
-		const msg = flatMessages.find(msg => msg.content.startsWith(`${message.guild.id}`))
-		if (!msg) {
-			return false;
-		}
-		if (msg) {
-			var commands = msg.content.split(" ");
-			// ["guild_id", "command", "command", "command"];
-			if (commands.shift() === message.guild.id) {
-				// ["command", "command", "command"];
-				if (commands.includes(commandname)) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		}
-	}
-	var disablecheck = await checkIfDisabled(bot, message, args, commandname, achannels);
-	if (disablecheck) return message.reply("This command is disabled by an admin in this server!")
+	var disableCheck = bot.databases.disabled.find(value => value.guild === message.guild.id);
+	disableCheck = (disableCheck == null) ? false : true;
+	if (disableCheck) disableCheck = (disableCheck.commands.includes(cmd.slice(prefix.length))) ? true : false;
+	if (disableCheck) return message.reply("This command is disabled by an admin in this server!")
 	return commandfile.run(bot, message, args, prefix, content);
 });
 bot.login(botconfig.token);
