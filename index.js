@@ -1,6 +1,6 @@
 const botconfig = require("./botconfig.js");
 const Discord = require("discord.js");
-const logsfile = require("./logs.js")
+const logsfile = require("./load/logs.js")
 const fs = require("fs");
 const bot = new Discord.Client({
 	disableEveryone: true,
