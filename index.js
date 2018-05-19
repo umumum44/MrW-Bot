@@ -70,16 +70,10 @@ bot.on("message", async message => {
 	let args = messageArray.slice(1);
 	let content = args.join(" ");
 	if (message.author.bot === false) {
-		let mentions = message.mentions.members.first();
-		if (mentions) {
-			let channel = bot.channels.get("443931374940979208");
-			let messages = await channel.fetchMessages({ limit: 100 });
-			let array = messages.filter(m => RegExp(mentions.id, "gi").test(m.content));
-			let first = array.first();
-			if (first) {
-				let afkmsg = first.content.substr(mentions.id.length);
-				message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``).then(msg => msg.delete(5000));
-			}
+		let mention = message.mentions.members.first();
+		if (mention) {
+			let checker = bot.rateLimits.afk.find(value => value.user === mention.id);
+			if (checker) message.reply(`This user is currently AFK!\nAFK Message: \`${checker.reason}\``).then(msg => msg.delete(5000));
 		}
 	}
 	let guildid = message.guild.id;
