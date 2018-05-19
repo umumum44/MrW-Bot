@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	bot.rateLimits.poll.push(message.author.id);
 	setTimeout(function() {
 		bot.rateLimits.poll.splice(bot.rateLimits.afk.indexOf(checker), 1);
-	}, 120000);
+	}, 10000);
 	const pollTitle = content.split(":")[0];
 	if (content.split(":")[1] !== undefined) {
 		var pollOptions = content.split(":").slice(1).join(":").split("|");
