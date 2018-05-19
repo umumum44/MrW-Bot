@@ -30,10 +30,7 @@ module.exports.run = async (bot, message, args) => {
                 .test(m.content));
         let auser = barray.first();
         if (auser) return message.reply("You cannot use this command because you are blacklisted!");
-        let carray = tmessages.filter(m => RegExp(message.author.id, "gi")
-                .test(m.content));
-        let cuser = carray.first();
-        if (cuser) return message.reply("You cannot use this command because you just used it! To avoid spam, you must wait five minutes from the last time you used this command! If you are already in the process of using this command, you must cancel this prompt!");
+        if (bot.rateLimits.report.includes(message.author.id)) return message.reply("You cannot use this command because you just used it! To avoid spam, you must wait five minutes from the last time you used this command! If you are already in the process of using this command, you must cancel this prompt!");
         timeoutchannel.send(`${message.author.id}, ${message.author.username}#${message.author.discriminator}\n**MUST WAIT TO USE REPORT COMMAND (IP)**`)
         let ttchannel = bot.channels.get("443931386458406923")
         let ttmessages = await ttchannel.fetchMessages({
@@ -89,7 +86,10 @@ module.exports.run = async (bot, message, args) => {
                 .addField("How To Reproduce Bug/Glitch", describe);
         reportchannel.send(reportEmbed);
         duser.delete()
-        timeoutchannel.send(`${message.author.id}, ${message.author.username}#${message.author.discriminator}\n**MUST WAIT TO USE REPORT COMMAND**`);
+        bot.rateLimits.report.push(message.author.id);
+        setTimeout(function() {
+                bot.rateLimits.report.splice(bot.rateLimits.report.indexOf(message.author.id), 1);
+        }, 300000);
         message.author.send("\u2705 **Successfully Submitted! -- Your Response Was Submitted And Will Be Reviewed By Our Staff Shortly!** \u2705");
         return;
 }
