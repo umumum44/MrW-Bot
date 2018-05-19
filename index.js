@@ -91,9 +91,9 @@ bot.on("message", async message => {
 					if (msg.content.startsWith(`${message.guild.id}`)) {
 						msg.delete();
 					}
-				})
-			})
-		})
+				});
+			});
+		});
 		message.react("\u2705");
 	}
 	if (!message.content.startsWith(prefix)) return;
@@ -105,8 +105,6 @@ bot.on("message", async message => {
 		if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
 	});
 	if (!commandfile) return;
-	var commandname = commandfile.help.name.toLowerCase();
-	//console.log(commandname)
 	var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
 	var disableCheck = false;
 	disableCheck = (disabled == null) ? false : true;
