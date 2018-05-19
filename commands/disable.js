@@ -82,5 +82,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         }
 }
 module.exports.help = {
-        name: "disable"
+        name: "disable",
+        aliases: ["re-enable", "renable", "reenable"]
 }
