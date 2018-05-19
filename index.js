@@ -64,7 +64,7 @@ bot.on("message", async message => {
 						aliases.push(command.help.name);
 						if (aliases.includes(cmd.slice(prefix.length))) commandfile = command;
 					});
-					if (!commandfile) {
+					if (commandfile) {
 						var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
 						var disableCheck = false;
 						disableCheck = (disabled == null) ? false : true;
