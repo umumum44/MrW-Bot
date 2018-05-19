@@ -48,21 +48,9 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
 	if (message.channel.type === "dm") return;
-	if (message.channel.id === "443931385577865237") await message.delete(120000)
-	if ((message.content.endsWith("messages that were not over two weeks old!")) && (message.author.bot)) {
-		message.delete(5000);
-	}
-	if ((message.content.endsWith("just talk again!")) && (message.author.bot)) {
-		message.delete(5000);
-	}
+	if (message.channel.id === "443931385577865237") await message.delete(120000);
 	if ((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "443931386458406923")) {
 		message.delete(300000);
-	}
-	if ((message.content.endsWith("Your AFK status was removed.")) && (message.author.bot)) {
-		message.delete(5000);
-	}
-	if ((message.content.includes("This user is currently AFK!")) && (message.author.bot)) {
-		message.delete(5000);
 	}
 	if (message.author.bot === false) {
 		let channel = bot.channels.find(`id`, "443931374940979208");
@@ -71,7 +59,7 @@ bot.on("message", async message => {
 		let first = array.first();
 		if (first) {
 			first.delete();
-			message.reply("Welcome back! Your AFK status was removed.");
+			message.reply("Welcome back! Your AFK status was removed.").then(msg => msg.delete(5000);
 		}
 	}
 	if (message.author.bot) return;
@@ -89,7 +77,7 @@ bot.on("message", async message => {
 			let first = array.first();
 			if (first) {
 				let afkmsg = first.content.substr(mentions.id.length);
-				message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``);
+				message.reply(`This user is currently AFK!\nAFK Message: \`${afkmsg}\``).then(msg => msg.delete(5000));
 			}
 		}
 	}
