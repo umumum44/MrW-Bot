@@ -7,8 +7,8 @@ const bot = new Discord.Client({
 });
 
 var loaders = [];
-fs.readdirSync(__dirname + "./load").forEach(file => { 
-	loaders.push(require("./load/" + file));
+fs.readdirSync(__dirname + "/load").forEach(file => { 
+	loaders.push(require("/load" + file));
 });
 
 bot.counter = false;
