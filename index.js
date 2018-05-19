@@ -5,38 +5,45 @@ const bot = new Discord.Client({
 	disableEveryone: true,
 	fetchAllMembers: true
 });
+bot.counter = false;
+bot.commands = new Discord.Collection();
+bot.disabledCommands = new Discord.Collection();
 
 var loaders = [];
 fs.readdirSync(__dirname + "/load").forEach(file => { 
 	loaders.push(require("./load/" + file));
 });
 
-bot.counter = false;
-bot.commands = new Discord.Collection();
 fs.readdir("./commands/", (err, files) => {
-	if (err) console.log(err);
-	let jsfile = files.filter(f => f.split(".")
-		.pop() === "js")
-	if (jsfile.length <= 0) {
-		console.log("Couldn't find commands.");
-		return;
-	}
-	jsfile.forEach((f, i) => {
+	if (err) return console.log(err);
+	let jsfile = files.filter((f)=> f.split(".").pop() === "js")
+	if (jsfile.length <= 0) return console.log("Couldn't find commands.");
+	jsfile.forEach((f) => {
 		let props = require(`./commands/${f}`);
-		console.log(`${f} loaded!`);
-		bot.commands.set(props.help.name, props);
+		if (props.run && props.help) {
+			if (props.help.name) {
+				bot.commands.set(props.help.name, props);
+			} else {
+				console.log(`The ${f} command failed to load.`);
+				disabledCommands.set(f, props);
+			}
+		} else {
+			console.log(`The ${f} command failed to load.`);
+			disabledCommands.set(f, props);
+		}
 	});
 });
+
 bot.on("ready", async () => {
-	console.log(`${bot.user.username} is online!`);
-	let tchannel = bot.channels.get("443931385577865237");
-	await tchannel.bulkDelete(100)
-	let ttchannel = bot.channels.get("443931386458406923");
-	await ttchannel.bulkDelete(100)
-	await bot.user.setActivity(" IDK", { type: "PLAYING" });
+	console.log(`${bot.user.tag} is online. ${bot.commands.size}/${bot.commands.size + bot.disabledCommands.size} commands loaded successfully.`);
 	loaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
+	let tchannel = bot.channels.get("443931385577865237");
+	await tchannel.bulkDelete(100);
+	let ttchannel = bot.channels.get("443931386458406923");
+	await ttchannel.bulkDelete(100);
+	await bot.user.setActivity("IDK", { type: "PLAYING" });
 });
 
 bot.on("message", async message => {
