@@ -35,7 +35,7 @@ bot.on("ready", async () => {
 	await ttchannel.bulkDelete(100)
 	await bot.user.setActivity(" IDK", { type: "PLAYING" });
 	loaders.forEach(loader => {
-		loader.run(bot);
+		if (loader.run != null) loader.run(bot);
 	});
 	bot.channels.get("443931383866458123").fetchMessages({ limit: 100 }).then(messagesFetched => {
 		var muteGuild;
