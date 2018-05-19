@@ -44,9 +44,6 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-	messageLoaders.forEach(messageLoader => {
-		if (messageLoader.run != null) messageLoader.run(message);
-	});
 	if (message.channel.type === "dm") return;
 	if (message.author.bot) return;
 	let mention = message.mentions.members.first();
