@@ -50,7 +50,7 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
 	messageLoaders.forEach(messageLoader => {
-		messageLoader.run(message);
+		if (messageLoader.run != null) messageLoader.run(message);
 	});
 	if (message.channel.type === "dm") return;
 	if (message.author.bot) return;
