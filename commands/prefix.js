@@ -29,15 +29,15 @@ module.exports.run = async (bot, message, args) => {
 		await newc.overwritePermissions(channel.guild.id, { READ_MESSAGES: false });
 		await newc.setParent("443931006437949440");
 		await newc.send(`${message.guild.id} ${prefix}`);
-              var prefixDB = bot.databases.prefixes.find(value => value.guild === message.guild.id);
-              if (prefixDB != null) bot.databases.prefixes.splice(bot.prefixes.indexOf(prefixDB), 1);
-              bot.databases.prefixes.push({ guild : message.guild.id, prefix: prefix });
+		var prefixDB = bot.databases.prefixes.find(value => value.guild === message.guild.id);
+		if (prefixDB != null) bot.databases.prefixes.splice(bot.prefixes.indexOf(prefixDB), 1);
+		bot.databases.prefixes.push({ guild: message.guild.id, prefix: prefix });
 		message.react("\u2705");
 	} else {
 		channel.send(`${message.guild.id} ${prefix}`);
-              var prefixDB = bot.databases.prefixes.find(value => value.guild === message.guild.id);
-              if (prefixDB != null) bot.databases.prefixes.splice(bot.prefixes.indexOf(prefixDB), 1);
-              bot.databases.prefixes.push({ guild : message.guild.id, prefix: prefix });
+		var prefixDB = bot.databases.prefixes.find(value => value.guild === message.guild.id);
+		if (prefixDB != null) bot.databases.prefixes.splice(bot.databases.prefixes.indexOf(prefixDB), 1);
+		bot.databases.prefixes.push({ guild: message.guild.id, prefix: prefix });
 		message.react("\u2705");
 		message.react("\u2705");
 	}
