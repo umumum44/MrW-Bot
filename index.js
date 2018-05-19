@@ -108,6 +108,7 @@ bot.on("message", async message => {
 	var commandname = commandfile.help.name.toLowerCase();
 	//console.log(commandname)
 	var disableCheck = bot.databases.disabled.find(value => value.guild === message.guild.id);
+	console.log(disableCheck);
 	disableCheck = (disableCheck == null) ? false : true;
 	if (disableCheck) disableCheck = (disableCheck.commands.includes(cmd.slice(prefix.length))) ? true : false;
 	if (disableCheck) return message.reply("This command is disabled by an admin in this server!")
