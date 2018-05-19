@@ -41,11 +41,7 @@ bot.on("ready", async () => {
 	loaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
-	let tchannel = bot.channels.get("443931385577865237");
-	await tchannel.bulkDelete(100);
-	let ttchannel = bot.channels.get("443931386458406923");
-	await ttchannel.bulkDelete(100);
-	await bot.user.setActivity("IDK", { type: "PLAYING" });
+	bot.user.setActivity("IDK", { type: "PLAYING" });
 });
 
 bot.on("message", async message => {
