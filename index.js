@@ -60,7 +60,7 @@ bot.on("message", async message => {
 		let first = array.first();
 		if (first) {
 			first.delete();
-			message.reply("Welcome back! Your AFK status was removed.").then(msg => msg.delete(5000);
+			message.reply("Welcome back! Your AFK status was removed.").then(msg => msg.delete(5000));
 		}
 	}
 	if (message.author.bot) return;
