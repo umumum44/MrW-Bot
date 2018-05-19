@@ -107,10 +107,11 @@ bot.on("message", async message => {
 	if (!commandfile) return;
 	var commandname = commandfile.help.name.toLowerCase();
 	//console.log(commandname)
-	var disableCheck = bot.databases.disabled.find(value => value.guild === message.guild.id);
+	var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
+	var disableCheck = false;
 	console.log(disableCheck);
-	disableCheck = (disableCheck == null) ? false : true;
-	if (disableCheck) disableCheck = (disableCheck.commands.includes(cmd.slice(prefix.length))) ? true : false;
+	disableCheck = (disabled == null) ? false : true;
+	if (disableCheck) disableCheck = (disabled.commands.includes(cmd.slice(prefix.length))) ? true : false;
 	if (disableCheck) return message.reply("This command is disabled by an admin in this server!")
 	return commandfile.run(bot, message, args, prefix, content);
 });
