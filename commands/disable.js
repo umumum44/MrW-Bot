@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 limit: 100
         })
         if (nodisable.includes(args[0].toLowerCase())) return message.reply("This command cannot be disabled!")
-        let channels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi")
+        let channels = dbguild.channels.filter(m => RegExp("wbotdisable-database", "gi"
                 .test(m.name));
         var findit = bot.commands.get(args[0].toLowerCase())
         if (!findit) return message.reply("Not a valid command! Note: You cannot disable a command from its aliases!")
@@ -54,6 +54,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 let anewedit = findmessage.content.replace(args[0].toLowerCase(), "");
                 let newedit = anewedit.replace("  ", " ");
                 await findmessage.edit(newedit)
+                var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
+                disabled.commands.splice(disabled.commands.indexOf(disabled), 1);
                 message.reply("Re-enabled the command!")
         }
         if (!cmddisablecheck) {
