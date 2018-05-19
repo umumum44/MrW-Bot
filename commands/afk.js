@@ -1,7 +1,9 @@
 module.exports.run = async (bot, message, args, prefix, content) => {
         let afkmsg = content;
         if (!afkmsg) afkmsg = "No reason provided.";
-        bot.rateLimits.afk.push({ user: message.author.id, reason: afkmsg });
+        setTimeout(function() {
+                bot.rateLimits.afk.push({ user: message.author.id, reason: afkmsg });
+        }, 500);
         message.reply(`You are now AFK!!!: \`${afkmsg}\`\nTo become un-AFK, just talk again.`).then(msg => msg.delete(5000)).catch(function() {});
         message.delete().catch(function() {});
 }
