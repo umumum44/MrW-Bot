@@ -11,13 +11,13 @@ bot.disabledCommands = new Discord.Collection();
 bot.rateLimits = { poll: [], report: [], afk: [] };
 
 var loaders = [];
-fs.readdirSync(__dirname + "/load").forEach(file => { 
+fs.readdirSync(__dirname + "/load").forEach(file => {
 	loaders.push(require("./load/" + file));
 });
 
 fs.readdir("./commands/", (err, files) => {
 	if (err) return console.log(err);
-	let jsfile = files.filter((f)=> f.split(".").pop() === "js")
+	let jsfile = files.filter((f) => f.split(".").pop() === "js")
 	if (jsfile.length <= 0) return console.log("Couldn't find commands.");
 	jsfile.forEach((f) => {
 		let props = require(`./commands/${f}`);
@@ -54,29 +54,24 @@ bot.on("message", async message => {
 	if ((message.content.endsWith("**MUST WAIT TO USE REPORT COMMAND**")) && (message.author.bot) && (message.channel.id === "443931386458406923")) {
 		message.delete(300000);
 	}
-	if (message.author.bot === false) {
-		let channel = bot.channels.find(`id`, "443931374940979208");
-		let messages = await channel.fetchMessages({ limit: 100 });
-		let array = messages.filter(m => RegExp(message.author.id, "gi").test(m.content));
-		let first = array.first();
-		if (first) {
-			first.delete();
-			message.reply("Welcome back! Your AFK status was removed.").then(msg => msg.delete(5000));
-		}
-	}
 	if (message.author.bot) return;
+	let mention = message.mentions.members.first();
+	var checker;
+	if (mention) {
+		checker = bot.rateLimits.afk.find(value => value.user === mention.id);
+		if (checker) if (checker.user !== message.author.id)
+			message.reply(`This user is currently AFK!\nAFK Message: \`${checker.reason}\``).then(msg => msg.delete(5000));
+	}
+	checker = bot.rateLimits.afk.find(value => value.user === message.author.id);
+	if (checker) {
+		bot.rateLimits.splice(bot.rateLimits.afk.indexOf(checker), 1);
+		message.reply("Welcome back! Your AFK status was removed.").then(msg => msg.delete(5000));
+	}
 	let messageArray = message.content.split(" ");
 	let cmd = messageArray[0].toLowerCase();
 	if (!cmd) return;
 	let args = messageArray.slice(1);
 	let content = args.join(" ");
-	if (message.author.bot === false) {
-		let mention = message.mentions.members.first();
-		if (mention) {
-			let checker = bot.rateLimits.afk.find(value => value.user === mention.id);
-			if (checker) message.reply(`This user is currently AFK!\nAFK Message: \`${checker.reason}\``).then(msg => msg.delete(5000));
-		}
-	}
 	let guildid = message.guild.id;
 	let dbguild = bot.guilds.get("443929284411654144");
 	let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
@@ -98,12 +93,12 @@ bot.on("message", async message => {
 		let aaa = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 		aaa.forEach(chl => {
 			chl.fetchMessages({ limit: 100 }).then(msgs => {
-					msgs.forEach(msg => {
-						if (msg.content.startsWith(`${message.guild.id}`)) {
-							msg.delete();
-						}
-					})
+				msgs.forEach(msg => {
+					if (msg.content.startsWith(`${message.guild.id}`)) {
+						msg.delete();
+					}
 				})
+			})
 		})
 		message.react("\u2705");
 	}
