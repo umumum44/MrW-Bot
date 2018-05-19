@@ -60,13 +60,13 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 if (findmessage !== false) {
                         await findmessage.edit(findmessage.content + ` ${args[0].toLowerCase()}`);
                         var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
-                        if (disabled == null) disabled.commands.push(args[0].toLowerCase()); else disabled.push({ guild: message.guild.id, commands: [args[0].toLowerCase()] });
+                        if (disabled == null) disabled.push({ guild: message.guild.id, commands: [args[0].toLowerCase()] }); else disabled.commands.push(args[0].toLowerCase());
                         await message.reply("Disabled the command!")
                 } else {
-                        await channel.send(`${message.guild.id} ${args[0].toLowerCase()}`)
+                        await channel.send(`${message.guild.id} ${args[0].toLowerCase()}`);
                         var disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
-                        if (disabled == null) disabled.commands.push(args[0].toLowerCase()); else disabled.push({ guild: message.guild.id, commands: [args[0].toLowerCase()] });
-                        await message.reply("Disabled the command!")
+                        if (disabled == null) disabled.push({ guild: message.guild.id, commands: [args[0].toLowerCase()] }); else disabled.commands.push(args[0].toLowerCase());
+                        await message.reply("Disabled the command!");
                 }
         }
         if (messages.size > 97) {
