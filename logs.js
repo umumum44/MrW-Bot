@@ -27,6 +27,7 @@ module.exports.run = async (bot) => {
 	});
 	bot.on("messageUpdate", (oldMessage, newMessage) => {
 		if(oldMessage.author.bot) return;
+		if(oldMessage.content == newMessage.content) return;
 		var oldmessage = oldMessage
 		var newmessage = newMessage
 		var omessageAttachments = "";
