@@ -69,21 +69,10 @@ bot.on("message", async message => {
 	let content = args.join(" ");
 	let dbguild = bot.guilds.get("443929284411654144");
 	let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
-	async function getPrefix(bot, message, args) {
-		const nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({ limit: 100 })));
-		const flatMessages = nestedMessages.reduce((a, b) => a.concat(b));
-		const msg = flatMessages.find(msg => msg.content.startsWith(message.guild.id));
-		return msg && msg.content.substr(1 + message.guild.id.length);
-	}
-	const aprefix = await getPrefix(bot, message, args);
-	if (aprefix) var prefix = aprefix;
-	//console.log(`${prefix} second`);
-	if (!aprefix) var prefix = botconfig.prefix;
-	// console.log(`${prefix} third`);
-	if ((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix"))) {
-		return message.reply(`My prefix is \`${prefix}\``);
-	}
-	if ((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix reset")) && (message.member.hasPermission("MANAGE_GUILD"))) {
+	var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
+	if (prefix != null) prefix = prefix.prefix; else prefix = botconfig.prefix;
+	if (message.isMemberMentioned(bot.user) && (message.content.endsWith("prefix")) return message.reply(`My prefix is \`${prefix}\``);
+	if (message.isMemberMentioned(bot.user) && message.content.endsWith("prefix reset") && message.member.hasPermission("MANAGE_GUILD")) {
 		let aaa = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 		aaa.forEach(chl => {
 			chl.fetchMessages({ limit: 100 }).then(msgs => {
