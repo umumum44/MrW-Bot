@@ -18,6 +18,7 @@ fs.readdirSync(__dirname + "/load").forEach(file => {
 
 var messageLoaders = [];
 fs.readdirSync(__dirname + "/messageload").forEach(file => {
+	console.log(file);
 	loaders.push(require("./messageload/" + file));
 });
 console.log(messageLoaders);
