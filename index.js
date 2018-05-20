@@ -16,7 +16,7 @@ fs.readdirSync(__dirname + "/load").forEach(file => {
 		loaders.push(loader);
 	} catch(err) {
 		disabledLoaders.push(file);
-		console.log(`\n The ${file} load module failed to load:`);
+		console.log(`\nThe ${file} load module failed to load:`);
 		console.log(err);
 	}
 });
