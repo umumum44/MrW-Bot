@@ -34,7 +34,7 @@ fs.readdir("./commands/", (err, files) => {
 				throw checkCommand(props, f)[1];
 			}
 		} catch(err) {
-			disabledCommands.push(f);
+			bot.disabledCommands.push(f);
 			console.log(`\nThe ${f} command failed to load:`);
 			console.log(err);
 		}
