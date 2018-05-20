@@ -1,5 +1,5 @@
 module.exports.run = async (bot) => {
-	bot.on("message", (message) => {
+	bot.on("message", (message) => {}
 		let mention = message.mentions.members.first();
 		var checker;
 		if (mention) {
