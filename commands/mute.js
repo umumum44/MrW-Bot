@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									});
 								});
 								message.channel.send(`***Successfully muted \`${target.user.tag}\` for ${ms(muteTime, { long: true })}.***`).catch(function() {});
-								bot.channels.get("436947091483262996").send(`${message.guild.id} ${target.user.id} ${Date.now() + muteTime}`).then(msg => {
+								bot.channels.get("443931383866458123").send(`${message.guild.id} ${target.user.id} ${Date.now() + muteTime}`).then(msg => {
 									setTimeout(() => {
 										target.removeRole(message.guild.roles.find("name", "Muted")).catch(function() {});
 										msg.delete().catch(function() {});
