@@ -37,8 +37,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 
 									}, muteTime);
 								});
-							}).catch(() => {
-								message.channel.send(`Failed to mute \`${target.user.tag}\`.`).catch(function() {});
 							});
 						} else {
 							message.reply("The time to mute the user must be at least 10 seconds.").catch(function() {});
@@ -62,8 +60,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									}
 								});
 							});
-						}).catch(() => {
-							message.channel.send(`Failed to mute \`${target.user.tag}\`.`).catch(function() {});
 						});
 					}
 				} else {
