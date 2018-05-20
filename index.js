@@ -45,7 +45,7 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 bot.on("ready", async () => {
-	console.log(`${bot.user.tag} is online. ${bot.commands.size}/${bot.commands.size + bot.disabledCommands.size} commands loaded successfully.`);
+	console.log(`${bot.user.tag} is online. ${bot.commands.size}/${bot.commands.size + bot.disabledCommands.length} commands loaded successfully.`);
 	loaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
