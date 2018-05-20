@@ -1,10 +1,7 @@
 const botconfig = require("./botconfig.js");
 const Discord = require("discord.js");
 const fs = require("fs");
-const bot = new Discord.Client({
-	disableEveryone: true,
-	fetchAllMembers: true
-});
+const bot = new Discord.Client({ disableEveryone: true, fetchAllMembers: true });
 bot.counter = false;
 bot.commands = new Discord.Collection();
 bot.disabledCommands = [];
