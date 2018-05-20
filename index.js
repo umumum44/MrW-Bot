@@ -9,8 +9,16 @@ bot.rateLimits = { poll: [], report: [], afk: [] };
 bot.databases = { disabled: [], prefixes: [] };
 
 var loaders = [];
+var disabledLoaders = [];
 fs.readdirSync(__dirname + "/load").forEach(file => {
-	loaders.push(require("./load/" + file));
+	try {
+		let loader = require("./load/" + file);
+		loaders.push(loader);
+	} catch(err) {
+		disabledLoaders.push(file);
+		console.log(`\n The ${file} load module failed to load:`);
+		console.log(err);
+	}
 });
 
 function checkCommand(command, name) {
