@@ -72,12 +72,12 @@ bot.on("message", async message => {
 				bot.commands.forEach(command => {
 					var aliases = (command.help.aliases != null) ? command.help.aliases : [];
 					aliases.push(command.help.name);
-					if (aliases.includes(cmd) commandfile = command;
+					if (aliases.includes(cmd)) commandfile = command;
 				});
 				if (commandfile) {
 					const disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
 					var disableCheck = (disabled == null) ? false : true;
-					if (disableCheck) disableCheck = (disabled.commands.includes(cmd) ? true : false;
+					if (disableCheck) disableCheck = (disabled.commands.includes(cmd)) ? true : false;
 					if (!disableCheck) {
 						commandfile.run(bot, message, args, prefix, content);
 					} else message.reply("This command is disabled by an admin in this server!");
