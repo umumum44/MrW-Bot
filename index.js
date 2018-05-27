@@ -3,19 +3,17 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const bot = new Discord.Client({ disableEveryone: true, fetchAllMembers: true });
 bot.counter = false;
-bot.commands = new Discord.Collection();
-bot.disabledCommands = [];
+bot.commands = { enabledCommands: new Discord.Collection(), disabledCommands: [] };
 bot.rateLimits = { poll: [], report: [], afk: [] };
 bot.databases = { disabled: [], prefixes: [] };
+bot.loaders = { enabledLoaders: [], disabledLoaders: [] };
 
-var loaders = [];
-var disabledLoaders = [];
 fs.readdirSync(__dirname + "/load").forEach(file => {
 	try {
 		let loader = require("./load/" + file);
-		loaders.push(loader);
+		bot.loaders.enabledLoaders.push(loader);
 	} catch(err) {
-		disabledLoaders.push(file);
+		bot.loaders.disabledLoaders.push(file);
 		console.log(`\nThe ${file} load module failed to load:`);
 		console.log(err);
 	}
@@ -37,12 +35,12 @@ fs.readdir("./commands/", (err, files) => {
 		try {
 			var props = require(`./commands/${f}`);
 			if (checkCommand(props, f)[0]) {
-				bot.commands.set(props.help.name, props);
+				bot.commands.enabledCommands.set(props.help.name, props);
 			} else {
 				throw checkCommand(props, f)[1];
 			}
 		} catch(err) {
-			bot.disabledCommands.push(f);
+			bot.commands.disabledCommands.push(f);
 			console.log(`\nThe ${f} command failed to load:`);
 			console.log(err);
 		}
@@ -50,8 +48,10 @@ fs.readdir("./commands/", (err, files) => {
 });
 
 bot.on("ready", async () => {
-	console.log(`${bot.user.tag} is online. ${bot.commands.size}/${bot.commands.size + bot.disabledCommands.length} commands loaded successfully.`);
-	loaders.forEach(loader => {
+	console.log(`${bot.user.tag} is online. ` +
+		    `${bot.commands.enabledCommands.size}/${bot.commands.enabledCommands.size + bot.commands.disabledCommands.length}` +
+		    `commands loaded successfully.`);
+	bot.loaders.enabledLoaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
 });
@@ -69,7 +69,7 @@ bot.on("message", async message => {
 			if (message.content.toLowerCase() === bot.user.toString() + " " + "prefix") return message.reply(`My prefix is \`${prefix}\``);
 			if (message.content.startsWith(prefix)) {
 				var commandfile = false;
-				bot.commands.forEach(command => {
+				bot.commands.enabledCommands.forEach(command => {
 					var aliases = (command.help.aliases != null) ? command.help.aliases : [];
 					aliases.push(command.help.name);
 					if (aliases.includes(cmd)) commandfile = command;
