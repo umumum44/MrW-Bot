@@ -82,6 +82,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 module.exports.help = {
 	name: "members",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Sends you a list of members in a role",
+	type: "Information"
 }
