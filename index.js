@@ -33,9 +33,9 @@ fs.readdir("./commands/", (err, files) => {
 	var jsfiles = files.filter(f => f.split(".").pop() === "js");
 	if (jsfiles.length <= 0) return console.log("Couldn't find commands.");
 	jsfiles.forEach((f, i) => {
-		bot.allcommands.set(props.help.name, props);
 		try {
 			var props = require(`./commands/${f}`);
+			bot.allcommands.set(props.help.name, props);
 			if (checkCommand(props, f)[0]) {
 				bot.commands.enabledCommands.set(props.help.name, props);
 			} else {
