@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 commandsEmbed.addField(type, bot.allcommands.filter(command => command.help.type === type).map(MAP));
                 });
         message.author.send({ embed: commandsEmbed }).then(() => {
-                message.react("\u2705").catch(function () {});
+                message.react("✅").catch(function () {});
          }).catch(() => {
                 message.reply("I could not DM you the list of commands! Please check your privacy commands and try again!").catch(function () {});
         });
