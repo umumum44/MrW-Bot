@@ -186,6 +186,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 
 module.exports.help = {
 	name: "rank",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Sets up roles that are given when a user joins your server",
+	type: "Roles"
 }
