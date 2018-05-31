@@ -69,5 +69,5 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
   name: "removewarn",
 	description: "Removes a warnings for a user",
-	type: "Public"
+	type: "Moderation"
 }
