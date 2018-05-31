@@ -258,6 +258,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 module.exports.help = {
 	name: "game",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "To play some games",
+	type: "Fun"
 }
