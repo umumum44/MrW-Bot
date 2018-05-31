@@ -85,5 +85,5 @@ module.exports.help = {
         name: "disable",
         aliases: ["re-enable", "renable", "reenable"],
 	description: "Disabled/enables commands that can be used in your server",
-	type: "Restricted"
+	type: "Miscellaneous"
 }
