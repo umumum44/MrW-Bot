@@ -20,6 +20,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 module.exports.help = {
 	name: "dm",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Sends a message to the user mentioned",
+	type: "Restricted"
 }
