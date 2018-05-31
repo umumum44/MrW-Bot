@@ -4,6 +4,7 @@ const fs = require("fs");
 const bot = new Discord.Client({ disableEveryone: true, fetchAllMembers: true });
 bot.counter = false;
 bot.commands = { enabledCommands: new Discord.Collection(), disabledCommands: [] };
+bot.allcommands = new Discord.Collection();
 bot.rateLimits = { poll: [], report: [], afk: [] };
 bot.databases = { disabled: [], prefixes: [] };
 bot.loaders = { enabledLoaders: [], disabledLoaders: [] };
@@ -32,6 +33,7 @@ fs.readdir("./commands/", (err, files) => {
 	var jsfiles = files.filter(f => f.split(".").pop() === "js");
 	if (jsfiles.length <= 0) return console.log("Couldn't find commands.");
 	jsfiles.forEach((f, i) => {
+		bot.allcommands.set(props.help.name, props);
 		try {
 			var props = require(`./commands/${f}`);
 			if (checkCommand(props, f)[0]) {
