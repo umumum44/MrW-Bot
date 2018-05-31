@@ -34,6 +34,6 @@ module.exports.run = async (bot, message, args) => {
 }
 module.exports.help = {
         name: "unblacklist",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Unblacklists a user from the report command",
+	type: "Restricted"
 }
