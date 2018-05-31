@@ -33,6 +33,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 };
 module.exports.help = {
         name: "unban",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Unbans a user",
+	type: "Moderation"
 }
