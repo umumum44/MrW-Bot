@@ -27,6 +27,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 module.exports.help = {
         name: "logs",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Sets up logs for your server",
+	type: "Miscellaneous"
 }
