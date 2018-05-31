@@ -23,6 +23,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 module.exports.help = {
         name: "countstatus",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Sets the bot's server count to the number of servers",
+	type: "Restricted"
 }
