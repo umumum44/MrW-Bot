@@ -14,6 +14,6 @@ module.exports.run = async (bot, message, args) => {
 }
 module.exports.help = {
         name: "setactivity",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Sets the activity for the bot",
+	type: "Restricted"
 }
