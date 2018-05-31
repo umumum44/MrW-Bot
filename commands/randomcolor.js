@@ -13,6 +13,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 module.exports.help = {
         name: "randomcolor",
-	description: "Sends you this prompt",
-	type: "Public"
+	description: "Sends you a random hex color",
+	type: "Fun"
 }
