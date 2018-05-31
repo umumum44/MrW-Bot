@@ -92,5 +92,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 
 module.exports.help = {
-	name: "softban"
+	name: "softban",
+	description: "Bans then unbans a user, removing their messages",
+	type: "Moderation"
 }

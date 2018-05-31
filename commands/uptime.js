@@ -41,5 +41,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		});
 }
 module.exports.help = {
-	name: "uptime"
+	name: "uptime",
+	description: "Sends you this prompt",
+	type: "Public"
 }

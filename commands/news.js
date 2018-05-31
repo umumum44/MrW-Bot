@@ -10,5 +10,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         await message.channel.send({ embed: thing });
 }
 module.exports.help = {
-        name: "news"
+        name: "news",
+	description: "Gives you updated news on me",
+	type: "Information"
 }

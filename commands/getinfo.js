@@ -79,5 +79,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	everything(args, message, bot);
 }
 module.exports.help = {
-	name: "getinfo"
+	name: "getinfo",
+	description: "Sends information about a discord user's linked roblox account",
+	type: "Information"
 }

@@ -43,5 +43,7 @@ module.exports.run = async (bot, message, args) => {
 	}
 }
 module.exports.help = {
-	name: "prefix"
+	name: "prefix",
+	description: "Sets a new prefix for your server",
+	type: "Miscellaneous"
 }

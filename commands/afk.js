@@ -8,5 +8,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         message.delete().catch(function() {});
 }
 module.exports.help = {
-        name: "afk"
+        name: "afk",
+	description: "Sets a message to be sent whenever you are pinged",
+	type: "Miscellaneous"
 }

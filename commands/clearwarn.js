@@ -67,5 +67,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	});
 }
 module.exports.help = {
-	name: "clearwarn"
+	name: "clearwarn",
+	description: "Clears warnings for a user",
+	type: "Moderation"
 }

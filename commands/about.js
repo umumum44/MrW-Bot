@@ -21,5 +21,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         return message.channel.send({ embed: ab });
 }
 module.exports.help = {
-        name: "about"
+        name: "about",
+	description: "Gets information about a server member",
+	type: "Information"
 }

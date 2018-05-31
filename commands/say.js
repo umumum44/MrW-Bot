@@ -8,5 +8,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         message.delete()
 }
 module.exports.help = {
-        name: "say"
+        name: "say",
+	description: "Makes me say whatever you want me to say",
+	type: "Fun"
 }

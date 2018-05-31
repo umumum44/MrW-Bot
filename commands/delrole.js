@@ -23,5 +23,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	}
 }
 module.exports.help = {
-	name: "delrole"
+	name: "delrole",
+	description: "Deletes a role",
+	type: "Roles"
 }

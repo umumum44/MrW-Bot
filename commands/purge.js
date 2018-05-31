@@ -28,5 +28,7 @@ module.exports.run = async (bot, message, args) => {
         } else return message.reply(`You do not have permission to purge messages!`);
 }
 module.exports.help = {
-        name: "purge"
+        name: "purge",
+	description: "Deletes a specified amount of messages",
+	type: "Moderation"
 }

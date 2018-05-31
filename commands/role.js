@@ -283,5 +283,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 }
 
 module.exports.help = {
-	name: "role"
+	name: "role",
+	description: "Gives a user a specified role(s)",
+	type: "Roles"
 }

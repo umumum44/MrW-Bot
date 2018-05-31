@@ -35,5 +35,7 @@ module.exports.run = async (bot, message, args) => {
   });
 }
 module.exports.help = {
-  name: "warnings"
+  name: "warnings",
+	description: "Shows the warnings for a user",
+	type: "Moderation"
 }

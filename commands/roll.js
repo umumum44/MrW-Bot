@@ -24,5 +24,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	});
 }
 module.exports.help = {
-	name: "roll"
+	name: "roll",
+	description: "Sends you this prompt",
+	type: "Public"
 }

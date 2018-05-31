@@ -39,5 +39,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	});
 }
 module.exports.help = {
-	name: "addrole"
+	name: "addrole",
+	description: "Creates a role",
+	type: "Roles"
 }

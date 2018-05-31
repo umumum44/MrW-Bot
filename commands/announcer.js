@@ -119,5 +119,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
         }
 }
 module.exports.help = {
-        name: "announcer"
+        name: "announcer",
+	description: "Sends you this prompt",
+	type: "Public"
 }

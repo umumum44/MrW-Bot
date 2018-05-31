@@ -32,5 +32,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	});
 };
 module.exports.help = {
-        name: "unban"
+        name: "unban",
+	description: "Sends you this prompt",
+	type: "Public"
 }

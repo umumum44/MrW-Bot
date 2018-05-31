@@ -108,5 +108,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	}
 }
 module.exports.help = {
-	name: "autoroles"
+	name: "autoroles",
+	description: "Adds/removes roles to give roles to a user when they join a server",
+	type: "Roles"
 }

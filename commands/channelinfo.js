@@ -15,6 +15,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	message.channel.send(channelem);
 }
 module.exports.help = {
-	name: "channelinfo"
+	name: "channelinfo",
+	description: "Sends you information about a channel",
+	type: "Information"
 
 }

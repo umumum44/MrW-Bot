@@ -186,6 +186,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 
 module.exports.help = {
 	name: "rank",
-	category: "Roles",
-	desc: "Allows user to put self-assignable roles on a guild which can be given to users when they run !!rank role."
+	description: "Sends you this prompt",
+	type: "Public"
 }

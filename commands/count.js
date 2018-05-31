@@ -4,5 +4,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 
 module.exports.help = {
         name: "count",
-        aliases: ["servers"]
+        aliases: ["servers"],
+	description: "Sends you the number of servers I am in",
+	type: "Information"
 }

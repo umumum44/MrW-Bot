@@ -94,5 +94,7 @@ module.exports.run = async (bot, message, args) => {
         return;
 }
 module.exports.help = {
-        name: "report"
+        name: "report",
+	description: "Starts a prompt for reporting bugs/glitches in games",
+	type: "Miscellaneous"
 }

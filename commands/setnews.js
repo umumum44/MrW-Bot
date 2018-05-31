@@ -11,5 +11,7 @@ module.exports.run = async (bot, message, args, prefix) => {
         }
 }
 module.exports.help = {
-        name: "setnews"
+        name: "setnews",
+	description: "Sends you this prompt",
+	type: "Public"
 }

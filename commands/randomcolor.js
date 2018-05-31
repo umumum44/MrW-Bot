@@ -12,5 +12,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	message.channel.send(embed).catch(function() {});	
 }
 module.exports.help = {
-        name: "randomcolor"
+        name: "randomcolor",
+	description: "Sends you this prompt",
+	type: "Public"
 }

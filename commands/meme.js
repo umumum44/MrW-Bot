@@ -43,5 +43,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
                 });
 }
 module.exports.help = {
-        name: "meme"
+        name: "meme",
+	description: "Returns a random meme",
+	type: "Fun"
 }
