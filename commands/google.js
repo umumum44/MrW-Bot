@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 var google = require('google')
 google.resultsPerPage = 51
 module.exports.run = async (bot, message, args, prefix, content) => {
+       if(!message.channel.nsfw) return message.reply("You can only use this command in channels marked as NSFW!");
        if(!args[0]) return message.reply("You must provide a search query!")
        google(content, function (err, res){
   if (err) console.error(err)
