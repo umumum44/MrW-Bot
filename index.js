@@ -58,35 +58,29 @@ bot.on("ready", async () => {
 	});
 });
 
-bot.on("message", async message => {
+bot.on("message", async (message) => {
 	if (message.channel.type !== "dm" && !message.author.bot) {
 		var cmd = message.content.split(" ")[0].toLowerCase();
 		if (cmd != null) {
 			const args = message.content.split(" ").slice(1),
 			      content = args.join(" "), dbguild = bot.guilds.get("443929284411654144"),
-			      channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
+			      channels = dbguild.channels.filter((m) => m.name.includes("wbotprefixes-database"));
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
-			if (message.content.toLowerCase() === bot.user.toString() + " " + "prefix") return message.reply(`My prefix is \`${prefix}\``);
 			if (message.content.startsWith(prefix)) {
-				var commandfile = false;
-				bot.commands.enabledCommands.forEach(command => {
-					var aliases = (command.help.aliases != null) ? command.help.aliases : [];
-					aliases.push(command.help.name);
-					if (aliases.includes(cmd)) commandfile = command;
-				});
-				if (commandfile) {
+				var commandFile = bot.commands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
+				if (commandFile != null) {
 					const disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
 					var disableCheck = (disabled == null) ? false : true;
 					if (disableCheck) disableCheck = (disabled.commands.includes(cmd)) ? true : false;
 					if (!disableCheck) {
-						commandfile.run(bot, message, args, prefix, content);
+						commandFile.run(bot, message, args, prefix, content);
 					} else message.reply("This command is disabled by an admin in this server!");
 				}
 			}
 		}
-
 	}
 });
+
 bot.login(botconfig.token);
