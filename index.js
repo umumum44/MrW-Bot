@@ -93,18 +93,16 @@ bot.on("message", (message) => {
 			8 = Windows
 			*/
 			if (message.content.startsWith(prefix)) {
-				var commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
+				let commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
 				if (commandFile != null) {
 					const disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
-					var disableCheck = (disabled == null) ? false : true;
+					let disableCheck = (disabled == null) ? false : true;
 					if (disableCheck) disableCheck = (disabled.commands.includes(cmd)) ? true : false;
 					if (!disableCheck) {
 						commandFile.run(bot, message, args, prefix, content, permissionLevel);
 					} else message.reply("This command is disabled by an admin in this server!");
 				}
 			} else if (message.content.startsWith(`<@!${bot.user.id}>`) || message.content.startsWith(`<@${bot.user.id}>`)) {
-				let commandfile = bot.commands.get(args[0].toLowerCase());
-				if (!commandfile) return;
 				if (message.content.startsWith(`<@${bot.user.id}>`)) {
 					message.content = message.content.replace(`<@${bot.user.id}> `, `${prefix}`);
 				} else if (message.content.startsWith(`<@!${bot.user.id}>`)) {
@@ -112,7 +110,16 @@ bot.on("message", (message) => {
 				}
 				var messageArray = message.content.split(" ");
 				args = messageArray.slice(1);
-				return commandfile.run(bot, message, args, prefix, permissionLevel);
+				cmd = message.content.split(" ")[0].toLowerCase();
+				let commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
+				if (commandFile != null) {
+					const disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
+					let disableCheck = (disabled == null) ? false : true;
+					if (disableCheck) disableCheck = (disabled.commands.includes(cmd)) ? true : false;
+					if (!disableCheck) {
+						commandFile.run(bot, message, args, prefix, content, permissionLevel);
+					} else message.reply("This command is disabled by an admin in this server!");
+				}
 			}
 		}
 	}
