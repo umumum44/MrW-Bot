@@ -1,25 +1,17 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message) => {
-	var embed = new Discord.RichEmbed().setTitle("Emojis").setColor("BLUE");
-	var emojis = message.guild.emojis.array().map(u => `:${u.name}: - ${u.toString()}`).join("\n");
+	var emojis = message.guild.emojis.array();
 	if (!emojis || emojis === []) return message.reply("There are no emojis in this server!");
-	var emojisLength = emojis.length;
-	var emojisToSend;
-	var page = 1;
-	if (emojis.split("\n").length > 3) {
-		emojisLength = 0;
-		emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 3);
-		var totalPages = 3 - (emojis.split("\n").length % 3);
-		if (totalPages === 3) {
-			totalPages = emojis.split("\n").length / 3;
-		} else {
-			totalPages = (emojis.split("\n").length + (3 - (emojis.split("\n").length % 3)));
-			totalPages = totalPages / 3;
-		}
-		embed.setDescription(emojisToSend.join("\n")).setFooter(`Page ${page}/${totalPages}`);
-		message.channel.send({
-			embed: embed
-		}).then(async function (sentEmbed) {
+	if (emojis.length > 1) {
+		var page = 1;
+		var totalpages = emojis.length;
+		var embed = new Discord.RichEmbed()
+			.setTitle("Emojis")
+			.setDescription(`:${emojis[page - 1].name}:`)
+			.setImage(emojis[page - 1].url)
+			.setFooter(`Page ${page}/${totalpages}`)
+			.setColor("BLUE");
+		message.channel.send(embed).then(async function (sentEmbed) {
 			const emojiArray = ["◀", "▶"];
 			const filter = (reaction, user) => emojiArray.includes(reaction.emoji.name) && user.id === message.author.id;
 			await sentEmbed.react(emojiArray[0]).catch(function () { });
@@ -32,19 +24,23 @@ module.exports.run = async (bot, message) => {
 				if (reaction.emoji.name === "◀") {
 					if (page !== 1) {
 						page = page - 1;
-						emojisLength = emojisLength - 3;
-						emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 3);
+					} else {
+						page = totalpages;
 					}
 				} else {
-					if (page !== totalPages) {
+					if (page !== totalpages) {
 						page = page + 1;
-						emojisLength = emojisLength + 3;
-						emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 3);
+					} else {
+						page = 1;
 					}
 				}
-				embed = new Discord.RichEmbed().setDescription(emojisToSend.join("\n")).setColor("BLUE")
-					.setFooter(`Page ${page}/${totalPages}`);
-				embed.setTitle("Emojis");
+				embed = new Discord.RichEmbed()
+					.setTitle("Emojis")
+					.setDescription(`:${emojis[page - 1].name}:`)
+					.setImage(emojis[page - 1].url)
+					.setFooter(`Page ${page}/${totalpages}`)
+					.setColor("BLUE")
+					.setFooter(`Page ${page}/${totalpages}`);
 				sentEmbed.edit(embed).catch(function () { });
 			});
 			reactions.on("end", () => sentEmbed.edit("Interactive command ended: 2 minutes passed."));
@@ -54,12 +50,13 @@ module.exports.run = async (bot, message) => {
 			});
 		});
 	} else {
-		embed.setDescription(emojis);
-		message.channel.send(embed).catch(() => {
-			message.reply("There was an error while trying to send this embed.").catch(() => {
-				message.author.send(`You attempted to run the \`emojis\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
-			});
-		});
+		let emojiembed = new Discord.RichEmbed()
+			.setTitle("Emojis")
+			.setDescription(`:${emojis[0].name}:`)
+			.setImage(emojis[0].url)
+			.setFooter(`Page ${1}/${1}`)
+			.setColor("BLUE");
+		message.channel.send(emojiembed);
 	}
 };
 module.exports.help = {
