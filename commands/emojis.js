@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-module.exports.run = async (bot, message, args, prefix, content) => {
+module.exports.run = async (bot, message) => {
 	var embed = new Discord.RichEmbed().setTitle("Emojis").setColor("BLUE");
 	var emojis = message.guild.emojis.array().map(u => `:${u.name}:`).join("\n");
 	if (!emojis || emojis === []) return message.reply("There are no emojis in this server!");
@@ -42,10 +42,9 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 						emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 3);
 					}
 				}
-				embed = new Discord.RichEmbed().setDescription(emojisToSend.join("\n")).setColor("ORANGE")
+				embed = new Discord.RichEmbed().setDescription(emojisToSend.join("\n")).setColor("BLUE")
 					.setFooter(`Page ${page}/${totalPages}`);
-				if (content !== "") embed.setTitle(`Users in ${message.guild.roles.find(r => r.name.toLowerCase().startsWith(content.toLowerCase())).name}`);
-				if (content === "") embed.setTitle("Users");
+				embed.setTitle("Emojis");
 				sentEmbed.edit(embed).catch(function () { });
 			});
 			reactions.on("end", () => sentEmbed.edit("Interactive command ended: 2 minutes passed."));
