@@ -1,1 +1,1 @@
-# MrW-Bot yay
+# MrW-Bot
