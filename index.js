@@ -69,7 +69,7 @@ bot.on("message", async (message) => {
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
 			if (message.content.startsWith(prefix)) {
-				var commandFile = bot.commands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
+				var commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
 				if (commandFile != null) {
 					const disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
 					var disableCheck = (disabled == null) ? false : true;
