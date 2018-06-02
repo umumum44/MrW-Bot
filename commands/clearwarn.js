@@ -1,7 +1,5 @@
 const Discord = require("discord.js");
-
-module.exports.run = async (bot, message, args, prefix, content) => {
-	
+module.exports.run = async (bot, message) => {
 	let target = message.guild.member(message.mentions.users.first());
 	if (target) {
 		if (message.member.hasPermission("KICK_MEMBERS") || message.member.hasPermission("ADMINISTRATOR") || message.member.hasPermission("BAN_MEMBERS")) {
@@ -22,7 +20,6 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 						}
 						messageloop = messageloop + 1;
 						if (messageloop == messages.size) {
-							var warnslength = warns.length;
 							messageloop = 0;
 							channelloop = channelloop + 1;
 							if (channelloop == dbchannels.size) {
@@ -32,16 +29,16 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									warns.forEach(warn => {
 										dbguild.channels.get(warn.substr(0, 18)).fetchMessage(warn.substr(19)).then(wm => {
 											wm.delete();
-											if (count == warningnum) return m.edit(`${message.author}, Removed all warnings (${warningnum}) from \`${target.user.tag}\``)
+											if (count == warningnum) return m.edit(`${message.author}, Removed all warnings (${warningnum}) from \`${target.user.tag}\``);
 											m.edit(`${message.author}, Removed warn ${count}/${warningnum} \`${target.user.tag}\``);
 											count = count + 1;
-										});
+										}).catch(function() {});
 									});
-								});
+								}).catch(function() {});
 							}
 						}
 					});
-				});
+				}).catch(function() {});
 			});
 		} else {
 			message.reply("Insufficent permissions.");
@@ -60,14 +57,14 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 				const clearwarnEmbed = new Discord.RichEmbed()
 					.setTitle("Cleared Warns")
 					.setColor("RED")
-					.addField("Clear Information", `Member Cleared ID: \`${target.id}\`\nMember Cleared: ${target}\nCleared At: \`${new Date(Date.now())}\`\nModerator: ${message.author}`)
+					.addField("Clear Information", `Member Cleared ID: \`${target.id}\`\nMember Cleared: ${target}\nCleared At: \`${new Date(Date.now())}\`\nModerator: ${message.author}`);
 				logChannel.send({ embed: clearwarnEmbed }).catch(function() {});
 			}
 		});
-	});
-}
+	}).catch(function() {});
+};
 module.exports.help = {
 	name: "clearwarn",
 	description: "Clears warnings for a user",
 	type: "Moderation"
-}
+};

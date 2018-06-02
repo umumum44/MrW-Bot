@@ -1,41 +1,45 @@
-const Discord = require("discord.js");
-
 module.exports.run = async (bot, message, args, prefix, content) => {
 	var currentRoles;
 	const dbChannel = bot.guilds.get("443929284411654144").channels.find("name", "rank-database");
 	if (message.member.hasPermission("MANAGE_ROLES")) {
-		if (args[0] === undefined) return message.reply("Please specify an option: \`!!rank add/remove/view\`").catch(function() {});
+		if (args[0] === undefined) return message.reply("Please specify an option: `!!rank add/remove/view`").catch(function() {});
 		if (args[0].toLowerCase() === "add") {
-			var role = message.guild.roles.find(role => role.name.toLowerCase().startsWith(args.slice(1).join(" ").toLowerCase()));
+			let role = message.guild.roles.find(role => role.name.toLowerCase().startsWith(args.slice(1).join(" ").toLowerCase()));
 			if (role != null) {
 				if (role.position >= message.member.highestRole.position) return message.reply("You are not high enough in this guilds hierarchy to add this as a self-assignable role.").catch(function() {});
 				dbChannel.fetchMessages({ limit: 100 }).then(messages => {
 					currentRoles = messages.find(msg => msg.content.startsWith(message.guild.id));
 					if (currentRoles != null) {
 						if (!currentRoles.content.includes(role.id)) {
-							currentRoles.edit(currentRoles.content + ` ${role.id}`).then(() => message.reply(`Successfully added the \`${role.name}\` role to this guild's self-assignable roles.`).catch(function() {}));
+							currentRoles.edit(currentRoles.content + ` ${role.id}`).then(() => {
+								message.reply(`Successfully added the \`${role.name}\` role to this guild's self-assignable roles.`).catch(function() {});
+							}).catch(function () { });
 						} else {
 							message.reply(`\`${role.name}\` is already a self-assignable role for this guild. To remove it say: \`!!rank remove ${role.name}\`.`).catch(() => {
 								message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 							});
 						}
 					} else {
-						dbChannel.send(`${message.guild.id} ${role.id}`).then(() => message.reply(`Successfully added the \`${role.name}\` role to this guild's self-assignable roles.`).catch(function() {}));
+						dbChannel.send(`${message.guild.id} ${role.id}`).then(() => {
+							message.reply(`Successfully added the \`${role.name}\` role to this guild's self-assignable roles.`).catch(function() {});
+						}).catch(function () { });
 					}
-				});
+				}).catch(function () { });
 			} else {
 				message.reply("Please specify a valid role to set as a self-assignable for this guild.").catch(() => {
 					message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 				});
 			}
 		} else if (args[0].toLowerCase() === "remove") {
-			var role = message.guild.roles.find(role => role.name.toLowerCase().startsWith(args.slice(1).join(" ").toLowerCase()));
+			let role = message.guild.roles.find(role => role.name.toLowerCase().startsWith(args.slice(1).join(" ").toLowerCase()));
 			if (role != null) {
 				dbChannel.fetchMessages({ limit: 100 }).then(messages => {
 					currentRoles = messages.find(msg => msg.content.startsWith(message.guild.id));
 					if (currentRoles != null) {
 						if (currentRoles.content.includes(role.id)) {
-							currentRoles.edit(currentRoles.content.replace(` ${role.id}`, "")).then(() => message.reply(`The \`${role.name}\` self-assignable role has been removed from this guild's self-assignable roles.`).catch(function() {}));
+							currentRoles.edit(currentRoles.content.replace(` ${role.id}`, "")).then(() => {
+								message.reply(`The \`${role.name}\` self-assignable role has been removed from this guild's self-assignable roles.`).catch(function() {});
+							}).catch(function () { });
 						} else {
 							message.reply(`\`${role.name}\` is not a valid self-assignable role, and therefore cannot be removed.`).catch(() => {
 								message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
@@ -46,7 +50,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 							message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 						});
 					}
-				});
+				}).catch(function () { });
 			} else {
 				message.reply("Please specify a valid self-assignable role to remove from this guild.").catch(() => {
 					message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
@@ -73,7 +77,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 						message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
 				}
-			});
+			}).catch(function () { });
 		} else {
 			if (args[0] === undefined) {
 				message.reply("Please specify a valid role to join, or run `!!rank add/remove role` to add/remove a rank to the self-assignable roles. Run `!!rank view` to view ranks in this server.").catch(() => {
@@ -115,7 +119,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 								message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 							});
 						}
-					});
+					}).catch(function () { });
 				}
 			}
 		}
@@ -141,7 +145,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 						message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
 				}
-			});
+			}).catch(function () { });
 		} else {
 			if (args[0] === undefined) {
 				message.reply("Please specify a valid role to join, or run `!!rank add/remove role` to add/remove a rank to the self-assignable roles. Run `!!rank view` to view ranks in this server.").catch(() => {
@@ -178,14 +182,13 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 							message.author.send(`You attempted to use the \`rank\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 						});
 					}
-				});
+				}).catch(function () { });
 			}
 		}
 	}
-}
-
+};
 module.exports.help = {
 	name: "rank",
 	description: "Sets up roles that are given when a user joins your server",
 	type: "Roles"
-}
+};

@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-
 module.exports.run = async (bot, message, args, prefix, content) => {
 	const rawContent = content;
 	const parameterOne = args[0];
@@ -23,8 +22,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 							}).then(() => {
 								message.guild.unban(target.user, `Softbanned by ${message.author.tag} for ${reason}`).then(() => {
 									message.channel.send(`***Successfully softbanned \`${target.user.tag}\`.***`)
-										.catch(function() {});
-                     						 	var logsDatabase = bot.channels.find("id", "443931379907166210");
+										.catch(function () { });
+									var logsDatabase = bot.channels.find("id", "443931379907166210");
 									logsDatabase.fetchMessages({ limit: 100 }).then(logmessages => {
 										logmessages.forEach(msg => {
 											var logChannel = bot.channels.get(msg.content.split(" ")[1]);
@@ -35,18 +34,18 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 												const softbanEmbed = new Discord.RichEmbed()
 													.setTitle("Member Softbanned")
 													.setColor("RED")
-													.addField("Softban Information", `Softbanned ID: \`${target.id}\`\nMember Softbanned: ${target}\nSoftbanned At: \`${new Date(Date.now())}\`\nModerator: ${message.author}\nSoftban Reason: \`${reason}\``)
-												logChannel.send({ embed: softbanEmbed }).catch(function() {});
+													.addField("Softban Information", `Softbanned ID: \`${target.id}\`\nMember Softbanned: ${target}\nSoftbanned At: \`${new Date(Date.now())}\`\nModerator: ${message.author}\nSoftban Reason: \`${reason}\``);
+												logChannel.send({ embed: softbanEmbed }).catch(function () { });
 											}
 										});
-									});
+									}).catch(function () { });
 								}).catch(() => {
 									message.reply(`Failed to unban \`${target.user.tag}\`.`)
-										.catch(function() {});
+										.catch(function () { });
 								});
 							}).catch(() => {
 								message.channel.send(`Failed to ban \`${target.user.tag}\`.`)
-									.catch(function() {});
+									.catch(function () { });
 							});
 						}).catch(() => {
 							target.ban({
@@ -58,41 +57,40 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									reason: `Softbanned by ${message.author.tag} for ${reason}`
 								}).then(() => {
 									message.channel.send(`***Successfully softbanned \`${target.user.tag}\`.***`)
-										.catch(function() {});
+										.catch(function () { });
 								}).catch(() => {
 									message.reply(`Failed to unban \`${target.user.tag}\`.`)
-										.catch(function() {});
+										.catch(function () { });
 								});
 							}).catch(() => {
 								message.channel.send(`Failed to ban \`${target.user.tag}\`.`)
-									.catch(function() {});
+									.catch(function () { });
 							});
 						});
 				} else {
 					message.reply("I do not have permission to ban this user.").catch(() => {
 						message.author.send(`You attempted to use the \`ban\` command in ${message.channel}, but I can not chat there.`)
-							.catch(function() {});
+							.catch(function () { });
 					});
 				}
 			} else {
 				message.reply("That user is too far up in this guild's hierarchy to be banned by you.").catch(() => {
-					message.author.send(`You attempted to use the \`ban\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
+					message.author.send(`You attempted to use the \`ban\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 				});
 			}
 		} else {
 			message.reply("Please mention or supply the id of a valid user.").catch(() => {
-				message.author.send(`You attempted to use the \`ban\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
+				message.author.send(`You attempted to use the \`ban\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 			});
 		}
 	} else {
 		message.reply("You do not have permissions to trigger this command.").catch(() => {
-			message.author.send(`You attempted to use the \`ban\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
+			message.author.send(`You attempted to use the \`ban\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 		});
 	}
-}
-
+};
 module.exports.help = {
 	name: "softban",
 	description: "Bans then unbans a user, removing their messages",
 	type: "Moderation"
-}
+};

@@ -4,8 +4,9 @@
   "description": "cool bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "eslint . && eslint test/. --env mocha && mocha",
+    "start": "node index.js",
+    "fix": "eslint . --fix && eslint test/. --env mocha --fix"
   },
   "engines": {
     "node": "8.9.4"
@@ -13,9 +14,14 @@
   "author": "ethanlaj#8805",
   "license": "ISC",
   "dependencies": {
+    "babel-eslint": "^8.2.3",
     "discord.js": "11.3.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-promise": "^3.8.0",
     "get-meme-urls": "1.0.1",
     "google": "2.1.0",
+    "mocha": "^5.2.0",
     "ms": "2.1.1",
     "pg": "7.4.1",
     "random-hex": "1.0.2",

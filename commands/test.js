@@ -1,17 +1,8 @@
-const Discord = require("discord.js");
-
-module.exports.run = async (bot, message, args) => {
-
-
-
-    message.channel.send("The test command was executed.")
-
-
-
-}
-
+module.exports.run = async (bot, message) => {
+	message.channel.send("The test command was executed.");
+};
 module.exports.help = {
-    name: "test",
+	name: "test",
 	description: "Just a test command",
 	type: "Miscellaneous"
-}
+};
