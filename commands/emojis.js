@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, content) => {
 	var embed = new Discord.RichEmbed().setTitle("Reactions");
 	var emojis = message.guild.emojis.array().map(u => `:${u.name}:`).join("\n");
-	if(!emojis || emojis === []) return message.reply("There are no emojis in this server!");
+	if (!emojis || emojis === []) return message.reply("There are no emojis in this server!");
 	var emojisLength = emojis.length;
 	var emojisToSend;
 	var page = 1;
@@ -56,13 +56,12 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		});
 	} else {
 		embed.setDescription(emojis);
-		message.channel.send({ embed: embed }).catch(() => {
+		message.channel.send(embed).catch(() => {
 			message.reply("There was an error while trying to send this embed.").catch(() => {
 				message.author.send(`You attempted to run the \`emojis\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 			});
 		});
 	}
-	message.channel.send(embed);
 };
 module.exports.help = {
 	name: "emojis",
