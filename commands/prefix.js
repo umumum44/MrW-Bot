@@ -2,6 +2,7 @@ module.exports.run = async (bot, message, args, oldprefix) => {
 	if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You don't have permission to use this command!");
 	if (!args[0]) return message.reply(`My prefix is \`${oldprefix}\``);
 	let prefix = args[0];
+	var dbguild = bot.guilds.get("443929284411654144");
 	if(prefix === "reset") {
 		let aaa = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 		aaa.forEach(chl => {
@@ -19,7 +20,6 @@ module.exports.run = async (bot, message, args, oldprefix) => {
 		return message.react("\u2705");
 	}
 	if (prefix.length > 5) return message.reply("The prefix cannot be more than 5 characters!");
-	let dbguild = bot.guilds.get("443929284411654144");
 	let channel = dbguild.channels.find("name", "wbotprefixes-database");
 	let messages = await channel.fetchMessages({ limit: 100 });
 	let channels = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi")

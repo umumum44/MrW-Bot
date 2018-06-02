@@ -2,7 +2,7 @@ module.exports.run = async (bot) => {
 	var channels;
 	channels = bot.guilds.get("443929284411654144").channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
 	var nestedMessages = await Promise.all(channels.map(ch => ch.fetchMessages({ limit: 100 })));
-	var flatMessages = nestedMessages.reduce((a, b) => a.concat(b))
+	var flatMessages = nestedMessages.reduce((a, b) => a.concat(b));
 	flatMessages.forEach(msg => {
 		var guild = msg.content.split(" ")[0];
 		var prefix = msg.content.split(" ")[1];
@@ -16,4 +16,4 @@ module.exports.run = async (bot) => {
 		var guild = commands.shift();
 		bot.databases.disabled.push({ guild: guild, commands: commands });
 	});
-}
+};
