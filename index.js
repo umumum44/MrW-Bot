@@ -66,7 +66,7 @@ bot.on("message", async (message) => {
 			      content = args.join(" "), dbguild = bot.guilds.get("443929284411654144"),
 			      channels = dbguild.channels.filter((m) => m.name.includes("wbotprefixes-database"));
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
-			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
+			prefix = (message.content.startsWith(bot.user.toString())) ? bot.user.toString() : (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
 			if (message.content.startsWith(prefix)) {
 				var commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
