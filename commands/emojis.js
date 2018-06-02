@@ -6,15 +6,15 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	var emojisLength = emojis.length;
 	var emojisToSend;
 	var page = 1;
-	if (emojis.split("\n").length > 10) {
+	if (emojis.split("\n").length > 3) {
 		emojisLength = 0;
-		emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 10);
-		var totalPages = 10 - (emojis.split("\n").length % 10);
-		if (totalPages === 10) {
-			totalPages = emojis.split("\n").length / 10;
+		emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 3);
+		var totalPages = 3 - (emojis.split("\n").length % 3);
+		if (totalPages === 3) {
+			totalPages = emojis.split("\n").length / 3;
 		} else {
-			totalPages = (emojis.split("\n").length + (10 - (emojis.split("\n").length % 10)));
-			totalPages = totalPages / 10;
+			totalPages = (emojis.split("\n").length + (3 - (emojis.split("\n").length % 3)));
+			totalPages = totalPages / 3;
 		}
 		embed.setDescription(emojisToSend.join("\n")).setFooter(`Page ${page}/${totalPages}`);
 		message.channel.send({
@@ -25,21 +25,21 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			await sentEmbed.react(emojiArray[0]).catch(function () { });
 			await sentEmbed.react(emojiArray[1]).catch(function () { });
 			var reactions = sentEmbed.createReactionCollector(filter, {
-				time: 110000
+				time: 13000
 			});
 			reactions.on("collect", async function (reaction) {
 				await reaction.remove(message.author);
 				if (reaction.emoji.name === "◀") {
 					if (page !== 1) {
 						page = page - 1;
-						emojisLength = emojisLength - 10;
-						emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 10);
+						emojisLength = emojisLength - 3;
+						emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 3);
 					}
 				} else {
 					if (page !== totalPages) {
 						page = page + 1;
-						emojisLength = emojisLength + 10;
-						emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 10);
+						emojisLength = emojisLength + 3;
+						emojisToSend = emojis.split("\n").slice(emojisLength, emojisLength + 3);
 					}
 				}
 				embed = new Discord.RichEmbed().setDescription(emojisToSend.join("\n")).setColor("ORANGE")
