@@ -62,6 +62,20 @@ bot.on("message", async (message) => {
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
+			let guild = bot.guilds.find("id", "443867131721941005");
+			var permissionLevel = 0;
+			if (guild.members.get(message.author.id)) {
+				var member = await guild.fetchMember(message.author.id);
+				if (member.roles) {
+					if (member.roles.get("443903247502147596")) permissionLevel = 1;
+					if (member.roles.get("443898332029517824")) permissionLevel = 2;
+					if (member.roles.get("443867603103121410")) permissionLevel = 3;
+				}
+			}
+			//0 = Non-Member or Non-Matching Roles
+			//1 = Moderators
+			//2 = Helper
+			//3 = Developers
 			if (message.content.startsWith(prefix)) {
 				var commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
 				if (commandFile != null) {
@@ -69,7 +83,7 @@ bot.on("message", async (message) => {
 					var disableCheck = (disabled == null) ? false : true;
 					if (disableCheck) disableCheck = (disabled.commands.includes(cmd)) ? true : false;
 					if (!disableCheck) {
-						commandFile.run(bot, message, args, prefix, content);
+						commandFile.run(bot, message, args, prefix, content, permissionLevel);
 					} else message.reply("This command is disabled by an admin in this server!");
 				}
 			}
