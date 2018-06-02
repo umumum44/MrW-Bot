@@ -49,6 +49,7 @@ bot.on("ready", async () => {
 	console.log(`${bot.user.tag} is online. ` +
 		`${bot.commands.enabledCommands.size}/${bot.commands.enabledCommands.size + bot.commands.disabledCommands.length}` +
 		"commands loaded successfully.");
+	console.log([bot.guilds.get("417149156193337344").name, bot.guilds.find("id", "417149156193337344").name]);
 	bot.loaders.enabledLoaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
