@@ -58,7 +58,7 @@ bot.on("message", (message) => {
 	if (message.channel.type !== "dm" && !message.author.bot) {
 		var cmd = message.content.split(" ")[0].toLowerCase();
 		if (cmd != null) {
-			const args = message.content.split(" ").slice(1),
+			var args = message.content.split(" ").slice(1),
 				content = args.join(" ");
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
@@ -102,6 +102,17 @@ bot.on("message", (message) => {
 						commandFile.run(bot, message, args, prefix, content, permissionLevel);
 					} else message.reply("This command is disabled by an admin in this server!");
 				}
+			} else if (message.content.startsWith(`<@!${bot.user.id}>`) || message.content.startsWith(`<@${bot.user.id}>`)) {
+				let commandfile = bot.commands.get(args[0].toLowerCase());
+				if (!commandfile) return;
+				if (message.content.startsWith(`<@${bot.user.id}>`)) {
+					message.content = message.content.replace(`<@${bot.user.id}> `, `${prefix}`);
+				} else if (message.content.startsWith(`<@!${bot.user.id}>`)) {
+					message.content = message.content.replace(`<@!${bot.user.id}> `, `${prefix}`);
+				}
+				var messageArray = message.content.split(" ");
+				args = messageArray.slice(1);
+				return commandfile.run(bot, message, args, prefix, permissionLevel);
 			}
 		}
 	}
