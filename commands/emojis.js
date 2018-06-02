@@ -51,9 +51,9 @@ module.exports.run = async (bot, message) => {
 	} else {
 		let emojiembed = new Discord.RichEmbed()
 			.setTitle("Emojis")
-			.setDescription(`:${emojis[1].name}:`)
+			.setDescription(`:${emojis[0].name}:`)
 			.setImage(emojis[0].url)
-			.setFooter(`Page ${1}/${1} | Emoji ID: ${emojis[1].id}`)
+			.setFooter(`Page ${1}/${1} | Emoji ID: ${emojis[0].id}`)
 			.setColor("BLUE");
 		message.channel.send(emojiembed);
 	}
