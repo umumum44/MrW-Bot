@@ -111,6 +111,9 @@ bot.on("message", (message) => {
 				var messageArray = message.content.split(" ");
 				args = messageArray.slice(1);
 				cmd = message.content.split(" ")[0].toLowerCase();
+				console.log(messageArray);
+				console.log(args);
+				console.log(cmd);
 				let commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
 				if (commandFile != null) {
 					const disabled = bot.databases.disabled.find(value => value.guild === message.guild.id);
