@@ -25,7 +25,7 @@ module.exports.run = async (bot, message) => {
 			await sentEmbed.react(emojiArray[0]).catch(function () { });
 			await sentEmbed.react(emojiArray[1]).catch(function () { });
 			var reactions = sentEmbed.createReactionCollector(filter, {
-				time: 13000
+				time: 120000
 			});
 			reactions.on("collect", async function (reaction) {
 				await reaction.remove(message.author);
