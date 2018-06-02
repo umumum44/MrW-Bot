@@ -1,6 +1,6 @@
 module.exports.run = async (bot, message, args, oldprefix) => {
 	if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You don't have permission to use this command!");
-	if (!args[0]) return message.reply(`My prefix is ${oldprefix}`);
+	if (!args[0]) return message.reply(`My prefix is \`${oldprefix}\``);
 	let prefix = args[0];
 	if(prefix === "reset") {
 		let aaa = dbguild.channels.filter(m => RegExp("wbotprefixes-database", "gi").test(m.name));
