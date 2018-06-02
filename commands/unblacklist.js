@@ -1,11 +1,5 @@
-module.exports.run = async (bot, message, args) => {
-	let guild = bot.guilds.get("410400562232819723");
-	let member = await guild.fetchMember(message.author.id);
-	if (!member) return;
-	if (member.roles.get("410546480307503124")
-		|| member.roles.get("410611296401358848")
-		|| member.roles.get("410608939139334184")
-		|| member.roles.get("410481036162760722")) {
+module.exports.run = async (bot, message, args, prefix, content, permissionLevel) => {
+	if (permissionLevel >= 3) {
 		let channel = bot.channels.get("443931370968973312");
 		let pingeduser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		let userid = args[0];

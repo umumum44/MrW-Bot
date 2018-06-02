@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			});
 		}
 	} else {
-		message.reply("Only the creator of this bot can use this command.").catch(function () { });
+		message.reply("Only certain people can use this command.").catch(function () { });
 	}
 };
 module.exports.help = {

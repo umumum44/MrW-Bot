@@ -63,21 +63,33 @@ bot.on("message", (message) => {
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
-			/*let guild = bot.guilds.get("443867131721941005");
+			let guild = bot.guilds.get("410400562232819723");
 			var permissionLevel = 0;
 			if (guild.members.get(message.author.id)) {
 				guild.fetchMember(message.author.id).then((member) => {
 					if (member.roles) {
-						if (member.roles.get("443903247502147596")) permissionLevel = 1;
-						if (member.roles.get("443898332029517824")) permissionLevel = 2;
-						if (member.roles.get("443867603103121410")) permissionLevel = 3;
+						if (member.roles.get("410546480307503124")) permissionLevel = 1;
+						if (member.roles.get("428563903937511426")) permissionLevel = 2;
+						if (member.roles.get("410611296401358848")) permissionLevel = 3;
+						if (member.roles.get("428283053828341783")) permissionLevel = 4;
+						if (member.roles.get("410608939139334184")) permissionLevel = 5;
 					}
-				});
+				}).catch(function () { });
 			}
-			//0 = Non-Member or Non-Matching Roles
-			//1 = Moderators
-			//2 = Helper
-			//3 = Developers*/
+			if (message.author.id === "303683211790254080") permissionLevel = 6;
+			if (message.author.id === "399975738008141824") permissionLevel = 7;
+			/*Permission Guide
+			0 = Non-Member or Non-Matching Roles
+			Roles:
+			1 = Moderators
+			2 = Tech Admin
+			3 = Admin
+			4 = Head Admin
+			5 = Co-Owner
+			Users:
+			6 = Mattify
+			7 = Windows
+			*/
 			if (message.content.startsWith(prefix)) {
 				var commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
 				if (commandFile != null) {

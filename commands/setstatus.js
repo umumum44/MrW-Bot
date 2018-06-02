@@ -1,8 +1,5 @@
-module.exports.run = async (bot, message, args) => {
-	let guild = bot.guilds.get("410400562232819723");
-	let member = await guild.fetchMember(message.author.id);
-	if (!member) return;
-	if (member.roles.get("410481036162760722")) {
+module.exports.run = async (bot, message, args, prefix, content, permissionLevel) => {
+	if(permissionLevel === 7) {
 		let tbh = args.join(" ");
 		bot.user.setActivity(`${tbh}`, {
 			type: bot.user.presence.game.type
