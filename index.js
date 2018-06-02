@@ -49,11 +49,12 @@ bot.on("ready", async () => {
 	console.log(`${bot.user.tag} is online. ` +
 		`${bot.commands.enabledCommands.size}/${bot.commands.enabledCommands.size + bot.commands.disabledCommands.length}` +
 		"commands loaded successfully.");
+	console.log([bot.guilds.get("417149156193337344").name, bot.guilds.find("id", "417149156193337344").name]);
 	bot.loaders.enabledLoaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
 });
-bot.on("message", async (message) => {
+bot.on("message", (message) => {
 	if (message.channel.type !== "dm" && !message.author.bot) {
 		var cmd = message.content.split(" ")[0].toLowerCase();
 		if (cmd != null) {
@@ -62,15 +63,16 @@ bot.on("message", async (message) => {
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
-			/*let guild = bot.guilds.find("id", "443867131721941005");
+			/*let guild = bot.guilds.get("443867131721941005");
 			var permissionLevel = 0;
 			if (guild.members.get(message.author.id)) {
-				var member = await guild.fetchMember(message.author.id);
-				if (member.roles) {
-					if (member.roles.get("443903247502147596")) permissionLevel = 1;
-					if (member.roles.get("443898332029517824")) permissionLevel = 2;
-					if (member.roles.get("443867603103121410")) permissionLevel = 3;
-				}
+				guild.fetchMember(message.author.id).then((member) => {
+					if (member.roles) {
+						if (member.roles.get("443903247502147596")) permissionLevel = 1;
+						if (member.roles.get("443898332029517824")) permissionLevel = 2;
+						if (member.roles.get("443867603103121410")) permissionLevel = 3;
+					}
+				});
 			}
 			//0 = Non-Member or Non-Matching Roles
 			//1 = Moderators
