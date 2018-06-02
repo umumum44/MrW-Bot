@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message) => {
 	var embed = new Discord.RichEmbed().setTitle("Emojis").setColor("BLUE");
-	var emojis = message.guild.emojis.array().map(u => `:${u.name}:`).join("\n");
+	var emojis = message.guild.emojis.array().map(u => `:${u.name}: - ${u.toString()}`).join("\n");
 	if (!emojis || emojis === []) return message.reply("There are no emojis in this server!");
 	var emojisLength = emojis.length;
 	var emojisToSend;
