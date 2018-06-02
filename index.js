@@ -62,7 +62,7 @@ bot.on("message", async (message) => {
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
-			let guild = bot.guilds.find("id", "443867131721941005");
+			/*let guild = bot.guilds.find("id", "443867131721941005");
 			var permissionLevel = 0;
 			if (guild.members.get(message.author.id)) {
 				var member = await guild.fetchMember(message.author.id);
@@ -75,7 +75,7 @@ bot.on("message", async (message) => {
 			//0 = Non-Member or Non-Matching Roles
 			//1 = Moderators
 			//2 = Helper
-			//3 = Developers
+			//3 = Developers*/
 			if (message.content.startsWith(prefix)) {
 				var commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
 				if (commandFile != null) {
