@@ -1,4 +1,4 @@
-module.exports.run = async (bot, message, args, prefix, content) => {
+module.exports.run = async (bot, message) => {
 	const uptime = bot.uptime;
 	var days = ((uptime) - (uptime % 86400000)) / 86400000;
 	var hours = (((uptime) - (uptime % 3600000)) / 3600000) - (days * 24);
@@ -37,11 +37,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 	message
 		.reply(`The bot has been online for ${days}${hours}${minutes}${seconds}${milliseconds}`)
 		.catch(() => {
-			call.message.author.send(`You attempted to run the \`uptime\` command in ${call.message.channel}, but I can not chat there.`).catch(function() {});
+			message.author.send(`You attempted to run the \`uptime\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 		});
-}
+};
 module.exports.help = {
 	name: "uptime",
 	description: "Sends you the bot's uptime",
 	type: "Information"
-}
+};

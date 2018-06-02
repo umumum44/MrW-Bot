@@ -1,12 +1,10 @@
-const Discord = require("discord.js");
-
 module.exports.run = async (bot, message, args, prefix, content) => {
-	
 	if (!message.member.hasPermission("MANAGE_GUILD")) return message.reply("You do not have permissions to use this command.");
 	var dbguild = bot.guilds.get("443929284411654144");
 	var dbchannels = dbguild.channels.filter(channel => channel.name.includes("autoroles-database"));
 	var count = 0;
 	var count2 = 0;
+	var msgargs;
 	if (args[0] === "view") {
 		dbchannels.forEach(dbchannel => {
 			count2 = count2 + 1;
@@ -22,7 +20,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 					count = count + 1;
 					if (count == messages.size && count2 == dbchannels.size) return message.reply("There are no autoroles set in this server. Try the command `!autoroles set`").catch(function() {});
 				});
-			});
+			}).catch(function() {});
 		});
 	} else if (args[0] === "set") {
 		if (args[1] != undefined) {
@@ -39,7 +37,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 								if (!msg.content.includes(`${roleToSet.id}`)) {
 									msg.edit(msg.content + ` ${roleToSet.id}`).then(() => {
 										message.reply(`The \`${roleToSet.name}\` role is now an autorole for this server.`).catch(function() {});
-									});
+									}).catch(function() {});
 								} else {
 									message.reply(`The \`${roleToSet.name}\` role is already a autorole for this server.`).catch(function() {});
 								}
@@ -50,25 +48,25 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 									if (messagesFetched >= 100) {
 										dbguild.createChannel("autoroles-database", "text", [{
 											id: dbguild.id,
-											deny: ['READ_MESSAGES'],
+											deny: ["READ_MESSAGES"],
 										}]).then(newdbchannel => {
 											newdbchannel.send(`${message.guild.id} ${roleToSet.id}`).catch(function() {});
-										});
+										}).catch(function() {});
 									} else {
 										dbguild.channels.find("name", "autoroles-database").send(`${message.guild.id} ${roleToSet.id}`).then(() => {
 											message.reply(`The \`${roleToSet.name}\` role is now an autorole for this server.`).catch(function() {});
 										}).catch(function() {});
 									}
-								});
+								}).catch(function() {});
 							}
-						});
-					});
+						}).catch(function() {});
+					}).catch(function() {});
 				});
 			} else {
 				message.reply("Please specify a valid role to set as an autorole. Example: `!autoroles set Member`").catch(function() {});
 			}
 		} else {
-			message.reply("Please specify a role to set as an autorole. Example: `!autoroles set Member`").catch(function() {})
+			message.reply("Please specify a role to set as an autorole. Example: `!autoroles set Member`").catch(function() {});
 		}
 	} else if (args[0] === "delete") {
 		if (args[1] !== undefined) {
@@ -85,7 +83,7 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 								if (msg.content.includes(`${roleToDel.id}`)) {
 									msg.edit(msg.content.replace(` ${roleToDel.id}`, "")).then(() => {
 										message.reply(`The \`${roleToDel.name}\` role is now not an autorole in this server.`).catch(function() {});
-									});
+									}).catch(function() {});
 								} else {
 									message.reply(`The \`${roleToDel.name}\` role is not a autorole for this server.`).catch(function() {});
 								}
@@ -94,8 +92,8 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 							if (count == messages.size && count2 == dbchannels.size) {
 								message.reply("This server has no autoroles. To set an autorole use `!autoroles set`").catch(function() {});
 							}
-						});
-					});
+						}).catch(function() {});
+					}).catch(function() {});
 				});
 			} else {
 				message.reply("Please specify a valid role to delete. Example: `!autoroles delete Member`").catch(function() {});
@@ -104,11 +102,11 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			message.reply("Please specify a autorole to delete. Example: `!autoroles delete Member`").catch(function() {});
 		}
 	} else {
-		message.reply("Invalid parameter. Valid parameters are: `set`, `view`, `delete`.")
+		message.reply("Invalid parameter. Valid parameters are: `set`, `view`, `delete`.");
 	}
-}
+};
 module.exports.help = {
 	name: "autoroles",
 	description: "Adds/removes roles to give roles to a user when they join a server",
 	type: "Roles"
-}
+};

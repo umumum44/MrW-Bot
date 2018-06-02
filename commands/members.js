@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
-
 module.exports.run = async (bot, message, args, prefix, content) => {
 	var memberEmbed = new Discord.RichEmbed().setColor("GREEN");
 	var members;
-	var content = content;
 	if (message.guild.roles.find(r => r.name.toLowerCase().startsWith(content.toLowerCase()))) {
 		if (content !== "") {
 			members = message.guild.roles.find(r => r.name.toLowerCase().startsWith(content.toLowerCase())).members.map(m => m.user.tag).sort()
@@ -30,15 +28,15 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			memberEmbed.setDescription(membersToSend.join("\n")).setFooter(`Page ${page}/${totalPages}`);
 			message.channel.send({
 				embed: memberEmbed
-			}).then(async function(sentEmbed) {
+			}).then(async function (sentEmbed) {
 				const emojiArray = ["◀", "▶"];
 				const filter = (reaction, user) => emojiArray.includes(reaction.emoji.name) && user.id === message.author.id;
-				await sentEmbed.react(emojiArray[0]).catch(function() {});
-				await sentEmbed.react(emojiArray[1]).catch(function() {});
+				await sentEmbed.react(emojiArray[0]).catch(function () { });
+				await sentEmbed.react(emojiArray[1]).catch(function () { });
 				var reactions = sentEmbed.createReactionCollector(filter, {
 					time: 120000
 				});
-				reactions.on("collect", async function(reaction) {
+				reactions.on("collect", async function (reaction) {
 					await reaction.remove(message.author);
 					if (reaction.emoji.name === "◀") {
 						if (page !== 1) {
@@ -53,35 +51,34 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 							membersToSend = members.split("\n").slice(membersLength, membersLength + 20);
 						}
 					}
-
 					memberEmbed = new Discord.RichEmbed().setDescription(membersToSend.join("\n")).setColor("ORANGE")
 						.setFooter(`Page ${page}/${totalPages}`);
 					if (content !== "") memberEmbed.setTitle(`Users in ${message.guild.roles.find(r => r.name.toLowerCase().startsWith(content.toLowerCase())).name}`);
 					if (content === "") memberEmbed.setTitle("Users");
-					sentEmbed.edit(memberEmbed).catch(function() {});
+					sentEmbed.edit(memberEmbed).catch(function () { });
 				});
 				reactions.on("end", () => sentEmbed.edit("Interactive command ended: 2 minutes passed."));
 			}).catch(() => {
 				message.reply("There was an error while trying to send this embed.").catch(() => {
-					message.author.send(`You attempted to run the \`members\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
+					message.author.send(`You attempted to run the \`members\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 				});
 			});
 		} else {
 			memberEmbed.setDescription(members);
 			message.channel.send({ embed: memberEmbed }).catch(() => {
 				message.reply("There was an error while trying to send this embed.").catch(() => {
-					message.author.send(`You attempted to run the \`members\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
+					message.author.send(`You attempted to run the \`members\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 				});
 			});
 		}
 	} else {
 		message.reply("Please specify a valid role, or supply no parameter for everyone in this server.").catch(() => {
-			message.author.send(`You attempted to run the \`members\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
+			message.author.send(`You attempted to run the \`members\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 		});
 	}
-}
+};
 module.exports.help = {
 	name: "members",
 	description: "Sends you a list of members in a role",
 	type: "Information"
-}
+};

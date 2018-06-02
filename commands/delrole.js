@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports.run = async (bot, message, args, prefix, content) => {
 	if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply("You do not have permissions to use this command.").catch(function() {});
 	if(args[0] === undefined) return message.reply("Please specify the following params (required). `!delrole (role name)`.");
@@ -21,9 +19,9 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			message.reply(`There was an error attempting to delete the \`${choice.name}\` role.`).catch(function() {});
 		});
 	}
-}
+};
 module.exports.help = {
 	name: "delrole",
 	description: "Deletes a role",
 	type: "Roles"
-}
+};

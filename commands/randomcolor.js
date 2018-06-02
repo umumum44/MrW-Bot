@@ -1,6 +1,6 @@
-var randomHex = require('random-hex');
+var randomHex = require("random-hex");
 const Discord = require("discord.js");
-module.exports.run = async (bot, message, args, prefix, content) => {
+module.exports.run = async (bot, message) => {
 	var hex = randomHex.generate();
 	var justhex = hex.slice(1);
 	const embed = new Discord.RichEmbed()
@@ -9,10 +9,10 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 		.setFooter(`Requested by ${message.author.tag}`)
 		.setThumbnail(`https://dummyimage.com/500x500/${justhex}/${justhex}.png`)
 		.setDescription(`Hex Code: ${hex}`);
-	message.channel.send(embed).catch(function() {});	
-}
+	message.channel.send(embed).catch(function() {});
+};
 module.exports.help = {
-        name: "randomcolor",
+	name: "randomcolor",
 	description: "Sends you a random hex color",
 	type: "Fun"
-}
+};

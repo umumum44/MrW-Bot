@@ -8,18 +8,16 @@ bot.allcommands = new Discord.Collection();
 bot.rateLimits = { poll: [], report: [], afk: [] };
 bot.databases = { disabled: [], prefixes: [] };
 bot.loaders = { enabledLoaders: [], disabledLoaders: [] };
-
 fs.readdirSync(__dirname + "/load").forEach(file => {
 	try {
 		let loader = require("./load/" + file);
 		bot.loaders.enabledLoaders.push(loader);
-	} catch(err) {
+	} catch (err) {
 		bot.loaders.disabledLoaders.push(file);
 		console.log(`\nThe ${file} load module failed to load:`);
 		console.log(err);
 	}
 });
-
 function checkCommand(command, name) {
 	var resultOfCheck = [true, null];
 	if (!command.run) resultOfCheck[0] = false; resultOfCheck[1] = `Missing Function: "module.run" of ${name}.`;
@@ -27,12 +25,11 @@ function checkCommand(command, name) {
 	if (command.help && !command.help.name) resultOfCheck[0] = false; resultOfCheck[1] = `Missing String: "module.help.name" of ${name}.`;
 	return resultOfCheck;
 }
-
 fs.readdir("./commands/", (err, files) => {
 	if (err) console.log(err);
 	var jsfiles = files.filter(f => f.split(".").pop() === "js");
 	if (jsfiles.length <= 0) return console.log("Couldn't find commands.");
-	jsfiles.forEach((f, i) => {
+	jsfiles.forEach((f) => {
 		try {
 			var props = require(`./commands/${f}`);
 			bot.allcommands.set(props.help.name, props);
@@ -41,30 +38,27 @@ fs.readdir("./commands/", (err, files) => {
 			} else {
 				throw checkCommand(props, f)[1];
 			}
-		} catch(err) {
+		} catch (err) {
 			bot.commands.disabledCommands.push(f);
 			console.log(`\nThe ${f} command failed to load:`);
 			console.log(err);
 		}
 	});
 });
-
 bot.on("ready", async () => {
 	console.log(`${bot.user.tag} is online. ` +
-		    `${bot.commands.enabledCommands.size}/${bot.commands.enabledCommands.size + bot.commands.disabledCommands.length}` +
-		    `commands loaded successfully.`);
+		`${bot.commands.enabledCommands.size}/${bot.commands.enabledCommands.size + bot.commands.disabledCommands.length}` +
+		"commands loaded successfully.");
 	bot.loaders.enabledLoaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
 });
-
 bot.on("message", async (message) => {
 	if (message.channel.type !== "dm" && !message.author.bot) {
 		var cmd = message.content.split(" ")[0].toLowerCase();
 		if (cmd != null) {
 			const args = message.content.split(" ").slice(1),
-			      content = args.join(" "), dbguild = bot.guilds.get("443929284411654144"),
-			      channels = dbguild.channels.filter((m) => m.name.includes("wbotprefixes-database"));
+				content = args.join(" ");
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
@@ -82,5 +76,4 @@ bot.on("message", async (message) => {
 		}
 	}
 });
-
 bot.login(botconfig.token);

@@ -1,7 +1,4 @@
-const Discord = require("discord.js");
-
 module.exports.run = async (bot, message, args, prefix, content) => {
-	
 	var roles = content.split(" ").slice(1).join(" ").split(", ").filter(r => r !== "");
 	const paramaterOne = args[0];
 	const paramaterTwo = args[1];
@@ -280,10 +277,9 @@ module.exports.run = async (bot, message, args, prefix, content) => {
 			}
 		}
 	}
-}
-
+};
 module.exports.help = {
 	name: "role",
 	description: "Gives a user a specified role(s)",
 	type: "Roles"
-}
+};

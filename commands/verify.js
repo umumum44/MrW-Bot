@@ -1,6 +1,4 @@
-const Discord = require("discord.js");
-const rbx = require('roblox-js');
-
+const rbx = require("roblox-js");
 async function awaitReply(message, question, limit = 60000) {
 	const filter = m => m.author.id === message.author.id;
 	await message.reply(question);
@@ -11,7 +9,6 @@ async function awaitReply(message, question, limit = 60000) {
 		return false;
 	}
 }
-
 async function everything(bot, message) {
 	const username = await awaitReply(message, "What is your Roblox username or ID?\n\nSay `cancel` to cancel this prompt.", 60000);
 	if (username == "cancel") return message.channel.send("Cancelled prompt.");
@@ -25,27 +22,27 @@ async function everything(bot, message) {
 	var stoploop = 5;
 	randomstring = "music";
 	while (stoploop !== 0) {
-		var randomstring = randomstring + randomwords[Math.floor(Math.random() * randomwords.length)]
+		var randomstring = randomstring + randomwords[Math.floor(Math.random() * randomwords.length)];
 		stoploop = stoploop - 1;
 	}
-	const awaitfinish = await awaitReply(message, `Please put the following text in your blurb or status: \`${randomstring}\`. Say \`done\` when finished.\n\nSay \`cancel\` to cancel this prompt.`, 120000)
+	const awaitfinish = await awaitReply(message, `Please put the following text in your blurb or status: \`${randomstring}\`. Say \`done\` when finished.\n\nSay \`cancel\` to cancel this prompt.`, 120000);
 	if (awaitfinish == "cancel") return message.channel.send("Cancelled prompt.");
 	if (awaitfinish.toLowerCase() == "done") {
 		//var playerinfo = await rbx.getPlayerInfo(userid);
-		var blurb = await rbx.getBlurb(userid)
-		var status = await rbx.getStatus(userid)
+		var blurb = await rbx.getBlurb(userid);
+		var status = await rbx.getStatus(userid);
 		if (blurb.includes(randomstring) || status.includes(randomstring)) {
 			// db code here putting username and discord id in the db
-			message.reply(`Successfully linked your Discord account to ${username}. This may take some time to update into the database`)
+			message.reply(`Successfully linked your Discord account to ${username}. This may take some time to update into the database`);
 			var dbguild = bot.guilds.get("443929284411654144");
-			var dbchannel = dbguild.channels.find("name", "roblox-database")
+			var dbchannel = dbguild.channels.find("name", "roblox-database");
 			var olo = await dbchannel.fetchMessages({ limit: 100 });
 			var msgcount = olo.size;
 			if (msgcount == "100") {
 				await dbchannel.setName("archived-roblox-database");
-				dbguild.createChannel('roblox-database', 'text', [{
+				dbguild.createChannel("roblox-database", "text", [{
 					id: dbguild.id,
-					deny: ['READ_MESSAGES'],
+					deny: ["READ_MESSAGES"],
 					allow: []
 				}]).then(() => {
 					var channelloop = 0;
@@ -56,20 +53,20 @@ async function everything(bot, message) {
 						dbchannel.fetchMessages({ limit: 100 }).then(messages => {
 							messages.forEach(msg => {
 								if (msg.content.startsWith(`${message.author.id}`)) {
-									msg.delete()
+									msg.delete();
 								}
 								messageloop = messageloop + 1;
 								if (messageloop == messages.size) {
 									messageloop = 0;
 									channelloop = channelloop + 1;
 									if (channelloop == dbchannels.size) {
-										message.channel.send(`${message.author.id} ${userid}`)
+										message.channel.send(`${message.author.id} ${userid}`);
 									}
 								}
 							});
-						});
+						}).catch(function () { });
 					});
-				});
+				}).catch(function () { });
 			} else {
 				var channelloop = 0;
 				var messageloop = 0;
@@ -79,8 +76,8 @@ async function everything(bot, message) {
 					dbchannel2.fetchMessages({ limit: 100 }).then(messages => {
 						messages.forEach(msg => {
 							if (msg.content.startsWith(`${message.author.id}`)) {
-								msg.delete()
-								dbchannel.send(`${message.author.id} ${userid}`)
+								msg.delete();
+								dbchannel.send(`${message.author.id} ${userid}`);
 							} else {
 								messageloop = messageloop + 1;
 							}
@@ -92,22 +89,21 @@ async function everything(bot, message) {
 								}
 							}
 						});
-					});
+					}).catch(function () { });
 				});
 			}
 		} else {
-			message.reply(`Could not find the following text: \`${randomstring}\` in your blurb or status, please retry the command.`)
+			message.reply(`Could not find the following text: \`${randomstring}\` in your blurb or status, please retry the command.`);
 		}
 	} else {
-		message.reply("Invalid option. Options are `done` or `cancel`. Command has been cancelled, please retry.")
+		message.reply("Invalid option. Options are `done` or `cancel`. Command has been cancelled, please retry.");
 	}
 }
-
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message) => {
 	everything(bot, message);
-}
+};
 module.exports.help = {
 	name: "verify",
 	description: "Verifies your roblox account with your discord account",
 	type: "Miscellaneous"
-}
+};
