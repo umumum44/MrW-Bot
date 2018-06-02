@@ -9,7 +9,7 @@ module.exports.run = async (bot, message) => {
 			.setTitle("Emojis")
 			.setDescription(`:${emojis[page - 1].name}:`)
 			.setImage(emojis[page - 1].url)
-			.setFooter(`Page ${page}/${totalpages}`)
+			.setFooter(`Page ${page}/${totalpages} | Emoji ID: ${emojis[page - 1].id}`)
 			.setColor("BLUE");
 		message.channel.send(embed).then(async function (sentEmbed) {
 			const emojiArray = ["◀", "▶"];
@@ -17,7 +17,7 @@ module.exports.run = async (bot, message) => {
 			await sentEmbed.react(emojiArray[0]).catch(function () { });
 			await sentEmbed.react(emojiArray[1]).catch(function () { });
 			var reactions = sentEmbed.createReactionCollector(filter, {
-				time: 120000
+				time: 300000
 			});
 			reactions.on("collect", async function (reaction) {
 				await reaction.remove(message.author);
@@ -38,12 +38,11 @@ module.exports.run = async (bot, message) => {
 					.setTitle("Emojis")
 					.setDescription(`:${emojis[page - 1].name}:`)
 					.setImage(emojis[page - 1].url)
-					.setFooter(`Page ${page}/${totalpages}`)
-					.setColor("BLUE")
-					.setFooter(`Page ${page}/${totalpages}`);
+					.setFooter(`Page ${page}/${totalpages} | Emoji ID: ${emojis[page - 1].id}`)
+					.setColor("BLUE");
 				sentEmbed.edit(embed).catch(function () { });
 			});
-			reactions.on("end", () => sentEmbed.edit("Interactive command ended: 2 minutes passed."));
+			reactions.on("end", () => sentEmbed.edit("Interactive command ended: 5 minutes passed."));
 		}).catch(() => {
 			message.reply("There was an error while trying to send this embed.").catch(() => {
 				message.author.send(`You attempted to run the \`emojis\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
@@ -52,9 +51,9 @@ module.exports.run = async (bot, message) => {
 	} else {
 		let emojiembed = new Discord.RichEmbed()
 			.setTitle("Emojis")
-			.setDescription(`:${emojis[0].name}:`)
+			.setDescription(`:${emojis[1].name}:`)
 			.setImage(emojis[0].url)
-			.setFooter(`Page ${1}/${1}`)
+			.setFooter(`Page ${1}/${1} | Emoji ID: ${emojis[1].id}`)
 			.setColor("BLUE");
 		message.channel.send(emojiembed);
 	}
