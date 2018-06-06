@@ -63,7 +63,7 @@ bot.on("message", (message) => {
 			var prefix = bot.databases.prefixes.find(value => value.guild === message.guild.id);
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
-			var permissionLevel = bot.permissionLevel(message.author);
+			var permissionLevel = bot.getPermissionLevel(message.author);
 			console.log(permissionLevel);
 			if (message.content.startsWith(prefix)) {
 				let commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
