@@ -1,6 +1,6 @@
 module.exports.run = (bot) => {
 	bot.getPermissionLevel = function(user) {
-		var guild = bot.guilds.has("410400562232819723");
+		var guild = bot.guilds.get("410400562232819723");
 		var permissionLevel = 0;
 		if (guild.members.has(user.id)) {
 			var newMember = guild.member(user.id);
