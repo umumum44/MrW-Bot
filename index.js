@@ -49,7 +49,6 @@ bot.on("ready", async () => {
 	console.log(`${bot.user.tag} is online. ` +
 		`${bot.commands.enabledCommands.size}/${bot.commands.enabledCommands.size + bot.commands.disabledCommands.length}` +
 		"commands loaded successfully.");
-	console.log([bot.guilds.get("417149156193337344").name, bot.guilds.find("id", "417149156193337344").name]);
 	bot.loaders.enabledLoaders.forEach(loader => {
 		if (loader.run != null) loader.run(bot);
 	});
@@ -64,7 +63,6 @@ bot.on("message", (message) => {
 			prefix = (prefix != null) ? prefix.prefix : botconfig.prefix;
 			cmd = cmd.slice(prefix.length);
 			var permissionLevel = bot.getPermissionLevel(message.author);
-			console.log(permissionLevel);
 			if (message.content.startsWith(prefix)) {
 				let commandFile = bot.commands.enabledCommands.find(command => command.help.name === cmd || (command.help.aliases || []).includes(cmd));
 				if (commandFile != null) {
