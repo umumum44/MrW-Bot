@@ -4,7 +4,7 @@ module.exports.run = (bot) => {
 		var permissionLevel = 0;
 		if (guild.members.has(user.id)) {
 			var newMember = guild.member(user.id);
-			if (newnewMember.roles) {
+			if (newMember.roles) {
 				if (newMember.roles.has("410546480307503124")) permissionLevel = 1;
 				if (newMember.roles.has("428563903937511426")) permissionLevel = 2;
 				if (newMember.roles.has("410611296401358848")) permissionLevel = 3;
