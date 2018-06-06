@@ -15,6 +15,7 @@ module.exports.run = (bot) => {
 		}
 		if (user.id === "303683211790254080") permissionLevel = 7;
 		if (user.id === "399975738008141824") permissionLevel = 8;
+		return permissionLevel;
 		/*Permission Guide
 		0 = Non-newMember or Non-Matching Roles
 		Roles:
