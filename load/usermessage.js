@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-
 module.exports.run = async (bot) => {
 	bot.on("guildMemberAdd", async member => {
 		var dbguild = bot.guilds.get("443929284411654144");
@@ -13,7 +12,7 @@ module.exports.run = async (bot) => {
 							member.addRoles(msgargs.map(role => member.guild.roles.get(role)));
 						}
 					});
-				});
+				}).catch(function() {});
 			});
 		}
 		var announcerchannel = bot.channels.get("443931378011078666");
@@ -21,17 +20,17 @@ module.exports.run = async (bot) => {
 		var announcermsg = announcermsgs.find(m => m.content.startsWith(member.guild.id));
 		if (!announcermsg) return;
 		//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
-		var settings = announcermsg.content
-		var togglesetting = settings.split("|")[1].trim()
-		var channelsetting = settings.split("|")[2].trim()
-		var avatarsetting = settings.split("|")[3].trim()
-		var footersetting = settings.split("|")[4].trim()
-		var hellomsg = settings.split("|")[5].trim()
-		var byemsg = settings.split("|")[6].trim()
+		var settings = announcermsg.content;
+		var togglesetting = settings.split("|")[1].trim();
+		var channelsetting = settings.split("|")[2].trim();
+		var avatarsetting = settings.split("|")[3].trim();
+		var footersetting = settings.split("|")[4].trim();
+		var hellomsg = settings.split("|")[5].trim();
 		if (togglesetting === "false") return;
 		if (channelsetting === "none") return;
+		var himessage;
 		if (hellomsg !== "none") {
-			var himessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
+			himessage = hellomsg.replace(/{user.mention}/gi, member.user.toString());
 			himessage = himessage.replace(/{user}/gi, member.user.toString());
 			himessage = himessage.replace(/{user.tag}/gi, member.user.tag);
 			himessage = himessage.replace(/{user.discriminator}/gi, member.user.discriminator);
@@ -46,13 +45,12 @@ module.exports.run = async (bot) => {
 				himessage = himessage.replace(/{user.game}/gi, member.user.presence.game.name);
 			} else {
 				himessage = himessage.replace(/{user.game}/gi, "None");
-
 			}
 			himessage = himessage.replace(/{guild.id}/gi, member.guild.id);
 			himessage = himessage.replace(/{guild.name}/gi, member.guild.name);
 			himessage = himessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
 		} else {
-			var himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`;
+			himessage = `Welcome to ${member.guild.name}, ${member.user.toString()}! Have a good time here!`;
 		}
 		var welcomeMessage = new Discord.RichEmbed()
 			.setTitle("Welcome")
@@ -60,38 +58,38 @@ module.exports.run = async (bot) => {
 			.setDescription(himessage);
 		if (footersetting === "true") welcomeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
 		if (avatarsetting === "true") welcomeMessage.setThumbnail(member.user.displayAvatarURL);
-		var channeltosend = bot.channels.find(`id`, channelsetting)
+		var channeltosend = bot.channels.find("id", channelsetting);
 		if (!channeltosend) return;
 		channeltosend.send({
-				embed: welcomeMessage
-			})
+			embed: welcomeMessage
+		})
 			.catch(() => {
 				welcomeMessage.setThumbnail(null);
 				channeltosend.send({
-						embed: welcomeMessage
-					})
-					.catch(function() {});
+					embed: welcomeMessage
+				})
+					.catch(function () { });
 			});
 	});
 	bot.on("guildMemberRemove", async member => {
 		var announcerchannel = bot.channels.get("443931378011078666");
 		var announcermsgs = await announcerchannel.fetchMessages({
 			limit: 100
-		})
+		});
 		var announcermsg = announcermsgs.find(m => m.content.startsWith(member.guild.id));
 		if (!announcermsg) return;
 		//guildid | toggle | channel | avatar | footer | hellomsg | goodbyemsg
-		var settings = announcermsg.content
-		var togglesetting = settings.split("|")[1].trim()
-		var channelsetting = settings.split("|")[2].trim()
-		var avatarsetting = settings.split("|")[3].trim()
-		var footersetting = settings.split("|")[4].trim()
-		var hellomsg = settings.split("|")[5].trim()
-		var byemsg = settings.split("|")[6].trim()
+		var settings = announcermsg.content;
+		var togglesetting = settings.split("|")[1].trim();
+		var channelsetting = settings.split("|")[2].trim();
+		var avatarsetting = settings.split("|")[3].trim();
+		var footersetting = settings.split("|")[4].trim();
+		var byemsg = settings.split("|")[6].trim();
 		if (togglesetting === "false") return;
 		if (channelsetting === "none") return;
+		var byemessage;
 		if (byemsg !== "none") {
-			var byemessage = byemsg.replace(/{user.mention}/gi, member.user.toString());
+			byemessage = byemsg.replace(/{user.mention}/gi, member.user.toString());
 			byemessage = byemessage.replace(/{user}/gi, member.user.toString());
 			byemessage = byemessage.replace(/{user.tag}/gi, member.user.tag);
 			byemessage = byemessage.replace(/{user.discriminator}/gi, member.user.discriminator);
@@ -106,13 +104,12 @@ module.exports.run = async (bot) => {
 				byemessage = byemessage.replace(/{user.game}/gi, member.user.presence.game.name);
 			} else {
 				byemessage = byemessage.replace(/{user.game}/gi, "None");
-
 			}
 			byemessage = byemessage.replace(/{guild.id}/gi, member.guild.id);
 			byemessage = byemessage.replace(/{guild.name}/gi, member.guild.name);
 			byemessage = byemessage.replace(/{guild.membercount}/gi, member.guild.memberCount.toString());
 		} else {
-			var byemessage = `Sad to see you leave ${member.user.toString()}.`
+			byemessage = `Sad to see you leave ${member.user.toString()}.`;
 		}
 		var goodbyeMessage = new Discord.RichEmbed()
 			.setTitle("Goodbye")
@@ -120,13 +117,13 @@ module.exports.run = async (bot) => {
 			.setDescription(byemessage);
 		if (footersetting === "true") goodbyeMessage.setFooter(`${member.guild.name} is now at ${member.guild.memberCount} members!`);
 		if (avatarsetting === "true") goodbyeMessage.setThumbnail(member.user.displayAvatarURL);
-		var channeltosend = bot.channels.find(`id`, channelsetting)
+		var channeltosend = bot.channels.find("id", channelsetting);
 		if (!channeltosend) return;
 		channeltosend.send({ embed: goodbyeMessage }).catch(() => {
 			goodbyeMessage.setThumbnail(null);
-			channeltosend.send({ embed: goodbyeMessage }).catch(function() {});
+			channeltosend.send({ embed: goodbyeMessage }).catch(function () { });
 		});
-	})
+	});
 	bot.on("guildCreate", async guilda => {
 		let hello = new Discord.RichEmbed()
 			.setTitle("Thanks For Adding Me To Your Server!!")
@@ -143,4 +140,4 @@ module.exports.run = async (bot) => {
 		}
 		if (bot.counter) await bot.user.setActivity(`${bot.guilds.size} servers`, { type: "WATCHING" });
 	});
-}
+};

@@ -10,15 +10,15 @@ module.exports.run = async (bot) => {
 				muteUser = msg.content.split(" ")[1];
 				timeUntilUnmute = parseInt(msg.content.split(" ")[2]);
 				if (timeUntilUnmute <= Date.now()) {
-					msg.delete().catch(function() {});
+					msg.delete().catch(function () { });
 					muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted"));
 				} else {
 					setTimeout(() => {
 						muteGuild.members.get(muteUser).removeRole(muteGuild.roles.find("name", "Muted"));
-						msg.delete().catch(function() {});
+						msg.delete().catch(function () { });
 					}, timeUntilUnmute - Date.now());
 				}
 			}
 		});
-	});
-}
+	}).catch(function() {});
+};

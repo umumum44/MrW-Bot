@@ -1,5 +1,5 @@
 module.exports.run = (bot) => {
-	bot.getPermissionLevel = function(user) {
+	bot.getPermissionLevel = function (user) {
 		var guild = bot.guilds.get("410400562232819723");
 		var permissionLevel = 0;
 		if (guild.members.has(user.id)) {
@@ -29,5 +29,5 @@ module.exports.run = (bot) => {
 		7 = Mattify
 		8 = Windows
 		*/
-	}
+	};
 };

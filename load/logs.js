@@ -1,8 +1,7 @@
 const Discord = require("discord.js");
-
 module.exports.run = async (bot) => {
 	bot.on("messageDelete", (message) => {
-		if(message.author.bot) return;
+		if (message.author.bot) return;
 		var messageAttachments = "";
 		if (message.attachments.first() !== undefined) messageAttachments = `\n${message.attachments.first().url}`;
 		if (message.content !== "" || messageAttachments !== "") {
@@ -18,18 +17,18 @@ module.exports.run = async (bot) => {
 							.setTitle("Message Delete")
 							.setColor("RED")
 							.addField("Message Content", `Message ID: \`${message.id}\`\nMessage Author: ${message.author}\nMessage Channel: ${message.channel}\nCreated At: \`${message.createdAt}\`\nDeleted At: \`${new Date(Date.now())}\``)
-							.setDescription(`\`\`\`${message.content.replace(/\`/gi, "")}${messageAttachments}\`\`\``);
-						logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
+							.setDescription(`\`\`\`${message.content.replace(/`/gi, "")}${messageAttachments}\`\`\``);
+						logChannel.send({ embed: messageDeleteEmbed }).catch(function () { });
 					}
 				});
-			});
+			}).catch(function() {});
 		}
 	});
 	bot.on("messageUpdate", (oldMessage, newMessage) => {
-		if(oldMessage.author.bot) return;
-		if(oldMessage.content == newMessage.content) return;
-		var oldmessage = oldMessage
-		var newmessage = newMessage
+		if (oldMessage.author.bot) return;
+		if (oldMessage.content == newMessage.content) return;
+		var oldmessage = oldMessage;
+		var newmessage = newMessage;
 		var omessageAttachments = "";
 		var nmessageAttachments = "";
 		if (oldmessage.attachments.first() !== undefined) omessageAttachments = `\n${oldmessage.attachments.first().url}`;
@@ -46,11 +45,11 @@ module.exports.run = async (bot) => {
 							.setTitle("Message Edit")
 							.setColor("RED")
 							.addField("Message Information", `Message ID: \`${newmessage.id}\`\nMessage Author: ${newmessage.author}\nMessage Channel: ${newmessage.channel}\nCreated At: \`${newmessage.createdAt}\`\nEdited At: \`${new Date(Date.now())}\``)
-							.setDescription(`**Old Message:**\`\`\`${oldmessage.content.replace(/\`/gi, "")}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content.replace(/\`/gi, "")}${nmessageAttachments}\`\`\``);
-						logChannel.send({ embed: messageDeleteEmbed }).catch(function() {});
+							.setDescription(`**Old Message:**\`\`\`${oldmessage.content.replace(/`/gi, "")}${omessageAttachments}\`\`\`\n**New Message:**\`\`\`${newmessage.content.replace(/`/gi, "")}${nmessageAttachments}\`\`\``);
+						logChannel.send({ embed: messageDeleteEmbed }).catch(function () { });
 					}
 				});
-			});
+			}).catch(function() {});
 		}
 	});
-}
+};
